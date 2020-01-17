@@ -1,11 +1,23 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# アプリケーション名
+Music Square
 
-Things you may want to cover:
+# 概要
+Music Squareは音楽の好きな人たちが交流・情報交換・イベント作成のできるアプリケーションです。
+アプリケーション内には好きなアーティストごとに掲示板が用意されています。
+自分自身でイベントを作成することもできますので、ユーザー同士で交流・情報交換を行ってください。
 
-* Ruby version
+# バージョン情報
+Ruby 2.6.5
+Rails 5.2.4.1
+
+# 機能一覧
+
+- ログイン機能
+ - SNSログイン（twitter,facebook）
+- ユーザー登録機能
+- 
 
 * System dependencies
 
