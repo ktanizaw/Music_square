@@ -43,3 +43,7 @@ https://docs.google.com/spreadsheets/d/1dJhQ_BB5qmhHEaP-dJf8tWmuZ_pMsdKY6asXO23v
 - carrierwave
 - devise
 - kaminari
+
+# 使用技術
+就業Termから少なくとも2つ：AWS、devise
+カリキュラム外から１つ以上：Spotify APIかApple music API、Docker、SNSログイン
