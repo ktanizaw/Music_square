@@ -1,0 +1,2 @@
+class BoardComment < ApplicationRecord
+end

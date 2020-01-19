@@ -1,3 +1,10 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources: users
+  resources: artist_boards
+  resources: board_comments
+  resources: categories
+  resources: event_comments
+  resources: fans
+  resources: favorites
+  resources: labels
 end
