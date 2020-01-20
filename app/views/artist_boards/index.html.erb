@@ -1,0 +1,11 @@
+<%= form_with(model: @artistboards) do |form| %>
+  <div class="Artist_board">
+    <%= form.label :artists %>
+    <%= form.text_field :artists %>
+  </div>
+  <div class="Artist_board">
+    <%= form.label :albums %>
+    <%= form.text_field :text %>
+  </div>
+  <%= form.submit %>
+<% end %>

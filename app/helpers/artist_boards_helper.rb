@@ -1,0 +1,2 @@
+module ArtistBoardsHelper
+end
