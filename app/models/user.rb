@@ -12,7 +12,11 @@ class User < ApplicationRecord
       uniqueness: true, format: { with: VALID_EMAIL_REGEX }
 
   validates :profile,
-    length:{maximum: 255},  presence: {message: "入力してください！"},
-  validates :password_digest, presence: {message: "入力してください！"},
-    presence: true,length:{minimum: 6}
+    length:{maximum: 255}
+
+  validates :password_digest,
+    presence: true, presence: {message: "入力してください！"},
+    length:{minimum: 6}
+
+  mount_uploader :profile_image, ProfileImageUploader
 end
