@@ -17,4 +17,6 @@ class User < ApplicationRecord
   validates :password_digest,
     presence: true, presence: {message: "入力してください！"},
     length:{minimum: 6}
+
+  mount_uploader :profile_image, ProfileImageUploader
 end

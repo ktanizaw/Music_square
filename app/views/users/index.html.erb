@@ -18,6 +18,7 @@
         <td><%= user.name %></td>
         <td><%= user.email %></td>
         <td><%= user.profile %></td>
+        <td><%= image_tag "#{user.profile_image}" %></td>
         <td><%= user.password_digest %></td>
         <td><%= link_to 'Show', user %></td>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
