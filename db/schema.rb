@@ -73,7 +73,6 @@ ActiveRecord::Schema.define(version: 2020_01_20_015836) do
     t.text "profile"
     t.string "profile_image"
     t.string "password_digest", null: false
-    t.boolean "admin", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
