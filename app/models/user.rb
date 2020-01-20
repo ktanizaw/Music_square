@@ -1,8 +1,4 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
   has_many :fans, dependent: :destroy
 
   validates :name,
@@ -18,9 +14,10 @@ class User < ApplicationRecord
   validates :profile,
     length:{maximum: 255}
 
-  validates :password_digest,
-    presence: true, presence: {message: "入力してください！"},
-    length:{minimum: 6}
+  has_secure_password
+  validates :password, presence: true, presence: {message: "入力してください！"},
+    length: { minimum: 6 }
+
 
   mount_uploader :profile_image, ProfileImageUploader
 end

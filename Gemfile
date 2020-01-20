@@ -20,6 +20,7 @@ group :development, :test do
   gem 'carrierwave'
   gem 'mini_magick'
   gem 'devise'
+  gem 'bcrypt', '3.1.13'
 end
 
 group :development do
