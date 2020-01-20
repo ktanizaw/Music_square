@@ -1,11 +1,32 @@
-<%= form_with(model: @artistboards) do |form| %>
-  <div class="Artist_board">
-    <%= form.label :artists %>
-    <%= form.text_field :artists %>
-  </div>
-  <div class="Artist_board">
-    <%= form.label :albums %>
-    <%= form.text_field :text %>
-  </div>
-  <%= form.submit %>
-<% end %>
+<p id="notice"><%= notice %></p>
+
+<h1>Artistboards</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Artists</th>
+      <th>Albums</th>
+      <th>Profiles</th>
+      <th>Icon</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @artistboards.each do |artistboard| %>
+      <tr>
+        <td><%= artistboard.artists %></td>
+        <td><%= artistboard.albums %></td>
+        <td><%= artistboard.profiles %></td>
+        <td><%= artistboard.icon %></td>
+        <td><%= link_to 'Show', artist_board %></td>
+        <td><%= link_to 'Edit', edit_artist_board_path(artistboard) %></td>
+        <td><%= link_to 'Destroy', artist_board, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Artistboard', new_artist_board_path %>

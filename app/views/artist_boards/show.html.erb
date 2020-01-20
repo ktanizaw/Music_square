@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Artists:</strong>
+  <%= @artistboard.artists %>
+</p>
+
+<p>
+  <strong>Albums:</strong>
+  <%= @artistboard.albums %>
+</p>
+
+<p>
+  <strong>Profiles:</strong>
+  <%= @artistboard.profiles %>
+</p>
+
+<p>
+  <strong>Icon:</strong>
+  <%= @artistboard.icon %>
+</p>
+
+<%= link_to 'Edit', edit_artistboard_path(@artistboard) %> |
+<%= link_to 'Back', artistboards_path %>
