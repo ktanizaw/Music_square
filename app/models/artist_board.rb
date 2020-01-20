@@ -1,5 +1,5 @@
 class ArtistBoard < ApplicationRecord
-  belongs_to :fan
+  has_many :fans, dependent: :destroy
 
   validates :artists,
     presence: true, presence: {message: "入力してください！"},

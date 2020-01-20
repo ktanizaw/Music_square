@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :fans, dependent: :destroy
+
   validates :name,
     presence: true, presence: {message: "入力してください！"},
     uniqueness: true, length:{maximum: 24}
@@ -8,7 +10,7 @@ class User < ApplicationRecord
   validates :email,
       presence: true, presence: {message: "入力してください！"},
       uniqueness: true, format: { with: VALID_EMAIL_REGEX }
-      
+
   validates :profile,
     length:{maximum: 255},  presence: {message: "入力してください！"},
   validates :password_digest, presence: {message: "入力してください！"},
