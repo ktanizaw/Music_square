@@ -1,24 +1,27 @@
-<p id="notice"><%= notice %></p>
+<div class="">
+  <i>
+  <% if @artistboard.icon? %>
+  <%= image_tag "#{@artistboard.icon}", :size =>'250x250' %>
+  <% else %>
+  <%= image_tag 'default.jpg', :size =>'250x250' %>
+  <% end %>
+  </i>
+  <div class="">
 
-<p>
-  <strong>Artists:</strong>
-  <%= @artistboard.artists %>
-</p>
+  <h1><%= @artistboard.artists %></h1>
+  <p>プロフィール: <%= @artistboard.profiles %></p>
+  <p>アルバム情報: <%= @artistboard.albums %></p>
+  </div>
+</div>
 
-<p>
-  <strong>Albums:</strong>
-  <%= @artistboard.albums %>
-</p>
+<div class="">
+  <h2>投稿一覧</h2>
+</div>
 
-<p>
-  <strong>Profiles:</strong>
-  <%= @artistboard.profiles %>
-</p>
 
-<p>
-  <strong>Icon:</strong>
-  <%= @artistboard.icon %>
-</p>
+<%= link_to '投稿を作成する', edit_artist_board_path(@artistboard) %>
 
-<%= link_to 'Edit', edit_artist_board_path(@artistboard) %> |
+<h1>開催イベント</h1>
+
+
 <%= link_to 'Back', artist_boards_path %>

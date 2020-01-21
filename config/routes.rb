@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   resources :users
   resources :artist_boards
   resources :events
+  resources :event_comments
+  resources :board_comments
 
   resources :fans, only: [:create, :destroy]
 

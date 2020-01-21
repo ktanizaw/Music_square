@@ -1,0 +1,26 @@
+<div class="">
+<i>
+<%= image_tag "#{@event.image}", :size =>'250x250' %>
+</i>
+</div>
+
+<i>オーナーアイコン</i>
+<p>オーナー：</p>
+
+<h1><%= @event.title %></h1>
+<p><%= @event.place %></p>
+<p><%= @event.date %></p>
+<p><%= @event.deadline %></p>
+<p><%= @event.capacity %></p>
+<p><%= @event.content %></p>
+
+<p>参加ボタン</p>
+
+<%= link_to '編集', edit_event_path(@event) %> |
+<%= link_to '削除', @event, method: :delete, data: { confirm: 'Are you sure?' } %>
+
+<div class="">
+  <h1>参加者一覧</h1>
+</div>
+
+<%= link_to 'Back', events_path %>

@@ -1,0 +1,39 @@
+
+<div class="">
+<%= link_to '掲示板一覧へ', artist_boards_path %>
+
+<h2>イベント検索</h2>
+
+<%= link_to 'ユーザー一覧へ', users_path %>
+</div>
+
+<h1>イベント一覧</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>イメージ画像</th>
+      <th>イベント名</th>
+      <th>開催場所</th>
+      <th>開催日時</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @events.each do |event| %>
+      <tr>
+        <td><%= image_tag "#{event.image}", :size =>'50x50' %></td>
+        <td><%= event.title %></td>
+        <td><%= event.place %></td>
+        <td><%= event.date %></td>
+        <td><%= link_to '詳細', event %></td>
+        <td><%= link_to '編集', edit_event_path(event) %></td>
+        <td><%= link_to '削除', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'イベントを新規作成する', new_event_path %>

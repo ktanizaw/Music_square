@@ -13,4 +13,6 @@ class Event < ApplicationRecord
 
   validates :deadline,
     presence: true,presence: {message: "入力してください！"}
+
+  mount_uploader :image, ImageUploader
 end

@@ -1,30 +1,30 @@
-<h1>Users</h1>
+<h1>Music Square 利用ユーザー</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Profile</th>
-      <th>Password digest</th>
+      <th>ユーザー名</th>
+      <th>プロフィール</th>
     </tr>
   </thead>
 
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td><%= user.name %></td>
-        <td><%= user.email %></td>
+        <td>
+          <%= link_to user_path(user) do %>
+            <% if user.profile_image? %>
+            <%= image_tag "#{user.profile_image}", :size =>'50x50' %>
+            <% else %>
+            <%= image_tag 'default.jpg', :size =>'50x50' %>
+            <% end %>
+          <% end %>
+        </td>
         <td><%= user.profile %></td>
-        <td><%= image_tag "#{user.profile_image}" %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+        <td><%= link_to '編集', edit_user_path(user) %></td>
+        <td><%= link_to '削除', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New User', new_user_path %>
