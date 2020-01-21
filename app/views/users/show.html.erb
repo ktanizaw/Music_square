@@ -1,19 +1,19 @@
+<div class="">
+  <i>
+  <% if @user.profile_image? %>
+  <%= image_tag "#{@user.profile_image}", :size =>'250x250' %>
+  <% else %>
+  <%= image_tag 'default.jpg', :size =>'250x250' %>
+  <% end %>
+  </i>
+  <div class="">
+
+  <h1><%= @user.name %></h1>
+  <p>プロフィール: <%= @user.profile %></p>
+  </div>
+</div>
 
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
 
-<p>
-  <strong>Profile:</strong>
-  <%= @user.profile %>
-</p>
-
-<p>
-  <strong>Profile_image:</strong>
-  <%= image_tag "#{@user.profile_image}" %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<%= link_to '編集', edit_user_path(@user) %> |
+<%= link_to '戻る', users_path %>
