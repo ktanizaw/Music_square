@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <div class="">
-  <h2>掲示板検索</h2>
+  <h2>アーティスト掲示板検索</h2>
 
   <%= link_to 'イベント一覧へ', events_path %>
   <%= link_to 'ユーザー一覧へ', users_path %>
@@ -22,15 +22,21 @@
   <tbody>
     <% @artistboards.each do |artistboard| %>
       <tr>
-        <%= link_to("artist_board") do %>
-        <td><%= artistboard.icon %></td>
+        <td>
+        <%= link_to artist_board_path(artistboard) do %>
+        <% if artistboard.icon? %>
+        <%= image_tag "#{artistboard.icon}", :size =>'50x50' %>
+        <% else %>
+        <%= image_tag 'default.jpg', :size =>'50x50' %>
         <% end %>
+        <% end %>
+        </td>
         <td><%= artistboard.artists %></td>
         <td><%= artistboard.profiles %></td>
-        
+
         <%# 管理人のみに設定する %>
-        <td><%= link_to 'Edit', edit_artist_board_path(artistboard) %></td>
-        <td><%= link_to 'Destroy', artist_board, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '編集', edit_artist_board_path(artistboard) %></td>
+        <td><%= link_to '削除', artistboard, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

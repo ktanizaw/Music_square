@@ -12,4 +12,6 @@ class ArtistBoard < ApplicationRecord
   validates :artists,
     presence: {message: "入力してください！"},
     length:{maximum: 255}
+
+  mount_uploader :icon, IconUploader
 end
