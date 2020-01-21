@@ -14,9 +14,9 @@ class User < ApplicationRecord
   validates :profile,
     length:{maximum: 255}
 
-  has_secure_password
-  validates :password, presence: true, presence: {message: "入力してください！"},
-    length: { minimum: 6 }
+  # has_secure_password
+  # validates :password, presence: true, presence: {message: "入力してください！"},
+  #   length: { minimum: 6 }
 
 
   mount_uploader :profile_image, ProfileImageUploader
