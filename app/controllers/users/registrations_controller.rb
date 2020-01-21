@@ -33,30 +33,30 @@ class Users::RegistrationsController < Devise::RegistrationsController
      super
   end
 
-  protected
-
-  def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
-  end
-
-  def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
-  end
-
-  def after_sign_up_path_for(resource)
-      super(resource)
-    end
-
-  def after_inactive_sign_up_path_for(resource)
-   super(resource)
-  end
+  # protected
+  #
+  # def configure_sign_up_params
+  #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
+  # end
+  #
+  # def configure_account_update_params
+  #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
+  # end
+  #
+  # def after_sign_up_path_for(resource)
+  #     super(resource)
+  #   end
+  #
+  # def after_inactive_sign_up_path_for(resource)
+  #  super(resource)
+  # end
 
   private
-    def set_user
-      @user = User.find(params[:id])
-    end
+    # def set_user
+    #   @user = User.find(params[:id])
+    # end
 
     def user_params
-      params.require(:user).permit(:name, :email, :profile, :profile_image, :profile_image_cache, :password_digest, :password, :password_confirmation)
+      params.require(:user).permit(:name, :email, :profile, :profile_image, :profile_image_cache, :encrypted_password, :password, :password_confirmation)
     end
 end
