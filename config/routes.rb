@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :users
-  root 'users#index'
+  # root 'users#index'
+  devise_for :users, :controllers => {
+   :registrations => 'users/registrations',
+   :sessions => 'users/sessions'
+  }
   resources :users
   resources :artist_boards
 
