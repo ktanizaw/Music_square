@@ -1,4 +1,32 @@
-<h2>Sign up</h2>
+
+
+<h1>Music Square</h1>
+<h3>音楽で価値観が繋がる</h3>
+<p>
+Music Squareは音楽の好きな人たちが交流・情報交換・イベント作成のできるアプリケーションです。<br>
+アプリケーション内には好きなアーティストごとに掲示板が用意されています。<br>
+ご自由にイベントを作成し、ユーザー同士で交流・情報交換を行ってください。
+</p>
+
+<div class="">
+  <p>欲しい繋がりがすぐに作れる。</p>
+  <div class="board_icon">
+    <i></i>
+  </div>
+  <h3>アーティスト掲示板</h3>
+  <p>機能説明文</p>
+</div>
+
+<div class="">
+  <div class="event_icon">
+    <i></i>
+  </div>
+  <h3>イベント</h3>
+  <p>機能説明文</p>
+</div>
+
+<div class="">
+  <h2>新規登録</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
@@ -42,4 +70,5 @@
   </div>
 <% end %>
 
+</div>
 <%= render "devise/shared/links" %>
