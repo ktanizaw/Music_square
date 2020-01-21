@@ -30,12 +30,17 @@
     <%= form.label :profile_image %>
     <%= image_tag(@user.profile_image.url) if @user.profile_image && @user.profile_image.url %>
     <%= form.file_field :profile_image %>
-    <%= form.hidden_field :image_cache %>
+    <%= form.hidden_field :profile_image_cache %>
   </div>
 
   <div class="field">
-    <%= form.label :password_digest %>
-    <%= form.text_field :password_digest %>
+    <%= form.label :password %>
+    <%= form.password_field :password, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password_confirmation %>
+    <%= form.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
   <div class="actions">
