@@ -1,0 +1,39 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      artist_board: アーティスト掲示板
+      board_comment: 掲示板コメント
+      category: カテゴリ
+      event_comment: イベントコメント
+      event: イベント
+      label: ラベル
+    attributes:
+        user:
+          name: 名前
+          email: メールアドレス
+          profile: プロフィール
+          profile_image: プロフィール写真
+          password: パスワード
+          password_confirmation: 確認用パスワード
+        artist_board:
+          artists: アーティスト名
+          albums: アルバム情報
+          profiles: プロフィール
+          icon: プロフィール写真
+        board_comment:
+          content: コメント内容
+        category:
+          name: カテゴリ名
+        event_comment:
+          content: コメント内容
+        event:
+          title: タイトル
+          place: 開催場所
+          date: 開催日時
+          content: 詳細
+          deadline: 締切日時
+          capacity: 定員数
+          image: イメージ写真
+        label:
+          name: ラベル名
