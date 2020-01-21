@@ -10,13 +10,19 @@
   </head>
 
   <body>
+    <div class="header-left">
+      <p>Music Square</p>
+    </div>
+    <div class="header-right">
   <% if user_signed_in? %>
-    <%= link_to "ブログ投稿", artist_boards_path %>
+    <%= link_to "トップ", artist_boards_path %>
     <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
   <% else %>
-    <%= link_to "新規登録", new_user_registration_path %>
+    <%= link_to "トップ", artist_boards_path %>
     <%= link_to "ログイン", new_user_session_path %>
+    <%= link_to "新規登録", new_user_registration_path %>
   <% end %>
+    </div>
 
   <% if notice %>
     <p class="alert alert-notice"><%= notice %></p>
