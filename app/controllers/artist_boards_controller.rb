@@ -19,7 +19,7 @@ class ArtistBoardsController < ApplicationController
     @artistboard = ArtistBoard.new(artistboard_params)
 
     if @artistboard.save
-      redirect_to @artistboard, notice: '掲示板を新規作成しました。'
+      redirect_to @artistboard, notice: 'アーティスト掲示板を新規作成しました。'
     else
       render :new
     end
@@ -27,7 +27,7 @@ class ArtistBoardsController < ApplicationController
 
   def update
     if @artistboard.update(artistboard_params)
-      redirect_to @artistboard, notice: '掲示板を編集しました。'
+      redirect_to @artistboard, notice: 'アーティスト掲示板を編集しました。'
     else
       render :edit
     end
@@ -35,7 +35,7 @@ class ArtistBoardsController < ApplicationController
 
   def destroy
     @artistboard.destroy
-    redirect_to artistboards_url, notice: '掲示板を削除しました。'
+    redirect_to artistboards_url, notice: 'アーティスト掲示板を削除しました。'
   end
 
   private
@@ -44,6 +44,6 @@ class ArtistBoardsController < ApplicationController
     end
 
     def artistboard_params
-      params.require(:artistboard).permit(:artists, :albums, :profiles, :icon)
+      params.require(:artist_board).permit(:artists, :albums, :profiles, :icon, :icon_cache)
     end
 end

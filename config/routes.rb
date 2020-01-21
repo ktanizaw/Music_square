@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
-  # root 'users#index'
   devise_for :users, :controllers => {
    :registrations => 'users/registrations',
    :sessions => 'users/sessions'
   }
   resources :users
   resources :artist_boards
+  resources :events
 
   resources :fans, only: [:create, :destroy]
 
