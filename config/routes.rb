@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :events
   resources :event_comments
   resources :board_comments
-
+  resources :relationships, only: [:create, :destroy]
   resources :fans, only: [:create, :destroy]
 
   if Rails.env.development?

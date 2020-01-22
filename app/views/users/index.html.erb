@@ -3,7 +3,8 @@
 <table>
   <thead>
     <tr>
-      <th>ユーザー名</th>
+      <th>プロフィール写真</th>
+      <th>ユーザーネーム</th>
       <th>プロフィール</th>
     </tr>
   </thead>
@@ -20,8 +21,9 @@
             <% end %>
           <% end %>
         </td>
+        <td><%= user.name %></td>
         <td><%= user.profile %></td>
-
+        <td><%= render 'follow_form', user: user %></td>
         <td><%= link_to '編集', edit_user_path(user) %></td>
         <td><%= link_to '削除', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
