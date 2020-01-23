@@ -5,11 +5,13 @@ class ArtistBoardsController < ApplicationController
     @artistboards = ArtistBoard.all
   end
 
-  def show
-  end
-
   def new
     @artistboard = ArtistBoard.new
+  end
+
+  def show
+    @boardcomment = BoardComment.new
+    @boardcomments = @artistboard.board_comments
   end
 
   def edit
@@ -46,4 +48,5 @@ class ArtistBoardsController < ApplicationController
     def artistboard_params
       params.require(:artist_board).permit(:artists, :albums, :profiles, :icon, :icon_cache)
     end
+
 end

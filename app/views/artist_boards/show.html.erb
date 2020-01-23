@@ -16,10 +16,15 @@
 
 <div class="">
   <h2>投稿一覧</h2>
+  <div id="board_comments_area">
+    <%= render partial: 'board_comments/index', locals: { board_comments: @boardcomments } %>
+  </div>
+<% if user_signed_in? %>
+  <%= render partial: 'board_comments/form', locals: { board_comment: @boardcomment, artist_board: @artistboard } %>
+<% end %>
+
 </div>
 
-
-<%= link_to '投稿を作成する', edit_artist_board_path(@artistboard) %>
 
 <h1>開催イベント</h1>
 

@@ -1,0 +1,19 @@
+<% board_comments.each do |boardcomment| %>
+
+    <%= link_to user_path(boardcomment.user.id) do %>
+      <% if boardcomment.user.profile_image? %>
+        <i><%= image_tag "#{boardcomment.user.profile_image}", :size =>'30x30' %></i>
+        <p><%= boardcomment.user.name %></p>
+      <% else %>
+        <i><%= image_tag 'default.jpg', :size =>'30x30' %></i>
+        <p><%= boardcomment.user.name %></p>
+      <% end %>
+    <% end %>
+
+        <p><%= boardcomment.content %></p>
+
+    <% if boardcomment.user == current_user %>
+      <p><%= link_to 'コメントを削除する', artist_board_board_comment_path(boardcomment.artist_board_id, boardcomment.id), method: :delete, remote: true %></p>
+    <% end %>
+
+  <% end %>

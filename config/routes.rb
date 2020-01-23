@@ -3,11 +3,12 @@ Rails.application.routes.draw do
    :registrations => 'users/registrations',
    :sessions => 'users/sessions'
   }
+  resources :artist_boards do
+    resources :board_comments
+  end
+
   resources :users
-  resources :artist_boards
   resources :events
-  resources :event_comments
-  resources :board_comments
   resources :relationships, only: [:create, :destroy]
   resources :fans, only: [:create, :destroy]
 
