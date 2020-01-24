@@ -1,4 +1,6 @@
 class BoardCommentsController < ApplicationController
+  before_action :set_boardcomment, only: [:update, :destroy]
+
     def create
       @artistboard = ArtistBoard.find(params[:artist_board_id])
       @boardcomment = @artistboard.board_comments.build(boardcomment_params)
@@ -13,7 +15,6 @@ class BoardCommentsController < ApplicationController
     end
 
     def destroy
-      @boardcomment = BoardComment.find(params[:id])
       respond_to do |format|
         if @boardcomment.destroy
           format.js { render :index }
@@ -22,6 +23,9 @@ class BoardCommentsController < ApplicationController
     end
 
     private
+    def set_boardcomment
+      @boardcomment = BoardComment.find(params[:id])
+    end
 
     def boardcomment_params
       params.require(:board_comment).permit(:artist_board_id, :user_id, :content)

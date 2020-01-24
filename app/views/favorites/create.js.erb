@@ -1,0 +1,2 @@
+$("#favorite_btn_"+"<%= @boardcomment.id %>").html("<%= escape_javascript(render partial: 'artist_boards/favorite_btn', locals: { board_comment: @favorite.board_comment.artist_board.board_comments } ) %>")
+// $('#favorite_btn_<%= @boardcomment.id %>').html("<%= j(render partial: 'artist_boards/favorite_btn', locals: {board_comment: @favorite.board_comment.artist_board.board_comments}) %>");

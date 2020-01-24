@@ -1,5 +1,6 @@
 class ArtistBoard < ApplicationRecord
   has_many :fans, dependent: :destroy
+  has_many :fan_users, through: :fans, source: :user
   has_many :board_comments, dependent: :destroy
   belongs_to :user
 
@@ -16,4 +17,5 @@ class ArtistBoard < ApplicationRecord
     length:{maximum: 255}
 
   mount_uploader :icon, IconUploader
+
 end

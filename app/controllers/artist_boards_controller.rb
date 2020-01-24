@@ -12,6 +12,7 @@ class ArtistBoardsController < ApplicationController
   def show
     @boardcomment = BoardComment.new
     @boardcomments = @artistboard.board_comments
+    @fan = current_user.fans.find_by(artist_board_id: @artistboard.id)
   end
 
   def edit
@@ -41,12 +42,11 @@ class ArtistBoardsController < ApplicationController
   end
 
   private
-    def set_artistboard
-      @artistboard = ArtistBoard.find(params[:id])
-    end
+  def set_artistboard
+    @artistboard = ArtistBoard.find(params[:id])
+  end
 
-    def artistboard_params
-      params.require(:artist_board).permit(:artists, :albums, :profiles, :icon, :icon_cache)
-    end
-
+  def artistboard_params
+    params.require(:artist_board).permit(:artists, :albums, :profiles, :icon, :icon_cache)
+  end
 end

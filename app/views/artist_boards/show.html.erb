@@ -12,6 +12,11 @@
   <p>プロフィール: <%= @artistboard.profiles %></p>
   <p>アルバム情報: <%= @artistboard.albums %></p>
   </div>
+    <% if @fan.present? %>
+      <%= link_to 'ファン解除', fan_path(id: @fan.id), method: :delete, class: 'btn btn-danger' %>
+    <% else %>
+      <%= link_to 'ファン登録', fans_path(artist_board_id: @artistboard.id), method: :post, class: 'btn btn-primary' %>
+    <% end %>
 </div>
 
 <div class="">

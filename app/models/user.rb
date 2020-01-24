@@ -1,12 +1,12 @@
 class User < ApplicationRecord
   has_many :fans, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   has_many :active_relationships, foreign_key: 'follower_id', class_name: 'Relationship', dependent: :destroy
   has_many :passive_relationships, foreign_key: 'followed_id', class_name: 'Relationship', dependent: :destroy
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
   has_many :board_comments, dependent: :destroy
   has_many :artist_boards, dependent: :destroy
-
 
   validates :name,
     presence: true, presence: {message: "入力してください！"},
@@ -20,7 +20,6 @@ class User < ApplicationRecord
 
   validates :profile,
     length:{maximum: 255}
-
 
   mount_uploader :profile_image, ProfileImageUploader
 
@@ -37,5 +36,9 @@ class User < ApplicationRecord
 
   def unfollow!(other_user)
     active_relationships.find_by(followed_id: other_user.id).destroy
+  end
+
+  def already_favorite?(favorite_boardcomment)
+    self.favorites.exists?(board_comment_id: favorite_boardcomment.id)
   end
 end
