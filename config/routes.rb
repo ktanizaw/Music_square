@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]
   resources :fans, only: [:create, :destroy]
   resources :favorites, only: [:create, :destroy]
+  resources :participants, only: [:create, :destroy]
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"

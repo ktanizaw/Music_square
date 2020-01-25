@@ -24,13 +24,29 @@
 <p><%= @event.capacity %></p>
 <p><%= @event.content %></p>
 
-<p>参加ボタン</p>
+<div class="">
+<% unless @event.owner == current_user %>
+<% if @participant.present? %>
+    <%= link_to '参加取消', participant_path(id: @event.id), method: :delete, class: 'btn btn-danger' %>
+  <% else %>
+    <%= link_to '参加する', participants_path(id: @event.id), method: :post, class: 'btn btn-primary' %>
+<% end %>
+<% end %>
+</div>
 
 <%= link_to '編集', edit_event_path(@event) %> |
 <%= link_to '削除', @event, method: :delete, data: { confirm: 'Are you sure?' } %>
 
 <div class="">
   <h1>参加者一覧</h1>
+<% @event.participant_users.each do |user| %>
+<p><%= user.name %></p>
+<% if user.profile_image? %>
+<%= image_tag "#{user.profile_image}", :size =>'50x50' %>
+<% else %>
+<%= image_tag 'default.jpg', :size =>'50x50' %>
+<% end %>
+<% end %>
 </div>
 
 <%= link_to 'Back', events_path %>

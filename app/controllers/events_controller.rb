@@ -6,6 +6,7 @@ class EventsController < ApplicationController
   end
 
   def show
+    @participant = current_user.participants.find_by(event_id: @event.id)
   end
 
   def new

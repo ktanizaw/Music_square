@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :fans, dependent: :destroy
+  has_many :fan_artistboards, through: :fans, source: :artist_board
   has_many :favorites, dependent: :destroy
   has_many :active_relationships, foreign_key: 'follower_id', class_name: 'Relationship', dependent: :destroy
   has_many :passive_relationships, foreign_key: 'followed_id', class_name: 'Relationship', dependent: :destroy
@@ -7,7 +8,8 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :follower
   has_many :board_comments, dependent: :destroy
   has_many :artist_boards, dependent: :destroy
-  has_many :events, foreign_key: :owner_id
+  has_many :events, dependent: :destroy, foreign_key: :owner_id
+  has_many :participants, dependent: :destroy
 
 
   validates :name,

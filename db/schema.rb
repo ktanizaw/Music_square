@@ -83,12 +83,12 @@ ActiveRecord::Schema.define(version: 2020_01_25_090053) do
   end
 
   create_table "participants", force: :cascade do |t|
-    t.bigint "participant_id"
+    t.bigint "user_id"
     t.bigint "event_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_participants_on_event_id"
-    t.index ["participant_id"], name: "index_participants_on_participant_id"
+    t.index ["user_id"], name: "index_participants_on_user_id"
   end
 
   create_table "relationships", force: :cascade do |t|
@@ -131,5 +131,5 @@ ActiveRecord::Schema.define(version: 2020_01_25_090053) do
   add_foreign_key "favorites", "board_comments"
   add_foreign_key "favorites", "users"
   add_foreign_key "participants", "events"
-  add_foreign_key "participants", "users", column: "participant_id"
+  add_foreign_key "participants", "users"
 end
