@@ -12,8 +12,7 @@
 
         <p><%= boardcomment.content %></p>
 
-      <%# <%= render 'favorite_btn', board_comment: boardcomment %>
-      <%= render partial: 'artist_boards/favorite_btn', locals: { board_comment: boardcomment, favorites: @favorites} %>
+      <%= render partial: 'artist_boards/favorite_btn', locals: { board_comment: boardcomment } %>
 
     <br>
     <% if boardcomment.user == current_user %>

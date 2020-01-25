@@ -1,1 +1,1 @@
-$("#favorite_btn_"+"<%= @boardcomment.id %>").html("<%= escape_javascript(render partial: 'artist_boards/favorite_btn', locals: { board_comment: @boardcomments } ) %>")
+$("#favorite_btn_<%= @boardcomment.id %>").html("<%= escape_javascript(render partial: 'artist_boards/favorite_btn', locals: { board_comment: @boardcomment } ) %>")
