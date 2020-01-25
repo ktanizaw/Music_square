@@ -1,0 +1,24 @@
+<div class="">
+
+<h2>フォロー一覧</h2>
+<% @user.following.each do |user| %>
+<i><% if user.profile_image? %>
+<%= image_tag "#{user.profile_image}", :size =>'50x50' %>
+<% else %>
+<%= image_tag 'default.jpg', :size =>'50x50' %>
+<% end %>
+</i>
+<p><%= user.name %></p>
+<% end %>
+
+<h2>フォロワー一覧</h2>
+<% @user.followers.each do |user| %>
+<i><% if user.profile_image? %>
+<%= image_tag "#{user.profile_image}", :size =>'50x50' %>
+<% else %>
+<%= image_tag 'default.jpg', :size =>'50x50' %>
+<% end %>
+</i>
+<p><%= user.name %></p>
+<% end %>
+</div>
