@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :follower
   has_many :board_comments, dependent: :destroy
   has_many :artist_boards, dependent: :destroy
+  has_many :events, foreign_key: :owner_id
+
 
   validates :name,
     presence: true, presence: {message: "入力してください！"},

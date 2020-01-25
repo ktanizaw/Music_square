@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_23_123226) do
+ActiveRecord::Schema.define(version: 2020_01_25_090053) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,8 @@ ActiveRecord::Schema.define(version: 2020_01_23_123226) do
     t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "owner_id"
+    t.index ["owner_id"], name: "index_events_on_owner_id"
   end
 
   create_table "fans", force: :cascade do |t|
@@ -78,6 +80,15 @@ ActiveRecord::Schema.define(version: 2020_01_23_123226) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "participants", force: :cascade do |t|
+    t.bigint "participant_id"
+    t.bigint "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_participants_on_event_id"
+    t.index ["participant_id"], name: "index_participants_on_participant_id"
   end
 
   create_table "relationships", force: :cascade do |t|
@@ -116,6 +127,9 @@ ActiveRecord::Schema.define(version: 2020_01_23_123226) do
 
   add_foreign_key "board_comments", "artist_boards"
   add_foreign_key "board_comments", "users"
+  add_foreign_key "events", "users", column: "owner_id"
   add_foreign_key "favorites", "board_comments"
   add_foreign_key "favorites", "users"
+  add_foreign_key "participants", "events"
+  add_foreign_key "participants", "users", column: "participant_id"
 end

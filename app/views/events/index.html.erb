@@ -22,7 +22,15 @@
   <tbody>
     <% @events.each do |event| %>
       <tr>
-        <td><%= image_tag "#{event.image}", :size =>'50x50' %></td>
+        <td>
+          <%= link_to event_path(event) do %>
+            <% if event.image? %>
+            <%= image_tag "#{event.image}", :size =>'50x50' %>
+            <% else %>
+            <%= image_tag 'default.jpg', :size =>'50x50' %>
+            <% end %>
+          <% end %>
+        </td>
         <td><%= event.title %></td>
         <td><%= event.place %></td>
         <td><%= event.date %></td>

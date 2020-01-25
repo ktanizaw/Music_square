@@ -16,13 +16,9 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(event_params)
-
-    if @event.save
-      redirect_to @event, notice: 'イベントを新規作成しました。'
-    else
-      render :new
-    end
+    @event = current_user.events.build(event_params)
+    @event.save
+    redirect_to @event, notice: 'イベントを新規作成しました。'
   end
 
   def update

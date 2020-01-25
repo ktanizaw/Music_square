@@ -1,11 +1,21 @@
 <div class="">
 <i>
-<%= image_tag "#{@event.image}", :size =>'250x250' %>
+  <% if @event.image? %>
+  <%= image_tag "#{@event.image}", :size =>'150x150' %>
+  <% else %>
+  <%= image_tag 'default.jpg', :size =>'150x150' %>
+  <% end %>
 </i>
 </div>
 
-<i>オーナーアイコン</i>
-<p>オーナー：</p>
+<i>主催者アイコン
+  <% if @event.owner.profile_image? %>
+  <%= image_tag "#{@event.owner.profile_image}", :size =>'50x50' %>
+  <% else %>
+  <%= image_tag 'default.jpg', :size =>'50x50' %>
+  <% end %>
+</i>
+<p>主催者：<%= @event.owner.name %></p>
 
 <h1><%= @event.title %></h1>
 <p><%= @event.place %></p>
