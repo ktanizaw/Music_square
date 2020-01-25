@@ -12,14 +12,24 @@
   <p>プロフィール: <%= @artistboard.profiles %></p>
   <p>アルバム情報: <%= @artistboard.albums %></p>
   </div>
+    <% if @fan.present? %>
+      <%= link_to 'ファン解除', fan_path(id: @fan.id), method: :delete, class: 'btn btn-danger' %>
+    <% else %>
+      <%= link_to 'ファン登録', fans_path(artist_board_id: @artistboard.id), method: :post, class: 'btn btn-primary' %>
+    <% end %>
 </div>
 
 <div class="">
   <h2>投稿一覧</h2>
+  <div id="board_comments_area">
+    <%= render partial: 'board_comments/index', locals: { board_comments: @boardcomments } %>
+  </div>
+<% if user_signed_in? %>
+  <%= render partial: 'board_comments/form', locals: { board_comment: @boardcomment, artist_board: @artistboard } %>
+<% end %>
+
 </div>
 
-
-<%= link_to '投稿を作成する', edit_artist_board_path(@artistboard) %>
 
 <h1>開催イベント</h1>
 

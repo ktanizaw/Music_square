@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_20_060327) do
+ActiveRecord::Schema.define(version: 2020_01_23_123226) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,10 @@ ActiveRecord::Schema.define(version: 2020_01_20_060327) do
     t.text "content", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "artist_board_id"
+    t.bigint "user_id"
+    t.index ["artist_board_id"], name: "index_board_comments_on_artist_board_id"
+    t.index ["user_id"], name: "index_board_comments_on_user_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -61,10 +65,29 @@ ActiveRecord::Schema.define(version: 2020_01_20_060327) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "favorites", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "board_comment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["board_comment_id"], name: "index_favorites_on_board_comment_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
+
   create_table "labels", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "followed_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["followed_id"], name: "index_relationships_on_followed_id"
+    t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
+    t.index ["follower_id"], name: "index_relationships_on_follower_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -91,4 +114,8 @@ ActiveRecord::Schema.define(version: 2020_01_20_060327) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "board_comments", "artist_boards"
+  add_foreign_key "board_comments", "users"
+  add_foreign_key "favorites", "board_comments"
+  add_foreign_key "favorites", "users"
 end
