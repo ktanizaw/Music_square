@@ -29,6 +29,6 @@ class BoardCommentsController < ApplicationController
     end
 
     def boardcomment_params
-      params.require(:board_comment).permit(:artist_board_id, :user_id, :content)
+      params.require(:board_comment).permit(:artist_board_id, :user_id, :content, :picture, :picture_cache)
     end
   end
