@@ -10,7 +10,7 @@
   <%= form.label :label, "イベントタイプ" %>
   <%= form.select("label_id", Label.pluck(:name, :id), { include_blank: true }) %>
   <%= form.submit '絞り込み検索', name: nil %>
-<% end %>
+  <% end %>
 
 <%= link_to 'ユーザー一覧へ', users_path %>
 </div>
@@ -51,5 +51,3 @@
 </table>
 
 <br>
-
-<%= link_to 'イベントを新規作成する', new_event_path %>

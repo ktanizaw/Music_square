@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_26_061947) do
+ActiveRecord::Schema.define(version: 2020_01_26_064525) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,8 @@ ActiveRecord::Schema.define(version: 2020_01_26_061947) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "owner_id"
+    t.bigint "artist_board_id"
+    t.index ["artist_board_id"], name: "index_events_on_artist_board_id"
     t.index ["owner_id"], name: "index_events_on_owner_id"
   end
 
@@ -147,6 +149,7 @@ ActiveRecord::Schema.define(version: 2020_01_26_061947) do
   add_foreign_key "board_comments", "users"
   add_foreign_key "categorizes", "artist_boards"
   add_foreign_key "categorizes", "categories"
+  add_foreign_key "events", "artist_boards"
   add_foreign_key "events", "users", column: "owner_id"
   add_foreign_key "favorites", "board_comments"
   add_foreign_key "favorites", "users"

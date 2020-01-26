@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   resources :artist_boards do
     resources :board_comments
   end
+  resources :artist_boards do
+    resources :events
+  end
 
   resources :users
   resources :events

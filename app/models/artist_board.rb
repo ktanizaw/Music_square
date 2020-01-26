@@ -4,6 +4,7 @@ class ArtistBoard < ApplicationRecord
   has_many :board_comments, dependent: :destroy
   has_many :categorizes, dependent: :destroy
   has_many :categories, through: :categorizes
+  has_many :events, dependent: :destroy
 
   validates :artists,
     presence: true, presence: {message: "入力してください！"},

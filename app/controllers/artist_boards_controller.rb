@@ -16,6 +16,8 @@ class ArtistBoardsController < ApplicationController
   def show
     @boardcomment = BoardComment.new
     @boardcomments = @artistboard.board_comments
+    @event = Event.new
+    @events = @artistboard.events
     @fan = current_user.fans.find_by(artist_board_id: @artistboard.id)
   end
 
