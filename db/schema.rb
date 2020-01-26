@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_23_123226) do
+ActiveRecord::Schema.define(version: 2020_01_26_064525) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,15 @@ ActiveRecord::Schema.define(version: 2020_01_23_123226) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "categorizes", force: :cascade do |t|
+    t.bigint "category_id"
+    t.bigint "artist_board_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["artist_board_id"], name: "index_categorizes_on_artist_board_id"
+    t.index ["category_id"], name: "index_categorizes_on_category_id"
+  end
+
   create_table "event_comments", force: :cascade do |t|
     t.text "content", null: false
     t.datetime "created_at", null: false
@@ -56,6 +65,10 @@ ActiveRecord::Schema.define(version: 2020_01_23_123226) do
     t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "owner_id"
+    t.bigint "artist_board_id"
+    t.index ["artist_board_id"], name: "index_events_on_artist_board_id"
+    t.index ["owner_id"], name: "index_events_on_owner_id"
   end
 
   create_table "fans", force: :cascade do |t|
@@ -74,10 +87,28 @@ ActiveRecord::Schema.define(version: 2020_01_23_123226) do
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
+  create_table "labellings", force: :cascade do |t|
+    t.bigint "event_id"
+    t.bigint "label_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_labellings_on_event_id"
+    t.index ["label_id"], name: "index_labellings_on_label_id"
+  end
+
   create_table "labels", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "participants", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_participants_on_event_id"
+    t.index ["user_id"], name: "index_participants_on_user_id"
   end
 
   create_table "relationships", force: :cascade do |t|
@@ -116,6 +147,14 @@ ActiveRecord::Schema.define(version: 2020_01_23_123226) do
 
   add_foreign_key "board_comments", "artist_boards"
   add_foreign_key "board_comments", "users"
+  add_foreign_key "categorizes", "artist_boards"
+  add_foreign_key "categorizes", "categories"
+  add_foreign_key "events", "artist_boards"
+  add_foreign_key "events", "users", column: "owner_id"
   add_foreign_key "favorites", "board_comments"
   add_foreign_key "favorites", "users"
+  add_foreign_key "labellings", "events"
+  add_foreign_key "labellings", "labels"
+  add_foreign_key "participants", "events"
+  add_foreign_key "participants", "users"
 end

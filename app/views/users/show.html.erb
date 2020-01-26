@@ -10,7 +10,32 @@
 
   <h1><%= @user.name %></h1>
   <p>プロフィール: <%= @user.profile %></p>
+  <p>フォロー一覧</p>
+  <i>
+    <% @user.following.each do |user| %>
+    <% if user.profile_image? %>
+    <%= image_tag "#{user.profile_image}", :size =>'50x50' %>
+    <% else %>
+    <%= image_tag 'default.jpg', :size =>'50x50' %>
+    <% end %>
+  </i>
+  <p><%= user.name %></p>
+  <% end %>
+
+
+<p>ファンアーティスト</p>
+<% @user.fan_artistboards.each do |user| %>
+<p><% user.artists %></p>
+<% if user.icon? %>
+<%= image_tag "#{user.icon}", :size =>'50x50' %>
+<% else %>
+<%= image_tag 'default.jpg', :size =>'50x50' %>
+<% end %>
+<% end %>
   </div>
+
+
+
 </div>
 
 

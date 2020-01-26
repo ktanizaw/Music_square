@@ -3,26 +3,30 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.all
-  end
-
-  def show
+    @events = @events.joins(:labels).where(labels: { id: params[:label_id] }) if params[:label_id].present?
+    if params[:title].present?
+      @events = @events.get_by_title params[:title]
+    end
   end
 
   def new
     @event = Event.new
+    @artistboard = ArtistBoard.find(params[:artist_board_id])
+  end
+
+  def show
+    @participant = current_user.participants.find_by(event_id: @event.id)
   end
 
   def edit
   end
 
   def create
-    @event = Event.new(event_params)
-
-    if @event.save
-      redirect_to @event, notice: 'イベントを新規作成しました。'
-    else
-      render :new
-    end
+    @artistboard = ArtistBoard.find(params[:artist_board_id])
+    @event = @artistboard.events.build(event_params)
+    @event.owner_id = current_user.id
+    @event.save
+    redirect_to @event, notice: 'イベントを新規作成しました。'
   end
 
   def update
@@ -44,6 +48,6 @@ class EventsController < ApplicationController
     end
 
     def event_params
-      params.require(:event).permit(:title, :place, :date, :content, :deadline, :capacity, :image, :image_cache)
+      params.require(:event).permit(:artist_board_id, :owner_id, :title, :place, :date, :content, :deadline, :capacity, :image, :image_cache, { label_ids: [] })
     end
 end

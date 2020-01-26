@@ -1,4 +1,12 @@
 class Event < ApplicationRecord
+  belongs_to :owner, class_name: 'User', foreign_key: :owner_id
+  belongs_to :artist_board
+  has_many :participants, dependent: :destroy
+  has_many :participant_users, through: :participants, source: :user
+  has_many :labellings, dependent: :destroy
+  has_many :labels, through: :labellings
+
+
   validates :title,
     presence: true, presence: {message: "入力してください！"},
     length:{maximum: 32}
@@ -15,4 +23,8 @@ class Event < ApplicationRecord
     presence: true,presence: {message: "入力してください！"}
 
   mount_uploader :image, ImageUploader
+
+  scope :get_by_title, ->(title) {
+    where("title like ?", "%#{title}%")
+    }
 end

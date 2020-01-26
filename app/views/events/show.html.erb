@@ -1,26 +1,57 @@
 <div class="">
 <i>
-<%= image_tag "#{@event.image}", :size =>'250x250' %>
+  <% if @event.image? %>
+  <%= image_tag "#{@event.image}", :size =>'150x150' %>
+  <% else %>
+  <%= image_tag 'default.jpg', :size =>'150x150' %>
+  <% end %>
 </i>
 </div>
 
-<i>オーナーアイコン</i>
-<p>オーナー：</p>
+<i>主催者アイコン
+  <% if @event.owner.profile_image? %>
+  <%= image_tag "#{@event.owner.profile_image}", :size =>'50x50' %>
+  <% else %>
+  <%= image_tag 'default.jpg', :size =>'50x50' %>
+  <% end %>
+</i>
+<p>主催者：<%= @event.owner.name %></p>
 
 <h1><%= @event.title %></h1>
 <p><%= @event.place %></p>
 <p><%= @event.date %></p>
 <p><%= @event.deadline %></p>
 <p><%= @event.capacity %></p>
+<p>
+  <% @event.labels.each do |label| %>
+  <%= label.name %>
+  <% end %>
+</p>
 <p><%= @event.content %></p>
 
-<p>参加ボタン</p>
+<div class="">
+<% unless @event.owner == current_user %>
+<% if @participant.present? %>
+    <%= link_to '参加取消', participant_path(id: @event.id), method: :delete, class: 'btn btn-danger' %>
+  <% else %>
+    <%= link_to '参加する', participants_path(id: @event.id), method: :post, class: 'btn btn-primary' %>
+<% end %>
+<% end %>
+</div>
 
 <%= link_to '編集', edit_event_path(@event) %> |
 <%= link_to '削除', @event, method: :delete, data: { confirm: 'Are you sure?' } %>
 
 <div class="">
   <h1>参加者一覧</h1>
+<% @event.participant_users.each do |user| %>
+<p><%= user.name %></p>
+<% if user.profile_image? %>
+<%= image_tag "#{user.profile_image}", :size =>'50x50' %>
+<% else %>
+<%= image_tag 'default.jpg', :size =>'50x50' %>
+<% end %>
+<% end %>
 </div>
 
 <%= link_to 'Back', events_path %>
