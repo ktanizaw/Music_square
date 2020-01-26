@@ -22,6 +22,11 @@
 <p><%= @event.date %></p>
 <p><%= @event.deadline %></p>
 <p><%= @event.capacity %></p>
+<p>
+  <% @event.labels.each do |label| %>
+  <%= label.name %>
+  <% end %>
+</p>
 <p><%= @event.content %></p>
 
 <div class="">

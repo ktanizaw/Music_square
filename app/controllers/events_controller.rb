@@ -3,6 +3,11 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.all
+    @events = Event.all
+    @events = @events.joins(:labels).where(labels: { id: params[:label_id] }) if params[:label_id].present?
+    if params[:title].present?
+      @events = @events.get_by_title params[:title]
+    end
   end
 
   def show
@@ -41,6 +46,6 @@ class EventsController < ApplicationController
     end
 
     def event_params
-      params.require(:event).permit(:title, :place, :date, :content, :deadline, :capacity, :image, :image_cache)
+      params.require(:event).permit(:title, :place, :date, :content, :deadline, :capacity, :image, :image_cache, { label_ids: [] })
     end
 end

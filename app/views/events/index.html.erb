@@ -4,6 +4,14 @@
 
 <h2>イベント検索</h2>
 
+  <%= form_with url: events_path, method: :get, local: true do |form| %>
+  <%= form.label :title, "イベント名" %>
+  <%= form.text_field :title %>
+  <%= form.label :label, "イベントタイプ" %>
+  <%= form.select("label_id", Label.pluck(:name, :id), { include_blank: true }) %>
+  <%= form.submit '絞り込み検索', name: nil %>
+<% end %>
+
 <%= link_to 'ユーザー一覧へ', users_path %>
 </div>
 

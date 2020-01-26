@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_26_035525) do
+ActiveRecord::Schema.define(version: 2020_01_26_061947) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,6 +85,15 @@ ActiveRecord::Schema.define(version: 2020_01_26_035525) do
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
+  create_table "labellings", force: :cascade do |t|
+    t.bigint "event_id"
+    t.bigint "label_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_labellings_on_event_id"
+    t.index ["label_id"], name: "index_labellings_on_label_id"
+  end
+
   create_table "labels", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -141,6 +150,8 @@ ActiveRecord::Schema.define(version: 2020_01_26_035525) do
   add_foreign_key "events", "users", column: "owner_id"
   add_foreign_key "favorites", "board_comments"
   add_foreign_key "favorites", "users"
+  add_foreign_key "labellings", "events"
+  add_foreign_key "labellings", "labels"
   add_foreign_key "participants", "events"
   add_foreign_key "participants", "users"
 end
