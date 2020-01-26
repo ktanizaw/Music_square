@@ -54,4 +54,12 @@
 <% end %>
 </div>
 
+<h2>コメント</h2>
+<div id="event_comments_area">
+  <%= render partial: 'event_comments/index', locals: { event_comments: @eventcomments } %>
+</div>
+<% if user_signed_in? %>
+<%= render partial: 'event_comments/form', locals: { event_comment: @eventcomment, event: @event } %>
+<% end %>
+
 <%= link_to 'Back', events_path %>

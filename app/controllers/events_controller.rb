@@ -16,6 +16,8 @@ class EventsController < ApplicationController
 
   def show
     @participant = current_user.participants.find_by(event_id: @event.id)
+    @eventcomment = EventComment.new
+    @eventcomments = @event.event_comments
   end
 
   def edit

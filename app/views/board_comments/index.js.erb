@@ -1,2 +1,2 @@
-$("#board_comments_area").html("<%= j(render 'board_comments/index', { board_comments: @boardcomment.artist_board.board_comments, artist_board: @boardcomment.artist_board }) %>")
+$("#board_comments_area").html("<%= j(render 'board_comments/index', { board_comments: @artistboard.board_comments }) %>")
 $("textarea").val('')
