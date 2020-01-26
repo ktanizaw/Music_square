@@ -31,6 +31,10 @@
   <%= form.file_field :icon %>
   </div>
 
+  <div class="field">
+    <%= form.collection_check_boxes(:category_ids, Category.all, :id, :name) %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_25_090053) do
+ActiveRecord::Schema.define(version: 2020_01_26_035525) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,15 @@ ActiveRecord::Schema.define(version: 2020_01_25_090053) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "categorizes", force: :cascade do |t|
+    t.bigint "category_id"
+    t.bigint "artist_board_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["artist_board_id"], name: "index_categorizes_on_artist_board_id"
+    t.index ["category_id"], name: "index_categorizes_on_category_id"
   end
 
   create_table "event_comments", force: :cascade do |t|
@@ -127,6 +136,8 @@ ActiveRecord::Schema.define(version: 2020_01_25_090053) do
 
   add_foreign_key "board_comments", "artist_boards"
   add_foreign_key "board_comments", "users"
+  add_foreign_key "categorizes", "artist_boards"
+  add_foreign_key "categorizes", "categories"
   add_foreign_key "events", "users", column: "owner_id"
   add_foreign_key "favorites", "board_comments"
   add_foreign_key "favorites", "users"

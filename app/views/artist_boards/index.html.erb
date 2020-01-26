@@ -1,5 +1,12 @@
 <div class="">
   <h2>アーティスト掲示板検索</h2>
+  <%= form_with url: artist_boards_path, method: :get, local: true do |form| %>
+  <%= form.label :artists, "アーティスト名" %>
+  <%= form.text_field :artists %>
+  <%= form.label :category, "ジャンル" %>
+  <%= form.select("category_id", Category.pluck(:name, :id), { include_blank: true }) %>
+  <%= form.submit '絞り込み検索', name: nil %>
+  <% end %>
 
   <%= link_to 'イベント一覧へ', events_path %>
   <%= link_to 'ユーザー一覧へ', users_path %>
@@ -14,6 +21,7 @@
         <th>アイコン</th>
         <th>アーティスト名</th>
         <th>説明</th>
+        <th>ジャンル</th>
       </tr>
     </thead>
 
@@ -31,6 +39,11 @@
         </td>
         <td><%= artistboard.artists %></td>
         <td><%= artistboard.profiles %></td>
+        <td>
+            <% artistboard.categories.each do |category| %>
+            <%= category.name %>
+            <% end %>
+        </td>
 
         <%# 管理人のみに設定する %>
         <td><%= link_to '編集', edit_artist_board_path(artistboard) %></td>
