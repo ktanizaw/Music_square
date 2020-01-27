@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  PER = 10
   
   def index
-    @users = User.all
+    @users = User.all.page(params[:page]).per(PER)
   end
 
   def show

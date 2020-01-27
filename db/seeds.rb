@@ -5,3 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+20.times do |n| #100件シードデータを作成するということ。
+  artists = Faker::Music::RockBand.name
+  albums = Faker::Music.album
+  profiles = Faker::Movies::StarWars.character
+  ArtistBoard.create!(artists: artists,
+               albums: albums,
+               profiles: profiles,
+               )
+end

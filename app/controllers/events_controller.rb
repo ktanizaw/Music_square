@@ -1,8 +1,9 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  PER = 3
 
   def index
-    @events = Event.all
+    @events = Event.all.page(params[:page]).per(PER)
     @events = @events.joins(:labels).where(labels: { id: params[:label_id] }) if params[:label_id].present?
     if params[:title].present?
       @events = @events.get_by_title params[:title]

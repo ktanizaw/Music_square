@@ -24,6 +24,7 @@ group :development, :test do
   gem 'rails_admin', '~> 2.0'
   gem 'cancancan'
   gem 'bullet'
+  gem 'faker'
 end
 
 group :development do

@@ -1,9 +1,9 @@
 class ArtistBoardsController < ApplicationController
   before_action :set_artistboard, only: [:show, :edit, :update, :destroy]
-
+  PER = 6
 
   def index
-    @artistboards = ArtistBoard.all.includes([:categories])
+    @artistboards = ArtistBoard.all.includes([:categories]).page(params[:page]).per(PER)
     @artistboards = @artistboards.joins(:categories).where(categories: { id: params[:category_id] }) if params[:category_id].present?
     if params[:artists].present?
       @artistboards = @artistboards.get_by_artists params[:artists]
