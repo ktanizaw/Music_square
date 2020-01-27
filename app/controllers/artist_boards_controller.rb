@@ -3,7 +3,7 @@ class ArtistBoardsController < ApplicationController
 
 
   def index
-    @artistboards = ArtistBoard.all
+    @artistboards = ArtistBoard.all.includes([:categories])
     @artistboards = @artistboards.joins(:categories).where(categories: { id: params[:category_id] }) if params[:category_id].present?
     if params[:artists].present?
       @artistboards = @artistboards.get_by_artists params[:artists]
@@ -16,7 +16,7 @@ class ArtistBoardsController < ApplicationController
 
   def show
     @boardcomment = BoardComment.new
-    @boardcomments = @artistboard.board_comments
+    @boardcomments = @artistboard.board_comments.includes([:user])
     @event = Event.new
     @events = @artistboard.events
     @fan = current_user.fans.find_by(artist_board_id: @artistboard.id)

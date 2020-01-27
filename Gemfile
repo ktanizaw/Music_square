@@ -23,6 +23,7 @@ group :development, :test do
   gem 'bcrypt', '3.1.13'
   gem 'rails_admin', '~> 2.0'
   gem 'cancancan'
+  gem 'bullet'
 end
 
 group :development do

@@ -24,6 +24,7 @@
       <th>イベント名</th>
       <th>開催場所</th>
       <th>開催日時</th>
+      <th>締切日時</th>
     </tr>
   </thead>
 
@@ -42,6 +43,7 @@
         <td><%= event.title %></td>
         <td><%= event.place %></td>
         <td><%= event.date %></td>
+        <td><%= event.deadline %></td>
         <td><%= link_to '詳細', event %></td>
         <td><%= link_to '編集', edit_event_path(event) %></td>
         <td><%= link_to '削除', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
