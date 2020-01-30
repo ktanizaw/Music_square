@@ -1,0 +1,19 @@
+<% event_comments.each do |eventcomment| %>
+
+    <%= link_to user_path(eventcomment.user.id) do %>
+      <% if eventcomment.user.profile_image? %>
+        <i><%= image_tag "#{eventcomment.user.profile_image}", :size =>'30x30' %></i>
+        <p><%= eventcomment.user.name %></p>
+      <% else %>
+        <i><%= image_tag 'default.jpg', :size =>'30x30' %></i>
+        <p><%= eventcomment.user.name %></p>
+      <% end %>
+    <% end %>
+
+        <p><%= eventcomment.content %></p>
+    <br>
+    <% if eventcomment.user == current_user %>
+      <p><%= link_to 'コメントを削除する', event_event_comment_path(eventcomment.event_id, eventcomment.id), method: :delete, remote: true %></p>
+    <% end %>
+
+    <% end %>

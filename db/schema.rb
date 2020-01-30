@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_26_064525) do
+ActiveRecord::Schema.define(version: 2020_01_30_064235) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2020_01_26_064525) do
     t.string "artists"
     t.text "albums"
     t.text "profiles"
-    t.string "icon"
+    t.text "icon"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(version: 2020_01_26_064525) do
     t.datetime "updated_at", null: false
     t.bigint "artist_board_id"
     t.bigint "user_id"
+    t.string "picture"
+    t.string "movie"
     t.index ["artist_board_id"], name: "index_board_comments_on_artist_board_id"
     t.index ["user_id"], name: "index_board_comments_on_user_id"
   end
@@ -53,6 +55,10 @@ ActiveRecord::Schema.define(version: 2020_01_26_064525) do
     t.text "content", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "event_id"
+    t.bigint "user_id"
+    t.index ["event_id"], name: "index_event_comments_on_event_id"
+    t.index ["user_id"], name: "index_event_comments_on_user_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -141,6 +147,7 @@ ActiveRecord::Schema.define(version: 2020_01_26_064525) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
+    t.boolean "admin", default: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -149,6 +156,8 @@ ActiveRecord::Schema.define(version: 2020_01_26_064525) do
   add_foreign_key "board_comments", "users"
   add_foreign_key "categorizes", "artist_boards"
   add_foreign_key "categorizes", "categories"
+  add_foreign_key "event_comments", "events"
+  add_foreign_key "event_comments", "users"
   add_foreign_key "events", "artist_boards"
   add_foreign_key "events", "users", column: "owner_id"
   add_foreign_key "favorites", "board_comments"

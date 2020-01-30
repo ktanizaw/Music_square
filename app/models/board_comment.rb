@@ -11,4 +11,6 @@ class BoardComment < ApplicationRecord
   def favorite_user(user_id)
     favorites.find_by(user_id: user_id)
   end
+
+  mount_uploader :picture, PictureUploader
 end

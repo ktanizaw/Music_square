@@ -8,6 +8,12 @@ ja:
       event_comment: イベントコメント
       event: イベント
       label: ラベル
+      categorize: カテゴライズ
+      fan: ファン
+      favorite: いいね
+      labelling: ラベリング
+      participant: 参加者
+      relationship: フォロー関係
     attributes:
         user:
           name: 名前

@@ -10,7 +10,13 @@
       <% end %>
     <% end %>
 
+      <div class="">
         <p><%= boardcomment.content %></p>
+        <% if boardcomment.picture? %>
+        <i><%= image_tag "#{boardcomment.picture}", :size =>'30x30' %></i>
+        <% end %>
+      </div>
+
 
       <%= render partial: 'artist_boards/favorite_btn', locals: { board_comment: boardcomment } %>
 

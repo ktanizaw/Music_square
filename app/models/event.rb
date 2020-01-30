@@ -5,6 +5,7 @@ class Event < ApplicationRecord
   has_many :participant_users, through: :participants, source: :user
   has_many :labellings, dependent: :destroy
   has_many :labels, through: :labellings
+  has_many :event_comments, dependent: :destroy
 
 
   validates :title,

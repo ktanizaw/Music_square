@@ -1,21 +1,33 @@
 class ArtistBoardsController < ApplicationController
+  require 'rspotify'
+  RSpotify.authenticate(ENV['SPOTIFY_CLIENT_ID'], ENV['SPOTIFY_SECRET_ID'])
+
   before_action :set_artistboard, only: [:show, :edit, :update, :destroy]
+  PER = 6
 
   def index
-    @artistboards = ArtistBoard.all
+    @artistboards = ArtistBoard.all.includes([:categories]).page(params[:page]).per(PER)
     @artistboards = @artistboards.joins(:categories).where(categories: { id: params[:category_id] }) if params[:category_id].present?
     if params[:artists].present?
       @artistboards = @artistboards.get_by_artists params[:artists]
     end
   end
 
+  def search
+    @artistboards = ArtistBoard.all
+    if params[:search].present?
+    @search_artists = RSpotify::Artist.search(params[:search])
+    end
+  end
+
   def new
-    @artistboard = ArtistBoard.new
+    @artistboard = ArtistBoard.new(artists: params[:artists])
+    @artist_icon = params[:icon]
   end
 
   def show
     @boardcomment = BoardComment.new
-    @boardcomments = @artistboard.board_comments
+    @boardcomments = @artistboard.board_comments.includes([:user])
     @event = Event.new
     @events = @artistboard.events
     @fan = current_user.fans.find_by(artist_board_id: @artistboard.id)
@@ -26,7 +38,7 @@ class ArtistBoardsController < ApplicationController
 
   def create
     @artistboard = ArtistBoard.new(artistboard_params)
-
+    @artistboard.remote_icon_url = params[:artist_icon]
     if @artistboard.save
       redirect_to @artistboard, notice: 'アーティスト掲示板を新規作成しました。'
     else
@@ -44,13 +56,17 @@ class ArtistBoardsController < ApplicationController
 
   def destroy
     @artistboard.destroy
-    redirect_to artistboards_url, notice: 'アーティスト掲示板を削除しました。'
+    redirect_to artist_boards_path, notice: 'アーティスト掲示板を削除しました。'
   end
 
   private
   def set_artistboard
-    @artistboard = ArtistBoard.find(params[:id])
+    @artistboard = ArtistBoard.find_by(artists: params[:artists])
   end
+
+  # def search_artist_params
+  #   params.require(:artist_board).permit(:artists, :icon, :icon_cache)
+  # end
 
   def artistboard_params
     params.require(:artist_board).permit(:artists, :albums, :profiles, :icon, :icon_cache, { category_ids: [] })
