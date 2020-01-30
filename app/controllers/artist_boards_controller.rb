@@ -16,13 +16,15 @@ class ArtistBoardsController < ApplicationController
   def search
     @artistboards = ArtistBoard.all
     if params[:search].present?
-    @search_artists = RSpotify::Artist.search(params[:search])
+    @searchartists = RSpotify::Artist.search(params[:search])
     end
+    # binding.irb
   end
 
   def new
     @artistboard = ArtistBoard.new(artists: params[:artists])
     @artist_icon = params[:icon]
+    @artist_genres = params[:category]
   end
 
   def show
@@ -39,6 +41,7 @@ class ArtistBoardsController < ApplicationController
   def create
     @artistboard = ArtistBoard.new(artistboard_params)
     @artistboard.remote_icon_url = params[:artist_icon]
+    # @artistboard.categories << @artist_genres
     if @artistboard.save
       redirect_to @artistboard, notice: 'アーティスト掲示板を新規作成しました。'
     else

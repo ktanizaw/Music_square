@@ -17,7 +17,6 @@
   </div>
 
   <%= hidden_field_tag :artist_icon, @artist_icon %>
-
   <div class="field">
     <%= form.collection_check_boxes(:category_ids, Category.all, :id, :name) %>
   </div>
