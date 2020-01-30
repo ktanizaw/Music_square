@@ -6,13 +6,15 @@ Rails.application.routes.draw do
   }
   resources :artist_boards do
     resources :board_comments
-  end
-  resources :artist_boards do
     resources :events
+    collection {get "search"}
   end
+
   resources :events do
     resources :event_comments
   end
+
+
 
   resources :users
   resources :events

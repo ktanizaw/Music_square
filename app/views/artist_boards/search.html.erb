@@ -1,0 +1,28 @@
+<h3>アーティスト名で検索</h3>
+<%= form_with url: search_artist_boards_path, method: :get, local: true do |form| %>
+<%= form.text_field :search %>
+<%= form.submit 'アーティスト名検索', name: nil %>
+<% end %>
+
+<h1>検索結果</h1>
+<div>
+  <% if @artists.present? %>
+    <% @artists.each do |artist| %>
+      <div>
+        <h3><%= artist.name %></h3>
+          <% if artist.images.any?%>
+            <%image = artist.images[1]%>
+            <%= image_tag(image["url"])%>
+          <%else%>
+            <%= image_tag("default.jpg")%>
+          <%end%>
+      </div>
+
+<% if @artistboards.pluck("artists").include?(artist.name)%>
+ <%= link_to 'アーティスト掲示板へ', artist_board_path(artist.id) %>
+  <% else %>
+  <%= link_to 'アーティスト掲示板作成', new_artist_board_path %>
+<%end%>
+<%end%>
+<%end%>
+</div>

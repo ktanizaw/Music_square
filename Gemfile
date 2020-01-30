@@ -25,6 +25,8 @@ group :development, :test do
   gem 'cancancan'
   gem 'bullet'
   gem 'faker'
+  gem 'rspotify'
+  gem 'dotenv-rails'
 end
 
 group :development do
