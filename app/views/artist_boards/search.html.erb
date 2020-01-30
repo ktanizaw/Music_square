@@ -6,22 +6,22 @@
 
 <h1>検索結果</h1>
 <div>
-  <% if @artists.present? %>
-    <% @artists.each do |artist| %>
+  <% if @search_artists.present? %>
+    <% @search_artists.each do |search_artist| %>
       <div>
-        <h3><%= artist.name %></h3>
-          <% if artist.images.any?%>
-            <%image = artist.images[1]%>
+        <h3><%= search_artist.name %></h3>
+          <% if search_artist.images.any?%>
+            <%image = search_artist.images[1]%>
             <%= image_tag(image["url"])%>
           <%else%>
             <%= image_tag("default.jpg")%>
           <%end%>
       </div>
 
-<% if @artistboards.pluck("artists").include?(artist.name)%>
- <%= link_to 'アーティスト掲示板へ', artist_board_path(artist.id) %>
-  <% else %>
-  <%= link_to 'アーティスト掲示板作成', new_artist_board_path %>
+<% if @artistboards.pluck("artists").include?(search_artist.name)%>
+ <%= link_to 'アーティスト掲示板へ', artist_board_path(search_artist.name) %>
+<% else %>
+  <%= link_to 'アーティスト掲示板作成', new_artist_board_path(artists: search_artist.name, icon: image["url"]) %>
 <%end%>
 <%end%>
 <%end%>

@@ -8,12 +8,16 @@ class ArtistBoard < ApplicationRecord
 
   validates :artists,
     presence: true, presence: {message: "入力してください！"},
-    length:{maximum: 255}
+    length:{maximum: 255}, uniqueness: true
 
   mount_uploader :icon, IconUploader
 
   scope :get_by_artists, ->(artists) {
     where("artists like ?", "%#{artists}%")
     }
+
+  def to_param
+      artists
+  end
 
 end

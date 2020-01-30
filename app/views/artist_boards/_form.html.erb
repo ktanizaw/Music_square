@@ -13,23 +13,10 @@
 
   <div class="field">
     <%= form.label :artists %>
-    <%= form.text_field :artists %>
+    <%= form.text_field :artists, readonly: true %>
   </div>
 
-  <div class="field">
-    <%= form.label :albums %>
-    <%= form.text_area :albums %>
-  </div>
-
-  <div class="field">
-    <%= form.label :profiles %>
-    <%= form.text_area :profiles %>
-  </div>
-
-  <div class="field">
-  <%= form.label :icon %>
-  <%= form.file_field :icon %>
-  </div>
+  <%= hidden_field_tag :artist_icon, @artist_icon %>
 
   <div class="field">
     <%= form.collection_check_boxes(:category_ids, Category.all, :id, :name) %>

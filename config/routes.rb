@@ -4,7 +4,7 @@ Rails.application.routes.draw do
    :registrations => 'users/registrations',
    :sessions => 'users/sessions'
   }
-  resources :artist_boards do
+  resources :artist_boards, param: :artists do
     resources :board_comments
     resources :events
     collection {get "search"}
