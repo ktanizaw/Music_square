@@ -3,6 +3,7 @@ class ArtistBoardsController < ApplicationController
   RSpotify.authenticate(ENV['SPOTIFY_CLIENT_ID'], ENV['SPOTIFY_SECRET_ID'])
 
   before_action :set_artistboard, only: [:show, :edit, :update, :destroy]
+
   PER = 6
 
   def index
@@ -18,7 +19,6 @@ class ArtistBoardsController < ApplicationController
     if params[:search].present?
     @searchartists = RSpotify::Artist.search(params[:search])
     end
-    # binding.irb
   end
 
   def new
@@ -66,10 +66,6 @@ class ArtistBoardsController < ApplicationController
   def set_artistboard
     @artistboard = ArtistBoard.find_by(artists: params[:artists])
   end
-
-  # def search_artist_params
-  #   params.require(:artist_board).permit(:artists, :icon, :icon_cache)
-  # end
 
   def artistboard_params
     params.require(:artist_board).permit(:artists, :albums, :profiles, :icon, :icon_cache, { category_ids: [] })

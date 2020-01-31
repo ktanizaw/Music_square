@@ -29,7 +29,7 @@
     <% @artistboards.each do |artistboard| %>
       <tr>
         <td>
-        <%= link_to artist_board_path(artistboard) do %>
+        <%= link_to artist_board_path(artistboard.artists) do %>
         <% if artistboard.icon? %>
         <%= image_tag "#{artistboard.icon}", :size =>'50x50' %>
         <% else %>
@@ -46,7 +46,7 @@
         </td>
 
         <%# 管理人のみに設定する %>
-        <td><%= link_to '編集', edit_artist_board_path(artistboard) %></td>
+        <td><%= link_to '編集', edit_artist_board_path(artistboard.artists) %></td>
         <td><%= link_to '削除', artistboard, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
@@ -56,7 +56,6 @@
 
 <br>
 
-<%# 管理人のみに設定する %>
 <%= link_to '検索して新規作成', search_artist_boards_path %>
 
 <%= paginate @artistboards %>

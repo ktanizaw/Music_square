@@ -39,8 +39,7 @@
 <% end %>
 </div>
 
-<%= link_to '編集', edit_event_path(@event) %> |
-<%= link_to '削除', @event, method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= link_to '編集', edit_artist_board_event_path(@artistboard.artists, @event.id) %>
 
 <div class="">
   <h1>参加者一覧</h1>

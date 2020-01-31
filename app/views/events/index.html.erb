@@ -32,7 +32,7 @@
     <% @events.each do |event| %>
       <tr>
         <td>
-          <%= link_to event_path(event) do %>
+          <%= link_to artist_board_event_path(event.artist_board.artists, event) do %>
             <% if event.image? %>
             <%= image_tag "#{event.image}", :size =>'50x50' %>
             <% else %>
@@ -44,9 +44,9 @@
         <td><%= event.place %></td>
         <td><%= event.date %></td>
         <td><%= event.deadline %></td>
-        <td><%= link_to '詳細', event %></td>
-        <td><%= link_to '編集', edit_event_path(event) %></td>
-        <td><%= link_to '削除', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '詳細', artist_board_event_path(event.artist_board.artists, event) %></td>
+        <td><%= link_to '編集', edit_artist_board_event_path(event.artist_board.artists, event) %></td>
+        <td><%= link_to '削除', artist_board_event_path(event.artist_board.artists, event), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

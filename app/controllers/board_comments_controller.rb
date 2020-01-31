@@ -25,7 +25,7 @@ class BoardCommentsController < ApplicationController
     private
 
     def set_artistboard
-      @artistboard = ArtistBoard.find(params[:artist_board_id])
+      @artistboard = ArtistBoard.find_by(artists: params[:artist_board_id])
     end
 
     def boardcomment_params

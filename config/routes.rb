@@ -4,22 +4,23 @@ Rails.application.routes.draw do
    :registrations => 'users/registrations',
    :sessions => 'users/sessions'
   }
-  resources :artist_boards, param: :artists do
+  resources :artist_boards, only: [:index, :new] do
     resources :board_comments
     resources :events
     collection {get "search"}
   end
+  resources :artist_boards, except: [:new, :index], param: :artists
 
-  resources :events do
+  resources :events, only: :index do
     resources :event_comments
   end
 
 
 
   resources :users
-  resources :events
-  resources :board_comment, only: [:show, :create, :destroy]
-  resources :event_comment, only: [:create, :destroy]
+  # resources :events
+  # resources :board_comment, only: [:show, :create, :destroy]
+  # resources :event_comment, only: [:create, :destroy]
   resources :relationships, only: [:show, :create, :destroy]
   resources :fans, only: [:create, :destroy]
   resources :favorites, only: [:create, :destroy]
