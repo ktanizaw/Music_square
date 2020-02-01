@@ -3,6 +3,7 @@ class ArtistBoardsController < ApplicationController
   RSpotify.authenticate(ENV['SPOTIFY_CLIENT_ID'], ENV['SPOTIFY_SECRET_ID'])
 
   before_action :set_artistboard, only: [:show, :edit, :update, :destroy]
+
   PER = 6
 
   def index
@@ -16,13 +17,14 @@ class ArtistBoardsController < ApplicationController
   def search
     @artistboards = ArtistBoard.all
     if params[:search].present?
-    @search_artists = RSpotify::Artist.search(params[:search])
+    @searchartists = RSpotify::Artist.search(params[:search])
     end
   end
 
   def new
     @artistboard = ArtistBoard.new(artists: params[:artists])
     @artist_icon = params[:icon]
+    @artist_genres = params[:category]
   end
 
   def show
@@ -39,6 +41,7 @@ class ArtistBoardsController < ApplicationController
   def create
     @artistboard = ArtistBoard.new(artistboard_params)
     @artistboard.remote_icon_url = params[:artist_icon]
+    # @artistboard.categories << @artist_genres
     if @artistboard.save
       redirect_to @artistboard, notice: 'アーティスト掲示板を新規作成しました。'
     else
@@ -63,10 +66,6 @@ class ArtistBoardsController < ApplicationController
   def set_artistboard
     @artistboard = ArtistBoard.find_by(artists: params[:artists])
   end
-
-  # def search_artist_params
-  #   params.require(:artist_board).permit(:artists, :icon, :icon_cache)
-  # end
 
   def artistboard_params
     params.require(:artist_board).permit(:artists, :albums, :profiles, :icon, :icon_cache, { category_ids: [] })

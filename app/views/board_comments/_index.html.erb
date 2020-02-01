@@ -22,7 +22,7 @@
 
     <br>
     <% if boardcomment.user == current_user %>
-      <p><%= link_to 'コメントを削除する', artist_board_board_comment_path(boardcomment.artist_board_id, boardcomment.id), method: :delete, remote: true %></p>
+      <p><%= link_to 'コメントを削除する', artist_board_board_comment_path(boardcomment.artist_board.artists, boardcomment.id), method: :delete, remote: true %></p>
     <% end %>
 
     <% end %>

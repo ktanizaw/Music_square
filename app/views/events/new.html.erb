@@ -2,5 +2,4 @@
 
 <%= render partial: 'form', locals: { event: @event, artist_board: @artistboard } %>
 
-<%= link_to '編集', @event %> |
-<%= link_to '戻る', events_path %>
+<%= link_to '戻る', artist_board_path(@artistboard.artists) %>

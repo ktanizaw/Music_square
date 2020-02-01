@@ -33,7 +33,7 @@
 <h1>開催イベント</h1>
 <% @artistboard.events.each do |event| %>
 <td>
-  <%= link_to event_path(event) do %>
+  <%= link_to artist_board_event_path(@artistboard.artists, event) do %>
     <% if event.image? %>
     <%= image_tag "#{event.image}", :size =>'50x50' %>
     <% else %>
@@ -45,6 +45,6 @@
 <% end %>
 
 <h2>イベントを主催する</h2>
-<%= link_to 'イベント作成画面へ', new_artist_board_event_path(@artistboard.id) %>
+<%= link_to 'イベント作成画面へ', new_artist_board_event_path(@artistboard.artists) %>
 
 <%= link_to 'Back', artist_boards_path %>
