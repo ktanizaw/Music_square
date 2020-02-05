@@ -29,6 +29,7 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'omniauth'
   gem 'omniauth-facebook'
+  gem "omniauth-rails_csrf_protection"
 end
 
 group :development do
