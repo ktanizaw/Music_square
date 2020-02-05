@@ -27,6 +27,8 @@ group :development, :test do
   gem 'faker'
   gem 'rspotify'
   gem 'dotenv-rails'
+  gem 'omniauth'
+  gem 'omniauth-facebook'
 end
 
 group :development do

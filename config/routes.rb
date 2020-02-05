@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users, :controllers => {
    :registrations => 'users/registrations',
-   :sessions => 'users/sessions'
+   :sessions => 'users/sessions',
+   :omniauth_callbacks => 'users/omniauth_callbacks'
   }
   resources :artist_boards, only: [:index, :new] do
     resources :board_comments

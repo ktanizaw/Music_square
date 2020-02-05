@@ -29,7 +29,7 @@ class User < ApplicationRecord
   mount_uploader :profile_image, ProfileImageUploader
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
   def follow!(other_user)
     active_relationships.create!(followed_id: other_user.id)
@@ -46,4 +46,20 @@ class User < ApplicationRecord
   def already_favorite?(favorite_boardcomment)
     self.favorites.exists?(board_comment_id: favorite_boardcomment.id)
   end
+
+  def self.find_for_oauth(auth)
+  user = User.where(uid: auth.uid, provider: auth.provider).first
+
+  unless user
+    user = User.create(
+      name: auth.info.name,
+      uid:      auth.uid,
+      provider: auth.provider,
+      email:    auth.info.email,
+      profile_image: auth.info.image,
+      password: Devise.friendly_token[0, 20]
+    )
+  end
+  user
+end
 end
