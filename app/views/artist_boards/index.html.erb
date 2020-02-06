@@ -1,12 +1,18 @@
-<div class="">
+<div class="form-horizontal" role="form">
   <h2>アーティスト掲示板検索</h2>
   <%= form_with url: artist_boards_path, method: :get, local: true do |form| %>
-  <%= form.label :artists, "アーティスト名" %>
-  <%= form.text_field :artists %>
+  <div class="col-3">
+    <%= form.text_field :artists, class:"form-control mr-sm-2 form-inline md-form mr-auto mb-4", placeholder:"アーティスト名検索" %>
+  </div>
   <%= form.label :category, "ジャンル" %>
   <%= form.select("category_id", Category.pluck(:name, :id), { include_blank: true }) %>
-  <%= form.submit '絞り込み検索', name: nil %>
+  <%= form.submit '絞り込み検索', name: nil, class:"btn blue-gradient btn-rounded btn-sm my-0" %>
   <% end %>
+
+  <form class="form-inline md-form mr-auto mb-4">
+    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+    <button class="btn aqua-gradient btn-rounded btn-sm my-0" type="submit">Search</button>
+  </form>
 
   <%= link_to 'イベント一覧へ', events_path %>
   <%= link_to 'ユーザー一覧へ', users_path %>
