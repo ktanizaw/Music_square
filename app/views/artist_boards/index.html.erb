@@ -1,65 +1,93 @@
-<div class="form-horizontal" role="form">
-  <h2>アーティスト掲示板検索</h2>
-  <%= form_with url: artist_boards_path, method: :get, local: true do |form| %>
-  <div class="col-3">
-    <%= form.text_field :artists, class:"form-control mr-sm-2 form-inline md-form mr-auto mb-4", placeholder:"アーティスト名検索" %>
-  </div>
-  <%= form.label :category, "ジャンル" %>
-  <%= form.select("category_id", Category.pluck(:name, :id), { include_blank: true }) %>
-  <%= form.submit '絞り込み検索', name: nil, class:"btn blue-gradient btn-rounded btn-sm my-0" %>
+<div class="container-fluid">
+<div class="row">
+
+  <!-- 左側始まり -->
+  <div class="col-4 m-4">
+
+  <h6 class="text-center text-muted pt-5">掲示板検索機能</h6>
+    <h2 class="text-center font-weight-bold pb-4">既存の掲示板を検索できます</h2>
+    <%= form_with url: artist_boards_path, method: :get, local: true do |f| %>
+      <%= f.label :artists, "アーティスト名で検索してみよう！", class:'' %>
+      <%= f.text_field :artists, class:"form-control mr-sm-2 form-inline mr-auto mb-4", placeholder:"アーティスト名検索" %>
+
+    <%= f.label :category, "ジャンルで検索してみよう！", class:'control-label' %>
+    <%= f.select("category_id", Category.pluck(:name, :id), { include_blank: true }, class:"form-control mr-sm-2 form-inline mr-auto mb-4") %>
+    <div class="text-center mb-3">
+    <%= f.submit '掲示板を検索する', name: nil, class:"btn blue-gradient btn-block btn-rounded z-depth-1a artistboard-btn" %>
+    </div>
+    <% end %>
+
+    <div class="pt-4">
+
+
+      <h3 class="text-center font-weight-bold pb-4">目当ての掲示板がない場合は・・・</h3>
+      <div class="text-center">
+      <%= link_to search_artist_boards_path do %>
+      <button type="button" class="btn btn-outline-primary btn-rounded btn-block waves-effect artistboard-btn">自分で掲示板を作成しよう！</button>
+      <% end %>
+
+      <h4 class="text-center font-weight-bold pt-5 pb-4">現在開催中のイベントを見つける！</h4>
+
+  <%= link_to events_path do %>
+  <button type="button" class="btn btn-outline-primary btn-rounded btn-block waves-effect artistboard-btn">イベント一覧へ</button>
   <% end %>
 
-  <form class="form-inline md-form mr-auto mb-4">
-    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-    <button class="btn aqua-gradient btn-rounded btn-sm my-0" type="submit">Search</button>
-  </form>
+  <h4 class="text-center font-weight-bold pt-5 pb-4">価値観の合う仲間を見つける！</h4>
+  <%= link_to users_path do %>
+  <button type="button" class="btn btn-outline-primary btn-rounded btn-block waves-effect artistboard-btn">ユーザー一覧へ</button>
+  <% end %>
+  </div>
 
-  <%= link_to 'イベント一覧へ', events_path %>
-  <%= link_to 'ユーザー一覧へ', users_path %>
-</div>
+  </div>
+  </div>
 
-  <h2>アーティスト一覧</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>アイコン</th>
-        <th>アーティスト名</th>
-        <th>説明</th>
-        <th>ジャンル</th>
-      </tr>
-    </thead>
-
-  <tbody>
+<!-- 右側始まり -->
+<div class="col-7 m-4">
+<h6 class="text-center text-muted pt-5">アーティスト掲示板一覧</h6>
+<h2 class="text-center font-weight-bold pb-4">こんな掲示板があります</h2>
+  <div class="row row-cols-1 row-cols-md-3">
     <% @artistboards.each do |artistboard| %>
-      <tr>
-        <td>
-        <%= link_to artist_board_path(artistboard.artists) do %>
-        <% if artistboard.icon? %>
-        <%= image_tag "#{artistboard.icon}", :size =>'50x50' %>
-        <% else %>
-        <%= image_tag 'default.jpg', :size =>'50x50' %>
-        <% end %>
-        <% end %>
-        </td>
-        <td><%= artistboard.artists %></td>
-        <td><%= artistboard.profiles %></td>
-        <td>
-            <% artistboard.categories.each do |category| %>
-            <%= category.name %>
-            <% end %>
-        </td>
-
-        <%# 管理人のみに設定する %>
-        <td><%= link_to '編集', edit_artist_board_path(artistboard.artists) %></td>
-        <td><%= link_to '削除', artistboard, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<div class="col mb-4">
+<div class="card card-cascade m-1">
+  <!-- Card image -->
+  <div class="view view-cascade overlay">
+    <% if artistboard.icon? %>
+    <%= image_tag "#{artistboard.icon}",class:"card-img-top" %>
+    <% else %>
+    <%= image_tag 'default.jpg',class:"card-img-top" %>
     <% end %>
-  </tbody>
-</table>
+    <%= link_to artist_board_path(artistboard.artists) do %>
+    <div class="mask rgba-white-slight"></div>
+    <% end %>
+  </div>
+  <!-- Card content -->
+  <div class="card-body card-body-cascade text-center">
+
+    <h4 class="card-title"><strong><%= artistboard.artists %></strong></h4>
+    <h6 class="font-weight-bold indigo-text py-2">Web developer</h6>
+
+
+    <% if current_user.admin? %>
+      <%= link_to edit_artist_board_path(artistboard.artists) do %>
+      <button type="button" class="btn-sm btn-outline-danger btn-rounded waves-effect">編集</button>
+      <% end %>
+      <%= link_to artistboard, method: :delete, data: { confirm: 'Are you sure?' } do %>
+      <button type="button" class="btn-sm btn-outline-danger btn-rounded waves-effect">削除</button>
+      <% end %>
+    <% end %>
+
+  </div>
+</div>
+</div>
+<% end %>
+
 </div>
 
-<br>
+<div class="d-flex justify-content-center">
+  <%= paginate @artistboards %>
+</div>
 
-<%= link_to '検索して新規作成', search_artist_boards_path %>
+</div>
 
-<%= paginate @artistboards %>
+</div>
+</div>
