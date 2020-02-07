@@ -28,11 +28,11 @@ ja:
           profiles: プロフィール
           icon: プロフィール写真
         board_comment:
-          content: コメント内容
+          content: あなたのコメント
         category:
           name: カテゴリ名
         event_comment:
-          content: コメント内容
+          content: あなたのコメント
         event:
           title: タイトル
           place: 開催場所

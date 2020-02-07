@@ -1,28 +1,30 @@
 <% board_comments.each do |boardcomment| %>
 
-    <%= link_to user_path(boardcomment.user.id) do %>
+
+<div class="col-2 d-flex align-items-center">
+    <%= link_to user_path(boardcomment.user.id),class:"pl-5 text-center" do %>
       <% if boardcomment.user.profile_image? %>
-        <i><%= image_tag "#{boardcomment.user.profile_image}", :size =>'30x30' %></i>
+        <%= image_tag "#{boardcomment.user.profile_image}", :size =>'30x30', class:"z-depth-1" %>
         <p><%= boardcomment.user.name %></p>
       <% else %>
-        <i><%= image_tag 'default.jpg', :size =>'30x30' %></i>
+        <%= image_tag 'default.jpg', :size =>'30x30', class:"z-depth-1" %>
         <p><%= boardcomment.user.name %></p>
       <% end %>
     <% end %>
+</div>
+<!-- center-block -->
 
-      <div class="">
+<div class="col-10">
+  <div class="comment">
+      <% if boardcomment.picture? %>
+      <%= image_tag "#{boardcomment.picture}", :size =>'200x150', class:"text-center" %>
+      <% end %>
         <p><%= boardcomment.content %></p>
-        <% if boardcomment.picture? %>
-        <i><%= image_tag "#{boardcomment.picture}", :size =>'30x30' %></i>
+        <% if boardcomment.user == current_user %>
+          <%= link_to '削除', artist_board_board_comment_path(boardcomment.artist_board.artists, boardcomment.id), method: :delete, remote: true %>
         <% end %>
-      </div>
 
-
-      <%= render partial: 'artist_boards/favorite_btn', locals: { board_comment: boardcomment } %>
-
-    <br>
-    <% if boardcomment.user == current_user %>
-      <p><%= link_to 'コメントを削除する', artist_board_board_comment_path(boardcomment.artist_board.artists, boardcomment.id), method: :delete, remote: true %></p>
-    <% end %>
-
-    <% end %>
+        <%= render partial: 'artist_boards/favorite_btn', locals: { board_comment: boardcomment } %>
+        </div>
+</div>
+  <% end %>

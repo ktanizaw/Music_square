@@ -68,3 +68,34 @@ box-shadow: 0 5px 11px 0 rgba(85, 182, 255, 0.28), 0 4px 15px 0 rgba(36, 133, 25
 .artistboard-btn {
   font-size:1rem;
 }
+
+#board_comments_area {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.commentuser {
+
+}
+
+
+.comment {
+  display: inline-block;
+  padding: 15px 20px;
+  margin-top: 8px;
+  border-radius: 10px;
+  position: relative;
+  background-color: #D9F0FF;
+}
+
+.comment:after {
+    content: "";
+    position: absolute;
+    top: 50%; left: -10px;
+    margin-top: -10px;
+    display: block;
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent #D9F0FF transparent transparent;
+}
