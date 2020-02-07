@@ -20,12 +20,14 @@
 
       <% if @artistboards.pluck("artists").include?(searchartist.name)%>
        <%= link_to 'アーティスト掲示板へ', artist_board_path(searchartist.name) %>
-       <% elsif searchartist.genres.blank? && searchartist.images.blank? %>
-       <%= link_to 'アーティスト掲示板作成', new_artist_board_path(artists: searchartist.name) %>
-      <% elsif searchartist.genres.blank? %>
-       <%= link_to 'アーティスト掲示板作成', new_artist_board_path(artists: searchartist.name, icon: image["url"]) %>
-       <% else %>
+       <% elsif searchartist.genres.present? && searchartist.images.present? %>
        <%= link_to 'アーティスト掲示板作成', new_artist_board_path(artists: searchartist.name, icon: image["url"], category: searchartist.genres) %>
+       <% elsif searchartist.images.present? %>
+       <%= link_to 'アーティスト掲示板作成', new_artist_board_path(artists: searchartist.name, icon: image["url"]) %>
+       <% elsif searchartist.genres.present? %>
+       <%= link_to 'アーティスト掲示板作成', new_artist_board_path(artists: searchartist.name, category: searchartist.genres) %>
+       <% else %>
+       <%= link_to 'アーティスト掲示板作成', new_artist_board_path(artists: searchartist.name) %>
       <%end%>
       <%end%>
       <%end%>

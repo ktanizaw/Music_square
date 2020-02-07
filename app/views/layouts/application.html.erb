@@ -10,20 +10,76 @@
 
       </head>
 
+      <!-- Font Awesome -->
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+      <!-- Bootstrap core CSS -->
+      <link href="../assets/stylesheets/bootstrap.min.css" rel="stylesheet">
+      <!-- Material Design Bootstrap -->
+      <link href="../assets/stylesheets/mdb.min.css" rel="stylesheet">
+      <!-- Your custom styles (optional) -->
+      <link href="../assets/stylesheets/application.css" rel="stylesheet">
+
+      <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:400,700&display=swap" rel="stylesheet">
+
   <body>
-    <div class="header-left">
-      <p>Music Square</p>
-    </div>
-    <div class="header-right">
-  <% if user_signed_in? %>
-    <%= link_to "トップ", artist_boards_path %>
-    <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-  <% else %>
-    <%= link_to "トップ", artist_boards_path %>
-    <%= link_to "ログイン", new_user_session_path %>
-    <%= link_to "新規登録", new_user_registration_path %>
-  <% end %>
-    </div>
+
+    <!--Navbar -->
+    <nav class="mb-1 navbar navbar-expand-lg navbar-dark black lighten-1 sticky-top">
+      <a class="navbar-brand" href="/users/sign_up">Music Square</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
+        aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
+        <ul class="navbar-nav mr-auto">
+          <% if user_signed_in? %>
+          <li class="nav-item">
+              <%= link_to artist_boards_path, class:"nav-link" do %>
+              <i class="fas fa-music"></i>トップ
+              <% end %>
+          </li>
+          <li class="nav-item">
+              <%= link_to destroy_user_session_path, class:"nav-link", method: :delete do %>
+              <i class="fas fa-sign-out-alt"></i>ログアウト
+              <% end %>
+          </li>
+          <% else %>
+          <li class="nav-item">
+              <%= link_to artist_boards_path, class:"nav-link" do %>
+              <i class="fas fa-music"></i>トップ
+              <% end %>
+          </li>
+          <li class="nav-item">
+              <%= link_to new_user_session_path, class:"nav-link" do %>
+              <i class="fas fa-sign-in-alt"></i>ログイン
+              <% end %>
+          </li>
+          <li class="nav-item">
+              <%= link_to new_user_registration_path, class:"nav-link" do %>
+              <i class="fas fa-user-plus"></i>新規登録
+              <% end %>
+          </li>
+          <% end %>
+        </ul>
+
+        <ul class="navbar-nav ml-auto nav-flex-icons">
+          <% if user_signed_in? %>
+          <%= link_to user_path(current_user.id) do %>
+          <% if user_signed_in? && current_user.profile_image? %>
+          <li class="nav-item avatar">
+              <%= image_tag "#{current_user.profile_image}", class:"rounded-circle z-depth-0", alt:"avatar image", height:"35" %>
+              <% elsif user_signed_in? && current_user.profile_image.blank? %>
+              <%= image_tag 'default.jpg', class:"rounded-circle z-depth-0", alt:"avatar image", height:"35" %>
+              <% else %>
+              <% end %>
+              <% end %>
+              <% end %>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!--/.Navbar -->
+
 
   <%# <% if notice %>
     <!-- <p class="alert alert-notice"><%= notice %></p> -->
@@ -31,8 +87,99 @@
   <%# <% if alert %>
     <!-- <p class="alert alert-error"><%= alert %></p> -->
   <%# <% end %>
-
+<div class="inner">
     <%= yield %>
+</div>
+    <!-- Footer -->
+<footer class="page-footer font-small black pt-4">
 
+  <!-- Footer Links -->
+  <div class="container-fluid text-center text-md-left">
+
+    <!-- Grid row -->
+    <div class="row">
+
+      <!-- Grid column -->
+      <div class="col-md-6 mt-md-0 mt-3">
+
+        <!-- Content -->
+        <h5 class="text-uppercase">Music Square</h5>
+        <p>音楽で価値観が繋がる。</p>
+
+      </div>
+      <!-- Grid column -->
+
+      <hr class="clearfix w-100 d-md-none pb-3">
+
+      <!-- Grid column -->
+      <div class="col-md-3 mb-md-0 mb-3">
+
+        <!-- Links -->
+        <h5 class="text-uppercase">Links</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a href="#!">Link 1</a>
+          </li>
+          <li>
+            <a href="#!">Link 2</a>
+          </li>
+          <li>
+            <a href="#!">Link 3</a>
+          </li>
+          <li>
+            <a href="#!">Link 4</a>
+          </li>
+        </ul>
+
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-3 mb-md-0 mb-3">
+
+        <!-- Links -->
+        <h5 class="text-uppercase">Links</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a href="#!">Link 1</a>
+          </li>
+          <li>
+            <a href="#!">Link 2</a>
+          </li>
+          <li>
+            <a href="#!">Link 3</a>
+          </li>
+          <li>
+            <a href="#!">Link 4</a>
+          </li>
+        </ul>
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+  </div>
+  <!-- Footer Links -->
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">
+    © 2020. MusicSquare All Rights Reserved.
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+
+    <script type="text/javascript" src="../javascripts/jquery.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="../javascripts/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="../javascripts/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="../javascripts/mdb.min.js"></script>
   </body>
 </html>

@@ -1,29 +1,57 @@
-<h2>ログイン画面</h2>
+<section class="form-elegant text-center py-5 bg">
+  <!-- Grid row -->
+  <div class="row d-flex justify-content-center">
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <!-- Grid column -->
+    <div class="col-md-9 col-lg-7 col-xl-5">
 
-  <div class="field">
-    <%= f.label :"メールアドレス" %><br />
-    <%= f.email_field :email, placeholder:"info@test.com", autofocus: true, autocomplete: "email" %>
-  </div>
+  <!--Form without header-->
+  <div class="card">
 
-  <div class="field">
-    <%= f.label :"パスワード" %><br />
-    <%= f.password_field :password, placeholder:"password", autocomplete: "current-password" %>
-  </div>
+    <div class="card-body mx-4">
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :"ログイン状態を保持する" %>
-    </div>
-  <% end %>
+      <!--Header-->
+      <div class="text-center">
+        <h3 class="dark-grey-text mb-5"><strong>ログイン</strong></h3>
+      </div>
 
-  <%= link_to "facebook", user_facebook_omniauth_authorize_path, method: :post  %>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
-  <div class="actions">
-    <%= f.submit "ログイン" %>
-  </div>
-<% end %>
+      <div class="md-form">
+        <%= f.label :"メールアドレス" %><br />
+        <%= f.email_field :email, placeholder:"info@test.com", autocomplete: "email", class:"form-control" %>
+      </div>
 
-<%# <%= render "devise/shared/links" %>
+      <div class="md-form">
+        <%= f.label :"パスワード" %><br />
+        <%= f.password_field :password, autocomplete: "new-password", class:"form-control" %>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div lass="custom-control custom-checkbox">
+          <%= f.check_box :remember_me, class:"custom-control-input", id:"defaultUnchecked"%>
+          <%= f.label :"ログイン状態を保持する", class:"custom-control-label", for:"defaultUnchecked" %>
+        </div>
+      <% end %>
+
+      <div class="text-center pt-5 mb-3">
+        <%= f.submit "ログイン", class:"btn blue-gradient btn-block btn-rounded z-depth-1a" %>
+      </div>
+      <% end %>
+
+      <p class="font-small dark-grey-text text-right d-flex justify-content-center mb-3 pt-2">またはFacebookでログイン</p>
+
+      <%= link_to user_facebook_omniauth_authorize_path, method: :post do %>
+      <button type="button" class="btn btn-white btn-rounded mr-md-3 z-depth-1a"><i class="fab fa-facebook-f blue-text text-center"></i></button>
+      <% end %>
+
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
