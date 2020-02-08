@@ -1,75 +1,48 @@
 <div class="container-fluid">
-<div class="row">
+  <div class="row">
 
-  <!-- 左側始まり -->
-  <div class="col-4">
-
-      <h6 class="text-center text-muted pt-5">イベント一覧</h6>
+<!-- 左側始まり -->
+    <div class="col-4">
+      <div class="m-3">
+      <h6 class="text-center text-muted">イベント一覧</h6>
         <h2 class="text-center font-weight-bold pb-4"><%= @artistboard.artists %>のイベント</h2>
-      <div class="row row-cols-1 row-cols-md-2">
-        <!-- Card -->
-        <div class="col mb-4">
+      <div class="row row-cols-1 row-cols-md-2 mb-4" id="events">
 
         <% @artistboard.events.each do |event| %>
-        <div class="card mb-4">
-          <!-- Card image -->
+        <div class="">
+          <div class="card m-2">
             <% if event.image? %>
             <%= image_tag "#{event.image}",class:"card-img-top" %>
             <% else %>
             <%= image_tag 'default.jpg',class:"card-img-top" %>
             <% end %>
-          <!-- Card content -->
           <div class="card-body">
-            <!-- Title -->
-            <h4 class="card-title"><a><%= event.title %></a></h4>
-            <!-- Text -->
-            <p class="card-text">Some</p>
-            <!-- Button -->
+            <h4 class="card-title"><%= event.title %></h4>
+            <p class="card-text">開催日時<br><%= event.date %></p>
             <%= link_to artist_board_event_path(@artistboard.artists, event) do %>
-            <button class="btn btn-primary">詳細確認</button>
+            <button class="btn btn-outline-primary waves-effect">詳細確認</button>
             <% end %>
           </div>
+        </div>
         </div>
         <% end %>
       </div>
 
-        <!-- Card -->
-  </div>
-
-        <h2>イベントを主催する</h2>
-        <%= link_to 'イベント作成画面へ', new_artist_board_event_path(@artistboard.artists) %>
-
-        <%= link_to 'Back', artist_boards_path %>
-        <div class="pt-4">
 
 
-          <h3 class="text-center font-weight-bold pb-4">目当ての掲示板がない場合は・・・</h3>
-          <div class="text-center">
-          <%= link_to search_artist_boards_path do %>
-          <button type="button" class="btn btn-outline-primary btn-rounded btn-block waves-effect artistboard-btn">自分で掲示板を作成しよう！</button>
-          <% end %>
-
-          <h4 class="text-center font-weight-bold pt-5 pb-4">現在開催中のイベントを見つける！</h4>
-
-      <%= link_to events_path do %>
-      <button type="button" class="btn btn-outline-primary btn-rounded btn-block waves-effect artistboard-btn">イベント一覧へ</button>
+      <%= link_to new_artist_board_event_path(@artistboard.artists), class:"text-center" do %>
+      <button type="button" class="btn btn-outline-primary btn-block waves-effect link-btn">自分でイベントを作成しよう！</button>
       <% end %>
-
-      <h4 class="text-center font-weight-bold pt-5 pb-4">価値観の合う仲間を見つける！</h4>
-      <%= link_to users_path do %>
-      <button type="button" class="btn btn-outline-primary btn-rounded btn-block waves-effect artistboard-btn">ユーザー一覧へ</button>
-      <% end %>
-      </div>
-
       </div>
     </div>
 
-      <!-- 右側始まり -->
-      <div class="col-7 ml-4 my-2">
+<!-- 右側始まり -->
+      <div class="col-8">
+      <div class="m-4">
         <div class="container-fluid">
 
   <div class="row justify-content-center">
-    <div class="col-5">
+    <div class="col-4">
 <div class="card card-cascade m-1">
   <!-- Card image -->
   <div class="view view-cascade overlay">
@@ -88,11 +61,11 @@
     <p>アルバム情報: <%= @artistboard.albums %></p>
     <% if @fan.present? %>
       <%= link_to fan_path(id: @fan.id), method: :delete do %>
-      <button type="button" class="btn btn-outline-warning rounded-pill waves-effect">ファン解除</button>
+      <button type="button" class="btn btn-outline-warning rounded-pill waves-effect fan-btn">ファン解除</button>
       <% end %>
     <% else %>
       <%= link_to fans_path(artist_board_id: @artistboard.id), method: :post do %>
-      <button type="button" class="btn btn-outline-warning rounded-pill waves-effect">ファンになる</button>
+      <button type="button" class="btn btn-outline-warning rounded-pill waves-effect fan-btn">ファンになる</button>
       <% end %>
     <% end %>
   </div>
@@ -102,15 +75,17 @@
 </div>
 
 <div class="row">
-<div class="col-12">
+  <div class="col-12">
   <h6 class="text-center text-muted pt-5">投稿一覧</h6>
     <h2 class="text-center font-weight-bold pb-4"><%= @artistboard.artists %>について語ろう！</h2>
     </div>
+</div>
 
 
   <div class= "row py-4" id="board_comments_area">
     <%= render partial: 'board_comments/index', locals: { board_comments: @boardcomments } %>
-
+</div>
+<div class="row d-flex justify-content-center" id="board_comments_form">
 <% if user_signed_in? %>
   <%= render partial: 'board_comments/form', locals: { board_comment: @boardcomment, artist_board: @artistboard } %>
 <% end %>
@@ -123,5 +98,5 @@
 </div>
 </div>
 </div>
-</div>
+  </div>
 </div>

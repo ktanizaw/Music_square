@@ -5,7 +5,7 @@ class ArtistBoardsController < ApplicationController
   before_action :set_artistboard, only: [:show, :edit, :update, :destroy]
 
   PER_BOARD = 6
-  PER_COMMENT = 10
+  PER_COMMENT = 5
 
   def index
     @artistboards = ArtistBoard.all.page(params[:page]).per(PER_BOARD)

@@ -1,4 +1,6 @@
-<div class="col-12 pt-3">
+
+<div class="col-12">
+
 <%= form_with(model: [artist_board, board_comment]) do |f| %>
   <% if board_comment.errors.any? %>
     <div id="error_explanation">
@@ -22,9 +24,8 @@
     </div>
 
     <div class="text-center my-3">
-    <%= f.submit "投稿", class:"btn blue-gradient btn-block btn-rounded z-depth-1a" %>
+    <%= f.submit "投稿", class:"btn blue-gradient z-depth-1a" %>
     </div>
 
 <% end %>
-
 </div>

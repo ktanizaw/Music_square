@@ -13,7 +13,7 @@
     <%= f.label :category, "ジャンルで検索してみよう！", class:'control-label' %>
     <%= f.select("category_id", Category.pluck(:name, :id), { include_blank: true }, class:"form-control mr-sm-2 form-inline mr-auto mb-4") %>
     <div class="text-center mb-3">
-    <%= f.submit '掲示板を検索する', name: nil, class:"btn blue-gradient btn-block btn-rounded z-depth-1a artistboard-btn" %>
+    <%= f.submit '掲示板を検索する', name: nil, class:"btn blue-gradient btn-block btn-rounded z-depth-1a link-btn" %>
     </div>
     <% end %>
 
@@ -23,18 +23,18 @@
       <h3 class="text-center font-weight-bold pb-4">目当ての掲示板がない場合は・・・</h3>
       <div class="text-center">
       <%= link_to search_artist_boards_path do %>
-      <button type="button" class="btn btn-outline-primary btn-rounded btn-block waves-effect artistboard-btn">自分で掲示板を作成しよう！</button>
+      <button type="button" class="btn btn-outline-primary btn-rounded btn-block waves-effect link-btn">自分で掲示板を作成しよう！</button>
       <% end %>
 
       <h4 class="text-center font-weight-bold pt-5 pb-4">現在開催中のイベントを見つける！</h4>
 
   <%= link_to events_path do %>
-  <button type="button" class="btn btn-outline-primary btn-rounded btn-block waves-effect artistboard-btn">イベント一覧へ</button>
+  <button type="button" class="btn btn-outline-primary btn-rounded btn-block waves-effect link-btn">イベント一覧へ</button>
   <% end %>
 
   <h4 class="text-center font-weight-bold pt-5 pb-4">価値観の合う仲間を見つける！</h4>
   <%= link_to users_path do %>
-  <button type="button" class="btn btn-outline-primary btn-rounded btn-block waves-effect artistboard-btn">ユーザー一覧へ</button>
+  <button type="button" class="btn btn-outline-primary btn-rounded btn-block waves-effect link-btn">ユーザー一覧へ</button>
   <% end %>
   </div>
 

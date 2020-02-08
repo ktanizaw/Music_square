@@ -65,7 +65,11 @@ box-shadow: 0 5px 11px 0 rgba(85, 182, 255, 0.28), 0 4px 15px 0 rgba(36, 133, 25
   background-size: cover;
 }
 
-.artistboard-btn {
+.link-btn {
+  font-size:1rem;
+}
+
+.fan-btn {
   font-size:1rem;
 }
 
@@ -73,10 +77,13 @@ box-shadow: 0 5px 11px 0 rgba(85, 182, 255, 0.28), 0 4px 15px 0 rgba(36, 133, 25
   background-color: rgba(0, 0, 0, 0.03);
 }
 
-.commentuser {
-
+#board_comments_form {
+  background-color: rgba(0, 0, 0, 0.03);
 }
 
+#events {
+  background-color: rgba(0, 0, 0, 0.03);
+}
 
 .comment {
   display: inline-block;
