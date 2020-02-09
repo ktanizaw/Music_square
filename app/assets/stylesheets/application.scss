@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  */
+@import "tempusdominus-bootstrap-4.css";
 
 body {
   font-family: 'Noto Sans JP', sans-serif;
@@ -102,4 +103,8 @@ box-shadow: 0 5px 11px 0 rgba(85, 182, 255, 0.28), 0 4px 15px 0 rgba(36, 133, 25
     border-style: solid;
     border-width: 10px 10px 10px 0;
     border-color: transparent #D9F0FF transparent transparent;
+}
+
+.event-content-label {
+  color: #757575;
 }

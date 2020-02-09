@@ -84,7 +84,7 @@
 
           <!--Header-->
           <div class="text-center">
-            <h3 class="dark-grey-text mb-5"><strong>サインアップ</strong></h3>
+            <h3 class="dark-grey-text mb-5">サインアップ</h3>
           </div>
 
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -110,7 +110,7 @@
               <span class="input-group-text" id="inputGroupFileAddon01">アップロード</span>
             </div>
             <div class="custom-file">
-              <%= f.label :"プロフィール画像", class:"custom-file-label", for:"inputGroupFile01" %>
+              <%= f.label :"プロフィール画像", class:"custom-file-label text-left", for:"inputGroupFile01" %>
               <%= f.file_field :profile_image, autofocus: true, autocomplete: "profile_image", class:"custom-file-input", id:"inputGroupFile01" %>
               <%= image_tag(@user.profile_image.url) if @user.profile_image && @user.profile_image.url %>
             </div>
@@ -127,7 +127,7 @@
           </div>
 
           <div class="text-center mb-3">
-            <%= f.submit "サインアップ", class:"btn blue-gradient btn-block z-depth-1a" %>
+            <%= f.submit "サインアップ", class:"btn blue-gradient btn-block z-depth-1a submit-btn" %>
           </div>
         <% end %>
 

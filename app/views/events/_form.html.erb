@@ -1,4 +1,4 @@
-<%= form_with(model: [artist_board, event], local: true) do |form| %>
+<%= form_with(model: [artist_board, event], local: true) do |f| %>
   <% if event.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
@@ -11,46 +11,52 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+  <div class="md-form">
+    <%= f.label :title %>
+    <%= f.text_field :title, class:"form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :place %>
-    <%= form.text_field :place %>
+  <div class="md-form">
+    <%= f.label :place %>
+    <%= f.text_field :place, class:"form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :date %>
-    <%= form.text_field :date %>
+  <div class="md-form">
+    <%= f.label :date %>
+    <%= f.datetime_select :date, class:"form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
+  <div class="text-left event-content-label">
+    <%= f.label :content %><br/>
+    <%= f.text_area :content, class:"form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :deadline %>
-    <%= form.datetime_select :deadline %>
+  <div class="md-form">
+    <%= f.label :deadline %>
+    <%= f.datetime_select :deadline, class:"form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :capacity %>
-    <%= form.number_field :capacity %>
+  <div class="md-form">
+    <%= f.label :capacity %>
+    <%= f.number_field :capacity, min:0,max:10000, class:"form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.collection_check_boxes(:label_ids, Label.all, :id, :name) %>
+  <div class="form-group py-3">
+    <%= f.collection_check_boxes(:label_ids, Label.all, :id, :name) %>
   </div>
 
-  <div class="field">
-    <%= form.label :image %>
-    <%= form.file_field :image %>
+  <div class="input-group">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroupFileAddon01">アップロード</span>
   </div>
+  <div class="custom-file text-center">
+    <%= f.label :image, class:"custom-file-label text-left", for:"inputGroupFile01" %>
+    <%= f.file_field :image, class:"custom-file-input", id:"inputGroupFile01" %>
+  </div>
+</div>
 
-  <div class="actions">
-    <%= form.submit %>
+
+  <div class="text-center my-3">
+    <%= f.submit "イベント作成", class:"btn blue-gradient btn-block z-depth-1a submit-btn" %>
   </div>
 <% end %>
