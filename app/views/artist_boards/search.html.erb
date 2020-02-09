@@ -1,34 +1,65 @@
-<h3>アーティスト名で検索</h3>
-<%= form_with url: search_artist_boards_path, method: :get, local: true do |form| %>
-<%= form.text_field :search %>
-<%= form.submit 'アーティスト名検索', name: nil %>
-<% end %>
+<section class="text-center py-5">
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-9 col-lg-7 col-xl-5">
 
-<h1>検索結果</h1>
-<div>
+
+<h2>アーティスト名で検索</h2>
+<%= form_with url: search_artist_boards_path, method: :get, local: true do |form| %>
+<%= form.text_field :search, class:"form-control my-4" %>
+<%= form.submit 'アーティスト名検索', name: nil,class:"btn blue-gradient z-depth-1a" %>
+<% end %>
+</div>
+</div>
+
   <% if @searchartists.present? %>
+
+  <h2 class="my-4">検索結果</h2>
+
+  <div class="row row-cols-1 row-cols-md-4">
+
     <% @searchartists.each do |searchartist| %>
-      <div>
-        <h3><%= searchartist.name %></h3>
+    <div class="col mb-4 d-flex justify-content-center">
+      <div class="card card-cascade m-1">
+        <div class="view view-cascade overlay">
+
+
           <% if searchartist.images.any?%>
             <%image = searchartist.images[1]%>
-            <%= image_tag(image["url"])%>
+            <%= image_tag image["url"],:size =>'242x242' %>
           <%else%>
-            <%= image_tag("default.jpg")%>
+            <%= image_tag "default.jpg",:size =>'242x242' %>
           <%end%>
-      </div>
+            </div>
+
+            <div class="card-body card-body-cascade">
+      <h4 class="card-title"><%= searchartist.name %></h4>
 
       <% if @artistboards.pluck("artists").include?(searchartist.name)%>
-       <%= link_to 'アーティスト掲示板へ', artist_board_path(searchartist.name) %>
+       <%= link_to artist_board_path(searchartist.name) do %>
+       <button type="button" class="btn btn-outline-primary waves-effect">掲示板詳細へ</button>
+       <%end%>
        <% elsif searchartist.genres.present? && searchartist.images.present? %>
-       <%= link_to 'アーティスト掲示板作成', new_artist_board_path(artists: searchartist.name, icon: image["url"], category: searchartist.genres) %>
+       <%= link_to new_artist_board_path(artists: searchartist.name, icon: image["url"], category: searchartist.genres) do %>
+       <button type="button" class="btn btn-outline-primary waves-effect">掲示板作成</button>
+       <%end%>
        <% elsif searchartist.images.present? %>
-       <%= link_to 'アーティスト掲示板作成', new_artist_board_path(artists: searchartist.name, icon: image["url"]) %>
+       <%= link_to new_artist_board_path(artists: searchartist.name, icon: image["url"]) do %>
+       <button type="button" class="btn btn-outline-primary waves-effect">掲示板作成</button>
+       <%end%>
        <% elsif searchartist.genres.present? %>
-       <%= link_to 'アーティスト掲示板作成', new_artist_board_path(artists: searchartist.name, category: searchartist.genres) %>
+       <%= link_to new_artist_board_path(artists: searchartist.name, category: searchartist.genres) do %>
+       <button type="button" class="btn btn-outline-primary waves-effect">掲示板作成</button>
+       <%end%>
        <% else %>
-       <%= link_to 'アーティスト掲示板作成', new_artist_board_path(artists: searchartist.name) %>
+       <%= link_to new_artist_board_path(artists: searchartist.name) do %>
+       <button type="button" class="btn btn-outline-primary waves-effect">掲示板作成</button>
+       <%end%>
+
       <%end%>
-      <%end%>
-      <%end%>
+</div>
+    </div>
       </div>
+      <%end%>
+    </div>
+    <%end%>
+</section>
