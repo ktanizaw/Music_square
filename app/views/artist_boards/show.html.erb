@@ -4,7 +4,7 @@
 <!-- 左側始まり -->
     <div class="col-4">
       <div class="m-3">
-      <h6 class="text-center text-muted">イベント一覧</h6>
+      <h6 class="text-center text-muted pt-4">イベント一覧</h6>
         <h2 class="text-center font-weight-bold pb-4"><%= @artistboard.artists %>のイベント</h2>
       <div class="row row-cols-1 row-cols-md-2 mb-4" id="events">
 
@@ -12,9 +12,9 @@
         <div class="">
           <div class="card m-2">
             <% if event.image? %>
-            <%= image_tag "#{event.image}",class:"card-img-top" %>
+            <%= image_tag "#{event.image}",:size =>'208x208', class:"card-img-top" %>
             <% else %>
-            <%= image_tag 'default.jpg',class:"card-img-top" %>
+            <%= image_tag 'default.jpg',:size =>'208x208', class:"card-img-top" %>
             <% end %>
           <div class="card-body">
             <h4 class="card-title"><%= event.title %></h4>

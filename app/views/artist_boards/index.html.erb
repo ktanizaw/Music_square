@@ -52,9 +52,9 @@
   <!-- Card image -->
   <div class="view view-cascade overlay">
     <% if artistboard.icon? %>
-    <%= image_tag "#{artistboard.icon}",class:"card-img-top" %>
+    <%= image_tag "#{artistboard.icon}",:size =>'242x242' ,class:"card-img-top" %>
     <% else %>
-    <%= image_tag 'default.jpg',class:"card-img-top" %>
+    <%= image_tag 'default.jpg',:size =>'242x242' ,class:"card-img-top" %>
     <% end %>
     <%= link_to artist_board_path(artistboard.artists) do %>
     <div class="mask rgba-white-slight"></div>
