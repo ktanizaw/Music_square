@@ -2,10 +2,10 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_action :set_artistboard, only: [:show, :edit, :update, :create, :destroy]
 
-  PER = 6
+  PER_EVENT = 6
 
   def index
-    @events = Event.all.includes(:artist_board).includes([:labellings]).includes([:labels]).page(params[:page]).per(PER)
+    @events = Event.all.includes(:artist_board).includes([:labellings]).includes([:labels]).page(params[:page]).per(PER_EVENT)
     @events = @events.joins(:labels).where(labels: { id: params[:label_id] }) if params[:label_id].present?
     if params[:title].present?
       @events = @events.get_by_title params[:title]

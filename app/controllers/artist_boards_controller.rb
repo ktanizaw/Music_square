@@ -6,6 +6,7 @@ class ArtistBoardsController < ApplicationController
 
   PER_BOARD = 6
   PER_COMMENT = 5
+  PER_EVENT = 10
 
   def index
     @artistboards = ArtistBoard.all.page(params[:page]).per(PER_BOARD)
@@ -32,7 +33,7 @@ class ArtistBoardsController < ApplicationController
     @boardcomment = BoardComment.new
     @boardcomments = @artistboard.board_comments.includes([:user]).page(params[:page]).per(PER_COMMENT)
     @event = Event.new
-    @events = @artistboard.events
+    @events = @artistboard.events.includes([:labellings]).includes([:labels]).page(params[:page]).per(PER_EVENT)
     @fan = current_user.fans.find_by(artist_board_id: @artistboard.id)
   end
 

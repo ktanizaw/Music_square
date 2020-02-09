@@ -68,8 +68,9 @@
     </div>
 </div>
 </div>
-
 <% end %>
+
+<div class="pl-4">
 <% if current_user.admin? %>
   <%= link_to edit_artist_board_event_path(event.artist_board.artists, event) do %>
   <button type="button" class="btn-sm btn-outline-danger waves-effect">編集</button>
@@ -79,7 +80,9 @@
   <% end %>
   <% else %>
 <% end %>
+</div>
 <% end %>
+
 <div class="d-flex justify-content-center mt-4">
 <%= paginate @events %>
 </div>
