@@ -1,4 +1,6 @@
-<%= form_with(model: artistboard, local: true) do |form| %>
+<div class="col-12 py-4">
+
+<%= form_with(model: artistboard, local: true) do |f| %>
   <% if artistboard.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(artistboard.errors.count, "error") %> prohibited this artistboard from being saved:</h2>
@@ -11,18 +13,20 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :artists %>
-    <%= form.text_field :artists, readonly: true %>
+  <div class="form-group">
+    <%= f.label :artists %>
+    <%= f.text_field :artists, readonly: true %>
   </div>
 
-  <div class="field">
-    <%= form.collection_check_boxes(:category_ids, Category.all, :id, :name) %>
+  <div class="custom-control custom-checkbox">
+    <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="my-3">
+    <%= f.submit class:"btn blue-gradient z-depth-1a" %>
   </div>
 
   <%= hidden_field_tag :artist_icon, @artist_icon %>
   <% end %>
+
+  </div>
