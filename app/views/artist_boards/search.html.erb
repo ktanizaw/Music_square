@@ -6,7 +6,7 @@
 <h2>アーティスト名で検索</h2>
 <%= form_with url: search_artist_boards_path, method: :get, local: true do |form| %>
 <%= form.text_field :search, class:"form-control my-4" %>
-<%= form.submit 'アーティスト名検索', name: nil,class:"btn blue-gradient z-depth-1a" %>
+<%= form.submit 'アーティスト名検索', name: nil,class:"btn blue-gradient z-depth-1a submit-btn" %>
 <% end %>
 </div>
 </div>

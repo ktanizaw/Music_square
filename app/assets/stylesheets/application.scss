@@ -66,10 +66,17 @@ box-shadow: 0 5px 11px 0 rgba(85, 182, 255, 0.28), 0 4px 15px 0 rgba(36, 133, 25
   background-size: cover;
 }
 
-.btn {
+.link-btn {
   font-size:1rem;
 }
 
+.submit-btn {
+  font-size:1rem;
+}
+
+#search_area {
+  background-color: rgba(0, 0, 0, 0.03);
+}
 
 #board_comments_area {
   background-color: rgba(0, 0, 0, 0.03);

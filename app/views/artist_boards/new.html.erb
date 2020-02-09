@@ -1,5 +1,16 @@
-<h1>アーティスト掲示板新規作成画面</h1>
+<section class="text-center py-5">
 
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-9 col-lg-7 col-xl-5">
+
+<h1>掲示板新規作成画面</h1>
 <%= render 'form', artistboard: @artistboard %>
 
-<%= link_to 'Back', artist_boards_path %>
+</div>
+</div>
+
+<%= link_to artist_boards_path do %>
+<button type="button" class="btn btn-outline-primary waves-effect link-btn">戻る</button>
+<% end %>
+
+</section>

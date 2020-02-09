@@ -3,17 +3,17 @@
   <div class="row d-flex justify-content-center">
     <div class="col-md-9 col-lg-7 col-xl-5">
 
-<h1>アーティスト掲示板編集画面</h1>
+<h1>掲示板編集画面</h1>
 <%= render 'form', artistboard: @artistboard %>
 
 </div>
 </div>
 
 <%= link_to @artistboard do %>
-<button type="button" class="btn btn-outline-primary waves-effect">詳細画面へ</button>
+<button type="button" class="btn btn-outline-primary waves-effect link-btn">詳細画面へ</button>
 <% end %>
 <%= link_to artist_boards_path do %>
-<button type="button" class="btn btn-outline-primary waves-effect">戻る</button>
+<button type="button" class="btn btn-outline-primary waves-effect link-btn">戻る</button>
 <% end %>
 
 </section>

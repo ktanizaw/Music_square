@@ -2,48 +2,50 @@
 <div class="row">
 
   <!-- 左側始まり -->
-  <div class="col-4 m-4">
-
+  <div class="col-4 py-3" id="search_area">
+    <div class="m-3">
   <h6 class="text-center text-muted pt-5">掲示板検索機能</h6>
-    <h2 class="text-center font-weight-bold pb-4">既存の掲示板を検索できます</h2>
+    <h2 class="text-center font-weight-bold pb-4">既存の掲示板を検索しよう</h2>
     <%= form_with url: artist_boards_path, method: :get, local: true do |f| %>
-      <%= f.label :artists, "アーティスト名で検索してみよう！", class:'' %>
+      <%= f.label :artists, "アーティスト名で検索してみよう！" %>
       <%= f.text_field :artists, class:"form-control mr-sm-2 form-inline mr-auto mb-4", placeholder:"アーティスト名検索" %>
 
-    <%= f.label :category, "ジャンルで検索してみよう！", class:'control-label' %>
+    <%= f.label :category, "ジャンルで絞り込む", class:'control-label' %>
     <%= f.select("category_id", Category.pluck(:name, :id), { include_blank: true }, class:"form-control mr-sm-2 form-inline mr-auto mb-4") %>
     <div class="text-center mb-3">
-    <%= f.submit '掲示板を検索する', name: nil, class:"btn blue-gradient btn-block btn-rounded z-depth-1a" %>
+    <%= f.submit '掲示板を検索する', name: nil, class:"btn blue-gradient btn-block z-depth-1a submit-btn" %>
     </div>
     <% end %>
 
     <div class="pt-4">
 
 
-      <h3 class="text-center font-weight-bold pb-4">目当ての掲示板がない場合は・・・</h3>
+      <h4 class="text-center font-weight-bold pb-4">目当ての掲示板がない場合は・・・</h4>
       <div class="text-center">
       <%= link_to search_artist_boards_path do %>
-      <button type="button" class="btn btn-outline-primary btn-block waves-effect">自分で掲示板を作成しよう！</button>
+      <button type="button" class="btn btn-outline-primary btn-white btn-block waves-effect link-btn">自分で掲示板を作成しよう！</button>
       <% end %>
 
       <h4 class="text-center font-weight-bold pt-5 pb-4">現在開催中のイベントを見つける！</h4>
 
   <%= link_to events_path do %>
-  <button type="button" class="btn btn-outline-primary btn-block waves-effect">イベント一覧へ</button>
+  <button type="button" class="btn btn-outline-primary btn-white btn-block waves-effect link-btn">イベント一覧へ</button>
   <% end %>
 
   <h4 class="text-center font-weight-bold pt-5 pb-4">価値観の合う仲間を見つける！</h4>
   <%= link_to users_path do %>
-  <button type="button" class="btn btn-outline-primary btn-block waves-effect">ユーザー一覧へ</button>
+  <button type="button" class="btn btn-outline-primary btn-white btn-block waves-effect link-btn">ユーザー一覧へ</button>
   <% end %>
   </div>
 
   </div>
   </div>
+  </div>
 
 <!-- 右側始まり -->
-<div class="col-7 m-4">
-<h6 class="text-center text-muted pt-5">アーティスト掲示板一覧</h6>
+<div class="col-8">
+  <div class="m-5">
+<h6 class="text-center text-muted pt-4">アーティスト掲示板一覧</h6>
 <h2 class="text-center font-weight-bold pb-4">こんな掲示板があります</h2>
   <div class="row row-cols-1 row-cols-md-3">
     <% @artistboards.each do |artistboard| %>
@@ -64,7 +66,7 @@
   <div class="card-body card-body-cascade text-center">
 
     <h4 class="card-title"><%= artistboard.artists %></h4>
-    <h6 class="font-weight-bold indigo-text py-2">Web developer</h6>
+    <h6 class="font-weight-bold indigo-text py-2">ジャンル名</h6>
 
 
     <% if current_user.admin? %>
@@ -86,6 +88,7 @@
 
 <div class="d-flex justify-content-center">
   <%= paginate @artistboards %>
+</div>
 </div>
 
 </div>
