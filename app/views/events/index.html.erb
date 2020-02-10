@@ -54,7 +54,10 @@
       <%= image_tag 'default.jpg',:size =>'100x100' ,class:"rounded-circle col-sm-2" %>
       <% end %>
       <div class="col-sm-10">
+      <div class="row pl-3">
       <h5 class="font-weight-bold"><%= event.title %></h5>
+      <p>(<%= event.artist_board.artists %>掲示板のイベント)</p>
+      </div>
       <div class="row pl-3">
       <h6>開催日時：<%= event.date %></h6>
       <h6 class="pl-4">開催場所：<%= event.place %></h6>

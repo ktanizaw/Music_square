@@ -1,19 +1,24 @@
 <% event_comments.each do |eventcomment| %>
 
-    <%= link_to user_path(eventcomment.user.id) do %>
+<div class="col-2 d-flex align-items-center justify-content-center">
+    <%= link_to user_path(eventcomment.user.id),class:"text-center" do %>
       <% if eventcomment.user.profile_image? %>
-        <i><%= image_tag "#{eventcomment.user.profile_image}", :size =>'30x30' %></i>
+        <%= image_tag "#{eventcomment.user.profile_image}", :size =>'30x30', class:"z-depth-1" %>
         <p><%= eventcomment.user.name %></p>
       <% else %>
-        <i><%= image_tag 'default.jpg', :size =>'30x30' %></i>
+        <%= image_tag 'default.jpg', :size =>'30x30', class:"z-depth-1" %>
         <p><%= eventcomment.user.name %></p>
       <% end %>
     <% end %>
+</div>
 
+<div class="col-10">
+  <div class="comment">
         <p><%= eventcomment.content %></p>
-    <br>
     <% if eventcomment.user == current_user %>
-      <p><%= link_to 'コメントを削除する', event_event_comment_path(eventcomment.event_id, eventcomment.id), method: :delete, remote: true %></p>
+      <%= link_to '削除', event_event_comment_path(eventcomment.event_id, eventcomment.id), method: :delete, remote: true %>
     <% end %>
+  </div>
+</div>
 
     <% end %>

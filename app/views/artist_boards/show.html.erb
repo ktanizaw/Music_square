@@ -109,7 +109,7 @@
   <div class= "row py-4" id="board_comments_area">
     <%= render partial: 'board_comments/index', locals: { board_comments: @boardcomments } %>
 </div>
-<div class="row d-flex justify-content-center" id="board_comments_form">
+<div class="row d-flex justify-content-center" id="board_comments_area">
 <% if user_signed_in? %>
   <%= render partial: 'board_comments/form', locals: { board_comment: @boardcomment, artist_board: @artistboard } %>
 <% end %>
