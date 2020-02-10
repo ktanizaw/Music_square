@@ -85,11 +85,11 @@
     <p>アルバム情報: <%= @artistboard.albums %></p>
     <% if @fan.present? %>
       <%= link_to fan_path(id: @fan.id), method: :delete do %>
-      <button type="button" class="btn btn-outline-warning rounded-pill waves-effect fan-btn">ファン解除</button>
+      <button type="button" class="btn btn-outline-warning rounded-pill waves-effect link-btn">ファン解除</button>
       <% end %>
     <% else %>
       <%= link_to fans_path(artist_board_id: @artistboard.id), method: :post do %>
-      <button type="button" class="btn btn-outline-warning rounded-pill waves-effect fan-btn">ファンになる</button>
+      <button type="button" class="btn btn-outline-warning rounded-pill waves-effect link-btn">ファンになる</button>
       <% end %>
     <% end %>
   </div>

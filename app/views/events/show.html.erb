@@ -40,6 +40,7 @@
         </div>
 
       </div>
+      <div class="row d-flex justify-content-center">
       <% if current_user.admin? %>
         <%= link_to edit_artist_board_event_path(@event.artist_board.artists, @event) do %>
         <button type="button" class="btn-sm btn-outline-danger waves-effect">編集</button>
@@ -49,6 +50,7 @@
         <% end %>
         <% else %>
       <% end %>
+      </div>
   </div>
 
     <div class="participant-form border mt-4 p-4 text-center">
