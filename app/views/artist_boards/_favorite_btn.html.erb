@@ -1,14 +1,13 @@
-
 <div id="favorite_btn_<%= board_comment.id %>">
-<% unless board_comment.user == current_user %>
-<% if current_user.already_favorite?(board_comment) %>
-    <%= link_to favorite_path(id: board_comment.id), method: :delete, remote: true do %>
-    <i class="fas fa-heart red-text animated heartBeat"></i>
-    <% end %>
-  <% else %>
-    <%= link_to favorites_path(id: board_comment.id), method: :post, remote: true do %>
-    <i class="far fa-heart red-text animated flash"></i>
+  <% unless board_comment.user == current_user %>
+    <% if current_user.already_favorite?(board_comment) %>
+      <%= link_to favorite_path(id: board_comment.id), method: :delete, remote: true do %>
+      <i class="fas fa-heart red-text animated heartBeat"></i>
+      <% end %>
+    <% else %>
+      <%= link_to favorites_path(id: board_comment.id), method: :post, remote: true do %>
+      <i class="far fa-heart red-text animated flash"></i>
+      <% end %>
     <% end %>
   <% end %>
-<% end %>
 </div>
