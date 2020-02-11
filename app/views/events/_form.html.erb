@@ -1,3 +1,13 @@
+<div class="row d-flex justify-content-center">
+  <div class="col-md-9 col-lg-7 col-xl-5">
+    <div class="card mt-4">
+
+      <div class="card-body mx-4">
+
+        <!--Header-->
+        <div class="text-center">
+          <h3 class="dark-grey-text mb-5"><strong>イベント編集画面</strong></h3>
+        </div>
 <%= form_with(model: [artist_board, event], local: true) do |f| %>
   <% if event.errors.any? %>
     <div id="error_explanation">
@@ -11,32 +21,32 @@
     </div>
   <% end %>
 
-  <div class="md-form">
+  <div class="form-group">
     <%= f.label :title %>
     <%= f.text_field :title, class:"form-control" %>
   </div>
 
-  <div class="md-form">
+  <div class="form-group">
     <%= f.label :place %>
     <%= f.text_field :place, class:"form-control" %>
   </div>
 
-  <div class="md-form">
+  <div class="form-group">
     <%= f.label :date %>
     <%= f.datetime_select :date, class:"form-control" %>
   </div>
 
-  <div class="text-left event-content-label">
-    <%= f.label :content %><br/>
+  <div class="event-content-label">
+    <%= f.label :content %>
     <%= f.text_area :content, class:"form-control" %>
   </div>
 
-  <div class="md-form">
+  <div class="form-group my-3">
     <%= f.label :deadline %>
     <%= f.datetime_select :deadline, class:"form-control" %>
   </div>
 
-  <div class="md-form">
+  <div class="form-group">
     <%= f.label :capacity %>
     <%= f.number_field :capacity, min:0,max:10000, class:"form-control" %>
   </div>
@@ -56,7 +66,15 @@
 </div>
 
 
-  <div class="text-center my-3">
-    <%= f.submit "イベント作成", class:"btn blue-gradient btn-block z-depth-1a submit-btn" %>
+  <div class="text-center my-4">
+    <%= f.submit "イベント編集", class:"btn blue-gradient btn-block z-depth-1a submit-btn" %>
   </div>
 <% end %>
+
+</div>
+
+</div>
+
+
+</div>
+</div>

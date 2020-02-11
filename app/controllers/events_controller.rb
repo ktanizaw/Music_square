@@ -3,6 +3,7 @@ class EventsController < ApplicationController
   before_action :set_artistboard, only: [:show, :edit, :update, :create, :destroy]
 
   PER_EVENT = 6
+  PER_EVENT_COMMENT = 5
 
   def index
     @events = Event.all.includes(:artist_board).includes([:labellings]).includes([:labels]).page(params[:page]).per(PER_EVENT)
@@ -20,7 +21,7 @@ class EventsController < ApplicationController
   def show
     @participant = current_user.participants.find_by(event_id: @event.id)
     @eventcomment = EventComment.new
-    @eventcomments = @event.event_comments
+    @eventcomments = @event.event_comments.includes([:user]).page(params[:page]).per(PER_EVENT_COMMENT)
   end
 
   def edit

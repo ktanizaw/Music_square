@@ -2,7 +2,7 @@
 
 <div class="row d-flex justify-content-center pt-4">
   <div class="col-sm-6 mb-3 mb-md-0">
-    <div class="card">
+    <div class="card py-4">
       <div class="card-body">
         <div class="row pl-3">
         <% if @event.image? %>
@@ -53,7 +53,7 @@
       </div>
   </div>
 
-    <div class="participant-form border mt-4 p-4 text-center">
+    <div class="participant-form border my-4 p-4 text-center">
       <h3 class="font-weight-bold pb-2">このイベントに参加しますか？</h3>
     <% unless @event.owner == current_user %>
     <% if @participant.present? %>
@@ -94,6 +94,11 @@
 <% if user_signed_in? %>
 <%= render partial: 'event_comments/form', locals: { event_comment: @eventcomment, event: @event } %>
 <% end %>
+
+</div>
+
+<div class="d-flex justify-content-center my-4">
+  <%= paginate @eventcomments %>
 </div>
 
 <div class="text-center py-4">
