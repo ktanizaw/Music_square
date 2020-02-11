@@ -33,7 +33,7 @@ class EventsController < ApplicationController
     if @event.save
       redirect_to artist_board_event_path(@artistboard.artists, @event.id)
     else
-      render "new"
+      render 'new'
     end
   end
 

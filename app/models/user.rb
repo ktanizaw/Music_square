@@ -12,19 +12,15 @@ class User < ApplicationRecord
   has_many :event_comments, dependent: :destroy
   has_many :participants, dependent: :destroy
 
-
-  validates :name,
-    presence: true, presence: {message: "に不備があります。"},
-    uniqueness: true, length:{maximum: 24}
+  validates :name, presence: { message: 'に不備があります。' },
+              uniqueness: true, length: { maximum: 24 }
 
   before_save { self.email = email.downcase }
-    VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email,
-      presence: true, presence: {message: "メールアドレスに不備があります。"},
-      uniqueness: true, format: { with: VALID_EMAIL_REGEX }
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, presence: { message: 'メールアドレスに不備があります。' },
+              uniqueness: true, format: { with: VALID_EMAIL_REGEX }
 
-  validates :profile,
-    length:{maximum: 255}
+  validates :profile, length: { maximum: 255 }
 
   mount_uploader :profile_image, ProfileImageUploader
 
@@ -44,22 +40,22 @@ class User < ApplicationRecord
   end
 
   def already_favorite?(favorite_boardcomment)
-    self.favorites.exists?(board_comment_id: favorite_boardcomment.id)
+    favorites.exists?(board_comment_id: favorite_boardcomment.id)
   end
 
   def self.find_for_oauth(auth)
-  user = User.where(uid: auth.uid, provider: auth.provider).first
+    user = User.where(uid: auth.uid, provider: auth.provider).first
 
   unless user
     user = User.create(
       name: auth.info.name,
-      uid:      auth.uid,
+      uid: auth.uid,
       provider: auth.provider,
-      email:    auth.info.email,
+      email: auth.info.email,
       profile_image: auth.info.image,
       password: Devise.friendly_token[0, 20]
     )
   end
-  user
-end
+    user
+  end
 end
