@@ -6,7 +6,7 @@ class ArtistBoardsController < ApplicationController
 
   PER_BOARD = 6
   PER_COMMENT = 5
-  PER_EVENT = 10
+  PER_EVENT = 5
 
   def index
     @artistboards = ArtistBoard.all.includes([:categorizes]).includes([:categories]).page(params[:page]).per(PER_BOARD)

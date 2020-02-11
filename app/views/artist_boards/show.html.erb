@@ -1,130 +1,114 @@
 <div class="container-fluid">
-  <div class="row">
+  <div class="row justify-content-center my-4">
+    <div class="col-4">
+      <div class="card card-cascade m-1">
+        <div class="view view-cascade overlay">
+          <% if @artistboard.icon? %>
+            <%= image_tag "#{@artistboard.icon}",class:"card-img-top" %>
+          <% else %>
+            <%= image_tag 'default.jpg',class:"card-img-top" %>
+          <% end %>
+          <div class="mask rgba-white-slight"></div>
+        </div>
 
+        <div class="card-body card-body-cascade text-center">
+          <h2 class="card-title font-weight-bold"><%= @artistboard.artists %></h2>
+          <div class="row d-flex justify-content-center">
+            <% @artistboard.categories.each do |category| %>
+            <h5 class="font-weight-bold indigo-text ml-1">
+              <%= category.name %>
+            </h5>
+            <% end %>
+          </div>
+          <h5 class="font-weight-bold text-warning py-2">ファン登録者数: <%= @artistboard.fans.count %></h5>
+          <% if @fan.present? %>
+            <%= link_to fan_path(id: @fan.id), method: :delete do %>
+            <button type="button" class="btn btn-outline-danger rounded-pill waves-effect link-btn">ファン解除</button>
+            <% end %>
+          <% else %>
+            <%= link_to fans_path(artist_board_id: @artistboard.id), method: :post do %>
+            <button type="button" class="btn btn-outline-warning rounded-pill waves-effect link-btn">ファンになる</button>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4">
 <!-- 左側始まり -->
     <div class="col-5">
-      <div class="pt-4">
-      <h6 class="text-center text-muted pt-4">イベント一覧</h6>
-        <h2 class="text-center font-weight-bold pb-4"><%= @artistboard.artists %>掲示板<br>のイベント</h2>
 
-        <div class="list-group-flush">
-          <% @events.each do |event| %>
+      <h6 class="text-center text-muted pt-4">イベント一覧</h6>
+      <h2 class="text-center font-weight-bold pb-4"><%= @artistboard.artists %>掲示板のイベント</h2>
+
+      <div class="list-group-flush">
+        <% @events.each do |event| %>
           <%= link_to artist_board_event_path(event.artist_board.artists, event) do %>
           <div class="list-group-item list-group-item-action border-bottom">
             <div class="row mb-0">
               <% if event.image? %>
-              <%= image_tag "#{event.image}",:size =>'93x93' ,class:"rounded-circle col-sm-2" %>
+                <%= image_tag "#{event.image}",:size =>'93x93' ,class:"rounded-circle col-sm-2" %>
               <% else %>
-              <%= image_tag 'default.jpg',:size =>'93x93' ,class:"rounded-circle col-sm-2" %>
+                <%= image_tag 'default.jpg',:size =>'93x93' ,class:"rounded-circle col-sm-2" %>
               <% end %>
               <div class="col-sm-10">
-              <h5 class="font-weight-bold"><%= event.title %></h5>
-              <div class="row pl-3">
-              <h6>開催日時：<%= event.date.to_s(:published_on) %></h6>
-              <h6 class="pl-4">開催場所：<%= event.place %></h6>
-              </div>
-              <div class="row pl-3">
-              <h6>締切日時：<%= event.deadline.to_s(:published_on) %></h6>
-              <% event.labels.each do |label| %>
-              <span class="badge badge-pill badge-warning d-flex align-items-center ml-4"><%= label.name %></span>
-              <% end %>
+                <h5 class="font-weight-bold"><%= event.title %></h5>
+                <div class="row pl-3">
+                  <h6>開催日時：<%= event.date.to_s(:published_on) %></h6>
+                  <h6 class="pl-4">開催場所：<%= event.place %></h6>
+                </div>
+                <div class="row pl-3">
+                  <h6>締切日時：<%= event.deadline.to_s(:published_on) %></h6>
+                  <% event.labels.each do |label| %>
+                  <span class="badge badge-pill badge-warning d-flex align-items-center ml-4"><%= label.name %></span>
+                  <% end %>
+                </div>
               </div>
             </div>
-        </div>
-        </div>
-        <% end %>
-
-        <div>
-        <% if current_user.admin? %>
-          <%= link_to edit_artist_board_event_path(event.artist_board.artists, event) do %>
-          <button type="button" class="btn-sm btn-outline-danger waves-effect">編集</button>
+          </div>
           <% end %>
-          <%= link_to artist_board_event_path(event.artist_board.artists, event), method: :delete, data: { confirm: 'Are you sure?' } do %>
-          <button type="button" class="btn-sm btn-outline-danger waves-effect">削除</button>
-          <% end %>
-          <% else %>
+          <div>
+            <% if current_user.admin? %>
+              <%= link_to edit_artist_board_event_path(event.artist_board.artists, event) do %>
+                <button type="button" class="btn-sm btn-outline-danger waves-effect">編集</button>
+              <% end %>
+              <%= link_to artist_board_event_path(event.artist_board.artists, event), method: :delete, data: { confirm: '本当に削除しますか？' } do %>
+                <button type="button" class="btn-sm btn-outline-danger waves-effect">削除</button>
+              <% end %>
+            <% else %>
+            <% end %>
+          </div>
         <% end %>
-        </div>
+
+        <%= link_to new_artist_board_event_path(@artistboard.artists), class:"text-center my-4" do %>
+          <button type="button" class="btn btn-outline-primary btn-block waves-effect link-btn">自分でイベントを作成しよう！</button>
         <% end %>
 
-        <div class="d-flex justify-content-center mt-4">
-        <%= paginate @events %>
+        <div class="d-flex justify-content-center">
+          <%= paginate @events %>
         </div>
-        </div>
 
-
-
-      <%= link_to new_artist_board_event_path(@artistboard.artists), class:"text-center mb-4" do %>
-      <button type="button" class="btn btn-outline-primary btn-block waves-effect link-btn">自分でイベントを作成しよう！</button>
-      <% end %>
       </div>
     </div>
 
 <!-- 右側始まり -->
-      <div class="col-7">
-      <div class="pt-4">
-        <div class="container-fluid">
+    <div class="col-7">
 
-  <div class="row justify-content-center">
-    <div class="col-4">
-<div class="card card-cascade m-1">
-  <!-- Card image -->
-  <div class="view view-cascade overlay">
-    <% if @artistboard.icon? %>
-    <%= image_tag "#{@artistboard.icon}",class:"card-img-top" %>
-    <% else %>
-    <%= image_tag 'default.jpg',class:"card-img-top" %>
-    <% end %>
-    <div class="mask rgba-white-slight"></div>
-  </div>
-  <!-- Card content -->
-  <div class="card-body card-body-cascade text-center">
+      <h6 class="text-center text-muted mt-4">コメント一覧</h6>
+      <h2 class="text-center font-weight-bold mb-4"><%= @artistboard.artists %>について語ろう！</h2>
 
-    <h4 class="card-title"><strong><%= @artistboard.artists %></strong></h4>
-    <% @artistboard.categories.each do |category| %>
-    <h6 class="font-weight-bold indigo-text ml-1">
-      <%= category.name %>
-    </h6>
-    <% end %>
-    <h6 class="font-weight-bold text-warning py-2">ファン登録者数: <%= @artistboard.fans.count %></h6>
-    <% if @fan.present? %>
-      <%= link_to fan_path(id: @fan.id), method: :delete do %>
-      <button type="button" class="btn btn-outline-danger rounded-pill waves-effect link-btn">ファン解除</button>
-      <% end %>
-    <% else %>
-      <%= link_to fans_path(artist_board_id: @artistboard.id), method: :post do %>
-      <button type="button" class="btn btn-outline-warning rounded-pill waves-effect link-btn">ファンになる</button>
-      <% end %>
-    <% end %>
-  </div>
-</div>
+      <div class= "row py-4" id="board_comments_area">
+        <%= render partial: 'board_comments/index', locals: { board_comments: @boardcomments } %>
+      </div>
+      <div class="row" id="board_comments_form">
+        <% if user_signed_in? %>
+          <%= render partial: 'board_comments/form', locals: { board_comment: @boardcomment, artist_board: @artistboard } %>
+        <% end %>
+      </div>
 
-</div>
-</div>
-
-<div class="row">
-  <div class="col-12">
-  <h6 class="text-center text-muted pt-5">コメント一覧</h6>
-    <h2 class="text-center font-weight-bold pb-4"><%= @artistboard.artists %>について語ろう！</h2>
+      <div class="row mt-4 d-flex justify-content-center">
+        <%= paginate @boardcomments %>
+      </div>
     </div>
-</div>
-
-
-  <div class= "row py-4" id="board_comments_area">
-    <%= render partial: 'board_comments/index', locals: { board_comments: @boardcomments } %>
-</div>
-<div class="row d-flex justify-content-center" id="board_comments_area">
-<% if user_signed_in? %>
-  <%= render partial: 'board_comments/form', locals: { board_comment: @boardcomment, artist_board: @artistboard } %>
-<% end %>
-</div>
-
-<div class="col-12 pt-3 d-flex justify-content-center">
-<%= paginate @boardcomments %>
-</div>
-
-</div>
-</div>
-</div>
   </div>
-</div>

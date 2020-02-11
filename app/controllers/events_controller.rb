@@ -31,7 +31,7 @@ class EventsController < ApplicationController
     @event = @artistboard.events.build(event_params)
     @event.owner_id = current_user.id
     if @event.save
-      redirect_to artist_board_event_path(@artistboard.artists, @event.id)
+      redirect_to artist_board_path(@artistboard.artists)
     else
       render 'new'
     end
