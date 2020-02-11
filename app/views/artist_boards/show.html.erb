@@ -81,11 +81,15 @@
   <div class="card-body card-body-cascade text-center">
 
     <h4 class="card-title"><strong><%= @artistboard.artists %></strong></h4>
-    <h6 class="font-weight-bold indigo-text py-2">プロフィール: <%= @artistboard.profiles %></h6>
-    <p>アルバム情報: <%= @artistboard.albums %></p>
+    <% @artistboard.categories.each do |category| %>
+    <h6 class="font-weight-bold indigo-text ml-1">
+      <%= category.name %>
+    </h6>
+    <% end %>
+    <h6 class="font-weight-bold text-warning py-2">ファン登録者数: <%= @artistboard.fans.count %></h6>
     <% if @fan.present? %>
       <%= link_to fan_path(id: @fan.id), method: :delete do %>
-      <button type="button" class="btn btn-outline-warning rounded-pill waves-effect link-btn">ファン解除</button>
+      <button type="button" class="btn btn-outline-danger rounded-pill waves-effect link-btn">ファン解除</button>
       <% end %>
     <% else %>
       <%= link_to fans_path(artist_board_id: @artistboard.id), method: :post do %>
@@ -100,7 +104,7 @@
 
 <div class="row">
   <div class="col-12">
-  <h6 class="text-center text-muted pt-5">投稿一覧</h6>
+  <h6 class="text-center text-muted pt-5">コメント一覧</h6>
     <h2 class="text-center font-weight-bold pb-4"><%= @artistboard.artists %>について語ろう！</h2>
     </div>
 </div>

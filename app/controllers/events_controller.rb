@@ -30,8 +30,11 @@ class EventsController < ApplicationController
   def create
     @event = @artistboard.events.build(event_params)
     @event.owner_id = current_user.id
-    @event.save
-    redirect_to artist_board_event_path(@artistboard.artists, @event.id), notice: 'イベントを新規作成しました。'
+    if @event.save
+      redirect_to artist_board_event_path(@artistboard.artists, @event.id), notice: 'イベントを新規作成しました。'
+    else
+      render "new"
+    end
   end
 
   def update

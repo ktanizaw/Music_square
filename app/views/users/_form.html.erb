@@ -38,7 +38,6 @@
   </div>
   <div class="custom-file text-center">
     <%= f.label :profile_image, class:"custom-file-label text-left", for:"inputGroupFile01" %>
-    <%= image_tag(@user.profile_image.url) if @user.profile_image && @user.profile_image.url %>
     <%= f.file_field :profile_image, class:"custom-file-input", id:"inputGroupFile01"  %>
     <%= f.hidden_field :profile_image_cache %>
   </div>
