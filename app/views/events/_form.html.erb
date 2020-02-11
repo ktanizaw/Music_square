@@ -29,7 +29,7 @@
 
   <div class="form-group">
     <%= f.label :date %>
-    <%= f.datetime_select :date, class:"form-control" %>
+    <%= f.text_field :date, class: "form-control datetimepicker-input", id: "date", data: {toggle: "datetimepicker", target: "#date"} %>
   </div>
 
   <div class="event-content-label">
@@ -39,7 +39,7 @@
 
   <div class="form-group my-3">
     <%= f.label :deadline %>
-    <%= f.datetime_select :deadline, class:"form-control" %>
+    <%= f.text_field :deadline, class: "form-control datetimepicker-input", id: "deadline", data: {toggle: "datetimepicker", target: "#deadline"} %>
   </div>
 
   <div class="form-group">
