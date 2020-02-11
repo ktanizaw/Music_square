@@ -65,7 +65,13 @@
   <div class="card-body card-body-cascade text-center">
 
     <h4 class="card-title"><%= artistboard.artists %></h4>
-    <h6 class="font-weight-bold indigo-text py-2">ジャンル名</h6>
+    <div class="row d-flex justify-content-center">
+    <% artistboard.categories.each do |category| %>
+    <h6 class="font-weight-bold indigo-text ml-1">
+      <%= category.name %>
+    </h6>
+    <% end %>
+    </div>
 
     <% if current_user.admin? %>
       <%= link_to edit_artist_board_path(artistboard.artists) do %>

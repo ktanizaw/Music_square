@@ -9,7 +9,7 @@ class ArtistBoardsController < ApplicationController
   PER_EVENT = 10
 
   def index
-    @artistboards = ArtistBoard.all.page(params[:page]).per(PER_BOARD)
+    @artistboards = ArtistBoard.all.includes([:categorizes]).includes([:categories]).page(params[:page]).per(PER_BOARD)
     @artistboards = @artistboards.joins(:categories).where(categories: { id: params[:category_id] }) if params[:category_id].present?
     if params[:artists].present?
       @artistboards = @artistboards.get_by_artists params[:artists]
