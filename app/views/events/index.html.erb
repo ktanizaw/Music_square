@@ -55,18 +55,18 @@
       <% end %>
       <div class="col-sm-10">
       <div class="row pl-3">
-      <h5 class="font-weight-bold"><%= event.title %></h5>
-      <p>(<%= event.artist_board.artists %>掲示板のイベント)</p>
+        <h5 class="font-weight-bold"><%= event.title %></h5>
+        <p>(<%= event.artist_board.artists %>掲示板のイベント)</p>
       </div>
       <div class="row pl-3">
-      <h6>開催日時：<%= event.date %></h6>
-      <h6 class="pl-4">開催場所：<%= event.place %></h6>
+        <h6>開催日時：<%= event.date %></h6>
+        <h6 class="pl-4">開催場所：<%= event.place %></h6>
       </div>
       <div class="row pl-3">
-      <h6>締切日時：<%= event.deadline %></h6>
-      <% event.labels.each do |label| %>
-      <span class="badge badge-pill badge-warning d-flex align-items-center ml-4"><%= label.name %></span>
-      <% end %>
+        <h6>締切日時：<%= event.deadline %></h6>
+        <% event.labels.each do |label| %>
+        <span class="badge badge-pill badge-warning d-flex align-items-center ml-4"><%= label.name %></span>
+        <% end %>
       </div>
     </div>
 </div>

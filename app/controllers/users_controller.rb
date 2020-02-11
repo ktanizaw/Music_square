@@ -1,13 +1,17 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  PER = 10
-  
+  PER_USER = 10
+  PER_BOARD = 8
+
+
   def index
-    @users = User.all.page(params[:page]).per(PER)
+    @users = User.all.page(params[:page]).per(PER_USER)
   end
 
   def show
+    @fan_artists = @user.fan_artistboards.page(params[:page]).per(PER_BOARD)
+    # binding.irb
   end
 
   def new

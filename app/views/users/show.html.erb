@@ -1,44 +1,118 @@
-<div class="">
-  <i>
-  <% if @user.profile_image? %>
-  <%= image_tag "#{@user.profile_image}", :size =>'250x250' %>
-  <% else %>
-  <%= image_tag 'default.jpg', :size =>'250x250' %>
-  <% end %>
-  </i>
-  <div class="">
+<div class="container-fluid">
 
-  <h1><%= @user.name %></h1>
-  <p>プロフィール: <%= @user.profile %></p>
-  <p>フォロー一覧</p>
-  <i>
-    <% @user.following.each do |user| %>
-    <% if user.profile_image? %>
-    <%= image_tag "#{user.profile_image}", :size =>'50x50' %>
-    <% else %>
-    <%= image_tag 'default.jpg', :size =>'50x50' %>
+<div class="row d-flex justify-content-center pt-4">
+  <div class="col-sm-6 mb-3 mb-md-0">
+    <div class="card">
+      <div class="card-body">
+        <div class="row pl-3">
+          <div class="col-5 text-center">
+
+          <% if @user.profile_image? %>
+          <%= image_tag "#{@user.profile_image}", :size =>'200x200',class:"rounded-circle" %>
+          <% else %>
+          <%= image_tag 'default.jpg', :size =>'200x200',class:"rounded-circle" %>
+          <% end %>
+          <h3 class="font-weight-bold"><%= @user.name %></h3>
+
+            <%= render 'follow_form', user: @user %>
+            <% if current_user == @user %>
+            <%= link_to edit_user_path(@user) do %>
+            <button type="button" class="btn-sm btn-outline-danger waves-effect">編集</button>
+            <% end %>
+            <% end %>
+          </div>
+
+          <div class="col-7 border-bottom">
+            <h6 class="text-center text-muted">プロフィール</h6>
+          <p><%= @user.profile %></p>
+        </div>
+
+
+        </div>
+        </div>
+      </div>
+      </div>
+      </div>
+
+<div class="row my-4">
+  <div class="col-sm-6 mb-3 mb-md-0">
+    <div class="m-2">
+      <h6 class="text-center text-muted pt-4">フォロー一覧</h6>
+    <h2 class="text-center font-weight-bold py-4"><%= @user.name %>がフォローしてる人</h2>
+    <ul class="list-group list-group-horizontal row">
+      <% @user.following.each do |user| %>
+      <li class="list-group-item col-2 text-center mb-1">
+      <% if user.profile_image? %>
+      <%= image_tag "#{user.profile_image}", :size =>'50x50',class:"rounded-circle" %>
+      <% else %>
+      <%= image_tag 'default.jpg', :size =>'50x50',class:"rounded-circle" %>
+      <% end %>
+      <p><%= user.name %></p>
+    </li>
     <% end %>
-  </i>
-  <p><%= user.name %></p>
-  <% end %>
+    </ul>
 
-
-<p>ファンアーティスト</p>
-<% @user.fan_artistboards.each do |user| %>
-<p><% user.artists %></p>
-<% if user.icon? %>
-<%= image_tag "#{user.icon}", :size =>'50x50' %>
-<% else %>
-<%= image_tag 'default.jpg', :size =>'50x50' %>
-<% end %>
-<% end %>
+    </div>
   </div>
+  <div class="col-sm-6 mb-3 mb-md-0">
+    <div class="m-2">
+      <h6 class="text-center text-muted pt-4">フォロワー一覧</h6>
+    <h2 class="text-center font-weight-bold py-4"><%= @user.name %>のフォロワーたち</h2>
+    <ul class="list-group list-group-horizontal row">
+      <% @user.followers.each do |user| %>
+      <li class="list-group-item col-2 text-center mb-1">
+      <% if user.profile_image? %>
+      <%= image_tag "#{user.profile_image}", :size =>'50x50',class:"rounded-circle" %>
+      <% else %>
+      <%= image_tag 'default.jpg', :size =>'50x50',class:"rounded-circle" %>
+      <% end %>
+      <p><%= user.name %></p>
+    </li>
+    <% end %>
+    </ul>
 
-
+  </div>
+</div>
 
 </div>
 
+<div class="row d-flex justify-content-center my-4">
+  <div class="col-sm-9 mb-3 mb-md-0">
+    <h6 class="text-center text-muted pt-4">ファンアーティスト一覧</h6>
+  <h2 class="text-center font-weight-bold py-4"><%= @user.name %>がファン登録している掲示板</h2>
+  <div class="row row-cols-1 row-cols-md-4">
+    <% @fan_artists.each do |fan_artist| %>
+    <div class="col mb-4">
+      <div class="card card-cascade m-1">
+        <div class="view view-cascade overlay">
+          <% if fan_artist.icon? %>
+          <%= image_tag "#{fan_artist.icon}",:size =>'242x242' ,class:"card-img-top" %>
+          <% else %>
+          <%= image_tag 'default.jpg',:size =>'242x242' ,class:"card-img-top" %>
+          <% end %>
+          <%= link_to artist_board_path(fan_artist.artists) do %>
+          <div class="mask rgba-white-slight"></div>
+          <% end %>
+          </div>
+          <div class="card-body card-body-cascade text-center">
 
+            <h4 class="card-title"><%= fan_artist.artists %></h4>
+            <h6 class="font-weight-bold indigo-text py-2">ジャンル名</h6>
+          </div>
+        </div>
+        </div>
+          <% end %>
+          </div>
+          <div class="d-flex justify-content-center">
+            <%= paginate @fan_artists %>
+          </div>
+</div>
+</div>
 
-<%= link_to '編集', edit_user_path(@user) %> |
-<%= link_to '戻る', users_path %>
+<div class="row d-flex justify-content-center mb-4">
+<%= link_to users_path do %>
+<button type="button" class="btn btn-outline-primary waves-effect link-btn">戻る</button>
+<% end %>
+</div>
+
+</div>

@@ -23,7 +23,7 @@
       <h4 class="text-center font-weight-bold pb-4">目当ての掲示板がない場合は・・・</h4>
       <div class="text-center">
       <%= link_to search_artist_boards_path do %>
-      <button type="button" class="btn btn-outline-primary btn-white btn-block waves-effect link-btn">自分で掲示板を作成しよう！</button>
+      <button type="button" class="btn btn-outline-primary btn-white btn-block waves-effect link-btn">自分で検索して掲示板を作成しよう！</button>
       <% end %>
 
       <h4 class="text-center font-weight-bold pt-5 pb-4">現在開催中のイベントを見つける！</h4>
@@ -62,12 +62,10 @@
     <div class="mask rgba-white-slight"></div>
     <% end %>
   </div>
-  <!-- Card content -->
   <div class="card-body card-body-cascade text-center">
 
     <h4 class="card-title"><%= artistboard.artists %></h4>
     <h6 class="font-weight-bold indigo-text py-2">ジャンル名</h6>
-
 
     <% if current_user.admin? %>
       <%= link_to edit_artist_board_path(artistboard.artists) do %>
