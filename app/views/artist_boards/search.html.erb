@@ -3,7 +3,9 @@
     <div class="col-md-9 col-lg-7 col-xl-5">
 
 
-<h2>アーティスト名で検索</h2>
+      <h6 class="text-muted pt-5">アーティスト検索</h6>
+        <h2 class="font-weight-bold pb-4">アーティスト掲示板を検索しよう</h2>
+
 <%= form_with url: search_artist_boards_path, method: :get, local: true do |form| %>
 <%= form.text_field :search, class:"form-control my-4" %>
 <%= form.submit 'アーティスト名検索', name: nil,class:"btn blue-gradient z-depth-1a submit-btn" %>
@@ -13,7 +15,7 @@
 
   <% if @searchartists.present? %>
 
-  <h2 class="my-4">検索結果</h2>
+  <h2 class="font-weight-bold my-4">検索結果</h2>
 
   <div class="row row-cols-1 row-cols-md-4">
 
@@ -36,23 +38,23 @@
 
       <% if @artistboards.pluck("artists").include?(searchartist.name)%>
        <%= link_to artist_board_path(searchartist.name) do %>
-       <button type="button" class="btn btn-outline-primary waves-effect">掲示板詳細へ</button>
+       <button type="button" class="btn btn-outline-primary waves-effect link-btn">掲示板へ飛ぶ！</button>
        <%end%>
        <% elsif searchartist.genres.present? && searchartist.images.present? %>
        <%= link_to new_artist_board_path(artists: searchartist.name, icon: image["url"], category: searchartist.genres) do %>
-       <button type="button" class="btn btn-outline-primary waves-effect">掲示板作成</button>
+       <button type="button" class="btn btn-outline-primary waves-effect link-btn">掲示板を作成！</button>
        <%end%>
        <% elsif searchartist.images.present? %>
        <%= link_to new_artist_board_path(artists: searchartist.name, icon: image["url"]) do %>
-       <button type="button" class="btn btn-outline-primary waves-effect">掲示板作成</button>
+       <button type="button" class="btn btn-outline-primary waves-effect link-btn">掲示板を作成！</button>
        <%end%>
        <% elsif searchartist.genres.present? %>
        <%= link_to new_artist_board_path(artists: searchartist.name, category: searchartist.genres) do %>
-       <button type="button" class="btn btn-outline-primary waves-effect">掲示板作成</button>
+       <button type="button" class="btn btn-outline-primary waves-effect link-btn">掲示板を作成！</button>
        <%end%>
        <% else %>
        <%= link_to new_artist_board_path(artists: searchartist.name) do %>
-       <button type="button" class="btn btn-outline-primary waves-effect">掲示板作成</button>
+       <button type="button" class="btn btn-outline-primary waves-effect link-btn">掲示板を作成！</button>
        <%end%>
 
       <%end%>
