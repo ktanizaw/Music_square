@@ -4,10 +4,6 @@
 
       <div class="card-body mx-4">
 
-        <!--Header-->
-        <div class="text-center">
-          <h3 class="dark-grey-text mb-5"><strong>イベント編集画面</strong></h3>
-        </div>
 <%= form_with(model: [artist_board, event], local: true) do |f| %>
   <% if event.errors.any? %>
     <div id="error_explanation">
@@ -67,7 +63,7 @@
 
 
   <div class="text-center my-4">
-    <%= f.submit "イベント編集", class:"btn blue-gradient btn-block z-depth-1a submit-btn" %>
+    <%= f.submit class:"btn blue-gradient btn-block z-depth-1a submit-btn" %>
   </div>
 <% end %>
 
