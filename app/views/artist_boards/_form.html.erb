@@ -1,4 +1,7 @@
-<div class="col-12 py-4">
+<div class="row d-flex justify-content-center">
+  <div class="col-md-9 col-lg-7 col-xl-5">
+    <div class="card mt-4">
+      <div class="card-body mx-4">
 
 <%= form_with(model: artistboard, local: true) do |f| %>
   <% if artistboard.errors.any? %>
@@ -15,18 +18,21 @@
 
   <div class="form-group">
     <%= f.label :artists %>
-    <%= f.text_field :artists, readonly: true %>
+    <%= f.text_field :artists, readonly: true, class:"form-control" %>
   </div>
 
   <div class="custom-control custom-checkbox">
     <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) %>
   </div>
 
-  <div class="my-3">
-    <%= f.submit class:"btn blue-gradient z-depth-1a submit-btn" %>
+  <div class="text-center my-4">
+    <%= f.submit class:"btn blue-gradient btn-block z-depth-1a submit-btn" %>
   </div>
 
   <%= hidden_field_tag :artist_icon, @artist_icon %>
   <% end %>
 
+  </div>
+  </div>
+  </div>
   </div>

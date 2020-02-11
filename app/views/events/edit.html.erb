@@ -3,7 +3,10 @@
 <%= render partial: 'form', locals: { event: @event, artist_board: @artistboard } %>
 
 <div class="row d-flex justify-content-center my-4">
+<%= link_to events_path do %>
+<button type="button" class="btn btn-outline-primary waves-effect link-btn">イベント一覧へ</button>
+<% end %>
 <%= link_to artist_board_event_path(@artistboard.artists, @event.id) do %>
-<button type="button" class="btn btn-outline-primary waves-effect link-btn">戻る</button>
+<button type="button" class="btn btn-outline-primary waves-effect link-btn">イベント詳細へ</button>
 <% end %>
 </div>
