@@ -4,17 +4,6 @@
       <div class="card-body mx-4">
 
 <%= form_with(model: artistboard, local: true) do |f| %>
-  <% if artistboard.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(artistboard.errors.count, "error") %> prohibited this artistboard from being saved:</h2>
-
-      <ul>
-      <% artistboard.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
   <div class="form-group">
     <%= f.label :artists %>

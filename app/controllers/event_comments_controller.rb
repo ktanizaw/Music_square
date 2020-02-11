@@ -8,7 +8,7 @@ class EventCommentsController < ApplicationController
         if @eventcomment.save
           format.js { render :index }
         else
-          format.html { redirect_to event_path(@event), notice: '投稿できませんでした...' }
+          format.html { redirect_to artist_board_event_path(@event.artist_board.artists, @event), alert: '空欄では投稿できません。' }
         end
       end
     end

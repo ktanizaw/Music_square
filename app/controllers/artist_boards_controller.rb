@@ -1,8 +1,8 @@
 class ArtistBoardsController < ApplicationController
+  before_action :set_artistboard, only: [:show, :edit, :update, :destroy]
+
   require 'rspotify'
   RSpotify.authenticate(ENV['SPOTIFY_CLIENT_ID'], ENV['SPOTIFY_SECRET_ID'])
-
-  before_action :set_artistboard, only: [:show, :edit, :update, :destroy]
 
   PER_BOARD = 6
   PER_COMMENT = 5
@@ -43,7 +43,6 @@ class ArtistBoardsController < ApplicationController
   def create
     @artistboard = ArtistBoard.new(artistboard_params)
     @artistboard.remote_icon_url = params[:artist_icon]
-    # @artistboard.categories << @artist_genres
     if @artistboard.save
       redirect_to @artistboard, notice: 'アーティスト掲示板を新規作成しました。'
     else

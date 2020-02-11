@@ -31,7 +31,7 @@ class EventsController < ApplicationController
     @event = @artistboard.events.build(event_params)
     @event.owner_id = current_user.id
     if @event.save
-      redirect_to artist_board_event_path(@artistboard.artists, @event.id), notice: 'イベントを新規作成しました。'
+      redirect_to artist_board_event_path(@artistboard.artists, @event.id)
     else
       render "new"
     end
@@ -39,7 +39,7 @@ class EventsController < ApplicationController
 
   def update
     if @event.update(event_params)
-      redirect_to artist_board_event_path(@artistboard.artists, @event.id), notice: 'イベントを編集しました。'
+      redirect_to artist_board_event_path(@artistboard.artists, @event.id), notice: 'イベント情報を編集しました。'
     else
       render :edit
     end

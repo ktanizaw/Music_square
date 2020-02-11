@@ -72,10 +72,10 @@ ja:
         sign_up: "アカウント登録"
     sessions:
       new:
-        sign_in: "ログイン"
+        sign_in: ""
       user:
-        signed_in: "ログイン"
-        signed_out: "ログアウト"
+        signed_in: ""
+        signed_out: ""
     shared:
       links:
         back: "戻る"
@@ -89,6 +89,7 @@ ja:
       new:
         resend_unlock_instructions: "アカウントの凍結解除方法を再送する"
     failure:
+      already_authenticated: "既にログイン済みです。"
       user:
         not_found_in_database: "ログインに失敗しました。"
         invalid: "ログインに失敗しました。"

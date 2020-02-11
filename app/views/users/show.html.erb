@@ -15,9 +15,12 @@
           <h3 class="font-weight-bold"><%= @user.name %></h3>
 
             <%= render 'follow_form', user: @user %>
-            <% if current_user == @user %>
+            <% if current_user.admin? || current_user.id == @user.id %>
             <%= link_to edit_user_path(@user) do %>
             <button type="button" class="btn-sm btn-outline-danger waves-effect">編集</button>
+            <% end %>
+            <%= link_to users_path, method: :delete, data: { confirm: 'Are you sure?' } do %>
+            <button type="button" class="btn-sm btn-outline-danger waves-effect">削除</button>
             <% end %>
             <% end %>
           </div>

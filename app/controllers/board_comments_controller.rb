@@ -8,7 +8,7 @@ class BoardCommentsController < ApplicationController
         if @boardcomment.save
           format.js { render :index }
         else
-          format.html { redirect_to artist_board_path(@artistboard), notice: '投稿できませんでした...' }
+          format.html { redirect_to artist_board_path(@artistboard), alert: '空欄では投稿できません。' }
         end
       end
     end
