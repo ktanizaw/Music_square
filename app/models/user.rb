@@ -14,13 +14,13 @@ class User < ApplicationRecord
 
 
   validates :name,
-    presence: true, presence: {message: "入力してください！"},
+    presence: true, presence: {message: "に不備があります。"},
     uniqueness: true, length:{maximum: 24}
 
   before_save { self.email = email.downcase }
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email,
-      presence: true, presence: {message: "入力してください！"},
+      presence: true, presence: {message: "メールアドレスに不備があります。"},
       uniqueness: true, format: { with: VALID_EMAIL_REGEX }
 
   validates :profile,
