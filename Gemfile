@@ -30,6 +30,7 @@ group :development, :test do
   gem 'omniauth'
   gem 'omniauth-facebook'
   gem "omniauth-rails_csrf_protection"
+  gem 'rack-mini-profiler', require: false
 end
 
 group :development do
