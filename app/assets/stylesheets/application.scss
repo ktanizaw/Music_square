@@ -18,6 +18,17 @@
 
 body {
   font-family: 'Noto Sans JP', sans-serif;
+  }
+
+body,
+#wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+ 
+footer {
+  margin-top: auto;
 }
 
 .navbar-brand {
@@ -32,6 +43,12 @@ body {
 .inner {
   overflow: hidden;
   width:100%;
+}
+
+.page-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
 .carousel-item h1 {
