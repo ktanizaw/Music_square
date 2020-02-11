@@ -1,14 +1,13 @@
-
 <h6 class="text-center text-muted pt-5">掲示板編集画面</h6>
 <h2 class="text-center font-weight-bold pb-4">アーティスト掲示板を編集しよう</h2>
 
 <%= render 'form', artistboard: @artistboard %>
 
 <div class="row d-flex justify-content-center my-4">
-<%= link_to artist_boards_path do %>
-<button type="button" class="btn btn-outline-primary waves-effect link-btn">掲示板一覧へ</button>
-<% end %>
-<%= link_to @artistboard do %>
-<button type="button" class="btn btn-outline-primary waves-effect link-btn">掲示板詳細へ</button>
-<% end %>
+  <%= link_to artist_boards_path do %>
+    <button type="button" class="btn btn-outline-primary waves-effect link-btn">掲示板一覧へ</button>
+  <% end %>
+  <%= link_to @artistboard do %>
+    <button type="button" class="btn btn-outline-primary waves-effect link-btn">掲示板詳細へ</button>
+  <% end %>
 </div>

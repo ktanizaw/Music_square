@@ -3,25 +3,24 @@
     <div class="card mt-4">
       <div class="card-body mx-4">
 
-<%= form_with(model: artistboard, local: true) do |f| %>
-
-  <div class="form-group">
-    <%= f.label :artists %>
-    <%= f.text_field :artists, readonly: true, class:"form-control" %>
-  </div>
-
-  <div class="custom-control custom-checkbox">
-    <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) %>
-  </div>
-
-  <div class="text-center my-4">
-    <%= f.submit class:"btn blue-gradient btn-block z-depth-1a submit-btn" %>
-  </div>
-
-  <%= hidden_field_tag :artist_icon, @artist_icon %>
-  <% end %>
-
-  </div>
+        <%= form_with(model: artistboard, local: true) do |f| %>
+        <div class="form-group">
+          <%= f.label :artists %>
+          <%= f.text_field :artists, readonly: true, class:"form-control" %>
         </div>
+
+        <div class="custom-control custom-checkbox">
+          <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) %>
+        </div>
+
+        <div class="text-center my-4">
+          <%= f.submit class:"btn blue-gradient btn-block z-depth-1a submit-btn" %>
+        </div>
+
+        <%= hidden_field_tag :artist_icon, @artist_icon %>
+        <% end %>
+
+      </div>
+    </div>
   </div>
-  </div>
+</div>
