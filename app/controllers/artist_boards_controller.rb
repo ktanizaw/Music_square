@@ -64,6 +64,7 @@ class ArtistBoardsController < ApplicationController
   end
 
   private
+
   def set_artistboard
     @artistboard = ArtistBoard.find_by(artists: params[:artists])
   end
@@ -71,5 +72,4 @@ class ArtistBoardsController < ApplicationController
   def artistboard_params
     params.require(:artist_board).permit(:artists, :albums, :profiles, :icon, :icon_cache, { category_ids: [] })
   end
-
 end
