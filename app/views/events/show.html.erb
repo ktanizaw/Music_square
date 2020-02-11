@@ -27,11 +27,11 @@
         <% end %>
         </div>
         <div class="row pl-3">
-        <h6>開催日時：<%= @event.date %></h6>
+        <h6>開催日時：<%= @event.date.to_s(:published_on) %></h6>
         <h6 class="pl-4">開催場所：<%= @event.place %></h6>
         </div>
         <div class="row pl-3">
-        <h6>締切日時：<%= @event.deadline %></h6>
+        <h6>締切日時：<%= @event.deadline.to_s(:published_on) %></h6>
         </div>
         <h6>制限人数：<%= @event.capacity %>人</h6>
 
