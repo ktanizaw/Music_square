@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
 
-<!-- 左側始まり -->
+    <!-- 左側始まり -->
     <div class="col-4 py-3" id="search_area">
       <div class="m-3">
         <h6 class="text-center text-muted pt-5">掲示板検索機能</h6>
@@ -22,25 +22,24 @@
             </div>
           <% end %>
 
-      <h4 class="text-center font-weight-bold pt-5 pb-4">目当ての掲示板がない場合は・・・</h4>
-      <%= link_to search_artist_boards_path do %>
-      <button type="button" class="btn btn-outline-primary btn-white btn-block waves-effect link-btn">自分で検索して掲示板を作成しよう！</button>
-      <% end %>
+        <h4 class="text-center font-weight-bold pt-5 pb-4">目当ての掲示板がない場合は・・・</h4>
+        <%= link_to search_artist_boards_path do %>
+        <button type="button" class="btn btn-outline-primary btn-white btn-block waves-effect link-btn">自分で検索して掲示板を作成しよう！</button>
+        <% end %>
 
-      <h4 class="text-center font-weight-bold pt-5 pb-4">現在開催中のイベントを見つける！</h4>
+        <h4 class="text-center font-weight-bold pt-5 pb-4">現在開催中のイベントを見つける！</h4>
+        <%= link_to events_path do %>
+          <button type="button" class="btn btn-outline-primary btn-white btn-block waves-effect link-btn">イベント一覧へ</button>
+        <% end %>
 
-      <%= link_to events_path do %>
-        <button type="button" class="btn btn-outline-primary btn-white btn-block waves-effect link-btn">イベント一覧へ</button>
-      <% end %>
-
-      <h4 class="text-center font-weight-bold pt-5 pb-4">価値観の合う仲間を見つける！</h4>
-      <%= link_to users_path do %>
-        <button type="button" class="btn btn-outline-primary btn-white btn-block waves-effect link-btn">ユーザー一覧へ</button>
-      <% end %>
+        <h4 class="text-center font-weight-bold pt-5 pb-4">価値観の合う仲間を見つける！</h4>
+        <%= link_to users_path do %>
+          <button type="button" class="btn btn-outline-primary btn-white btn-block waves-effect link-btn">ユーザー一覧へ</button>
+        <% end %>
+      </div>
     </div>
-  </div>
 
-<!-- 右側始まり -->
+    <!-- 右側始まり -->
     <div class="col-8">
       <div class="m-5">
         <h6 class="text-center text-muted pt-4">アーティスト掲示板一覧</h6>
