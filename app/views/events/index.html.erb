@@ -1,7 +1,7 @@
 <div class="container-fluid">
-  <div class="row">
+  <div class="row d-flex justify-content-center">
     <!-- 左側始まり -->
-    <div class="col-4 py-3" id="search_area">
+    <div class="col-10 col-lg-4 order-2 order-lg-1py-3" id="search_area">
       <div class="m-3">
         <h6 class="text-center text-muted pt-5">イベント検索機能</h6>
         <h2 class="text-center font-weight-bold pb-4">開催中イベントを検索しよう</h2>
@@ -34,7 +34,7 @@
     </div>
 
     <!-- 右側始まり -->
-    <div class="col-8">
+    <div class="col-12 col-lg-8 order-1 order-lg-2">
       <div class="m-5">
         <h6 class="text-center text-muted pt-4">イベント一覧</h6>
         <h2 class="text-center font-weight-bold pb-4">こんなイベントがあります</h2>
@@ -49,20 +49,22 @@
                 <% else %>
                   <%= image_tag 'default.jpg',:size =>'100x100' ,class:"rounded-circle col-sm-2" %>
                 <% end %>
-                <div class="col-sm-10">
-                  <div class="row pl-3">
+                <div class="col-10">
+                  <div class="row">
                     <h5 class="font-weight-bold"><%= event.title %></h5>
                     <p>(<%= event.artist_board.artists %>掲示板のイベント)</p>
                   </div>
-                  <div class="row pl-3">
+                  <div class="row mb-2">
+                    <% event.labels.each do |label| %>
+                      <span class="badge badge-pill badge-warning d-flex align-items-center mr-2"><%= label.name %></span>
+                    <% end %>
+                  </div>
+                  <div class="row">
                     <h6>開催日時：<%= event.date.to_s(:published_on) %></h6>
                     <h6 class="pl-4">開催場所：<%= event.place %></h6>
                   </div>
-                  <div class="row pl-3">
+                  <div class="row">
                     <h6>締切日時：<%= event.deadline.to_s(:published_on) %></h6>
-                    <% event.labels.each do |label| %>
-                      <span class="badge badge-pill badge-warning d-flex align-items-center ml-4"><%= label.name %></span>
-                    <% end %>
                   </div>
                 </div>
               </div>

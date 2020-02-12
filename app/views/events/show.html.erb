@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row d-flex justify-content-center pt-4">
-    <div class="col-sm-6 mb-3 mb-md-0">
+    <div class="col-10 col-lg-8 col-xl-6 mb-3 mb-md-0">
       <div class="card py-4">
         <div class="card-body">
           <div class="row pl-3">
@@ -9,7 +9,7 @@
             <% else %>
               <%= image_tag 'default.jpg',:size =>'200x200', class:"border" %>
             <% end %>
-            <div class="col-4">
+            <div class="text-center">
               <% if @event.owner.profile_image? %>
                 <%= image_tag "#{@event.owner.profile_image}", :size =>'100x100',class:"rounded-circle" %>
               <% else %>
@@ -22,8 +22,10 @@
           <div class="event-content">
             <div class="row pl-3 pt-3 d-flex align-items-center">
               <h5 class="card-title font-weight-bold"><%= @event.title %></h5>
+            </div>
+            <div class="row pl-3 mb-2">
               <% @event.labels.each do |label| %>
-                <span class="badge badge-pill badge-warning d-flex align-items-center ml-4"><%= label.name %></span>
+                <span class="badge badge-pill badge-warning d-flex align-items-center mr-2"><%= label.name %></span>
               <% end %>
             </div>
             <div class="row pl-3">
