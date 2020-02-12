@@ -17,7 +17,7 @@
   <h2 class="font-weight-bold my-4">検索結果</h2>
   <div class="row row-cols-1 row-cols-md-4">
     <% @searchartists.each do |searchartist| %>
-    <div class="col mb-4 d-flex justify-content-center">
+    <div class="col-lg-3 mb-4 d-flex justify-content-center">
       <div class="card card-cascade m-1">
         <div class="view view-cascade overlay">
           <% if searchartist.images.any?%>
@@ -29,7 +29,7 @@
         </div>
 
         <div class="card-body card-body-cascade">
-          <h4 class="card-title"><%= searchartist.name %></h4>
+            <h4 class="card-title"><%= searchartist.name %></h4>
           <% if @artistboards.pluck("artists").include?(searchartist.name) %>
             <%= link_to artist_board_path(searchartist.name) do %>
               <button type="button" class="btn btn-outline-primary waves-effect link-btn">掲示板へ飛ぶ！</button>

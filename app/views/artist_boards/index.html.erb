@@ -1,8 +1,8 @@
 <div class="container-fluid">
-  <div class="row">
+  <div class="row d-flex justify-content-center">
 
     <!-- 左側始まり -->
-    <div class="col-4 py-3" id="search_area">
+    <div class="col-10 col-lg-4 order-2 order-lg-1 py-3" id="search_area">
       <div class="m-3">
         <h6 class="text-center text-muted pt-5">掲示板検索機能</h6>
         <h2 class="text-center font-weight-bold pb-4">既存の掲示板を検索しよう</h2>
@@ -24,7 +24,7 @@
 
         <h4 class="text-center font-weight-bold pt-5 pb-4">目当ての掲示板がない場合は・・・</h4>
         <%= link_to search_artist_boards_path do %>
-        <button type="button" class="btn btn-outline-primary btn-white btn-block waves-effect link-btn">自分で検索して掲示板を作成しよう！</button>
+          <button type="button" class="btn btn-outline-primary btn-white btn-block waves-effect link-btn">自分で検索して掲示板を作成しよう！</button>
         <% end %>
 
         <h4 class="text-center font-weight-bold pt-5 pb-4">現在開催中のイベントを見つける！</h4>
@@ -40,7 +40,7 @@
     </div>
 
     <!-- 右側始まり -->
-    <div class="col-8">
+    <div class="col-12 col-lg-8 order-1 order-lg-2">
       <div class="m-5">
         <h6 class="text-center text-muted pt-4">アーティスト掲示板一覧</h6>
         <h2 class="text-center font-weight-bold pb-4">こんな掲示板があります</h2>
