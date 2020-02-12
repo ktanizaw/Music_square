@@ -93,3 +93,4 @@ ja:
       user:
         not_found_in_database: "ログインに失敗しました。"
         invalid: "ログインに失敗しました。"
+        unauthenticated: "ログインしてください。"

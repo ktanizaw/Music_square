@@ -24,11 +24,11 @@
   <body>
     <div id="wrapper">
       <nav class="mb-1 navbar navbar-expand-lg navbar-dark black lighten-1 sticky-top">
-        <a class="navbar-brand" href="/users/sign_up">Music Square</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
-        aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+        <% if user_signed_in? %>
+        <%= link_to 'Music Square', artist_boards_path, class:"navbar-brand" %>
+        <% else %>
+        <%= link_to 'Music Square', new_user_registration_path, class:"navbar-brand" %>
+        <% end %>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
           <ul class="navbar-nav mr-auto">

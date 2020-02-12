@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_action :set_artistboard, only: [:show, :edit, :update, :create, :destroy]
+  before_action :authenticate_user!
 
   PER_EVENT = 6
   PER_EVENT_COMMENT = 5
