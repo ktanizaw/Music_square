@@ -1,26 +1,22 @@
-
 <div class="col-12">
+  <%= form_with(model: [artist_board, board_comment]) do |f| %>
+    <div class="form-group">
+      <%= f.label :content %>
+      <%= f.text_area :content, class:"form-control" %>
+    </div>
 
-<%= form_with(model: [artist_board, board_comment]) do |f| %>
-
-  <div class="form-group">
-    <%= f.label :content %>
-    <%= f.text_area :content, class:"form-control" %>
-  </div>
-
-  <div class="input-group">
-  <div class="input-group-prepend">
-    <span class="input-group-text">アップロード</span>
-  </div>
+    <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">アップロード</span>
+    </div>
     <div class="custom-file">
-    <%= f.label :コメントに写真を添付する, class:"custom-file-label text-left", for:"inputGroupFile01" %>
-    <%= f.file_field :picture, class:"custom-file-input", id:"inputGroupFile01" %>
+      <%= f.label :コメントに写真を添付する, class:"custom-file-label text-left", for:"inputGroupFile01" %>
+      <%= f.file_field :picture, class:"custom-file-input", id:"inputGroupFile01" %>
     </div>
     </div>
 
     <div class="text-center my-3">
-    <%= f.submit "投稿する", class:"btn blue-gradient z-depth-1a submit-btn" %>
+      <%= f.submit "投稿する", class:"btn blue-gradient z-depth-1a submit-btn" %>
     </div>
-
-<% end %>
+  <% end %>
 </div>
