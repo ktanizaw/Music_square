@@ -76,7 +76,7 @@
                 <%= link_to edit_artist_board_event_path(event.artist_board.artists, event) do %>
                   <button type="button" class="btn-sm btn-outline-danger waves-effect">編集</button>
                 <% end %>
-                <%= link_to artist_board_event_path(event.artist_board.artists, event), method: :delete, data: { confirm: 'Are you sure?' } do %>
+                <%= link_to artist_board_event_path(event.artist_board.artists, event), method: :delete, data: { confirm: '本当に削除しますか?' } do %>
                   <button type="button" class="btn-sm btn-outline-danger waves-effect">削除</button>
                 <% end %>
               <% else %>

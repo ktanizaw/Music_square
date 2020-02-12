@@ -26,16 +26,22 @@
               </div>
             <% end %>
 
-            <div class="text-center pt-5 mb-3">
+            <div class="text-center py-4">
               <%= f.submit "ログイン", class:"btn blue-gradient btn-block z-depth-1a submit-btn" %>
             </div>
-          <% end %>
 
           <p class="font-small dark-grey-text text-right d-flex justify-content-center mb-3 pt-2">またはFacebookでログイン</p>
-
           <%= link_to user_facebook_omniauth_authorize_path, method: :post do %>
             <button type="button" class="btn btn-white mr-md-3 z-depth-1a submit-btn"><i class="fab fa-facebook-f blue-text text-center"></i></button>
           <% end %>
+
+          <div class="test-user py-4">
+            <%= f.hidden_field :email, value: 'test@example.com' %>
+            <%= f.hidden_field :password, value: '123456' %>
+            <%= f.submit 'テストユーザーでログイン', class:"btn btn-light rounded-pill z-depth-1 submit-btn" %>
+          </div>
+          <% end %>
+
         </div>
       </div>
     </div>
