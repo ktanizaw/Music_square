@@ -1,9 +1,10 @@
 <h6 class="text-center text-muted pt-5">ユーザー作成画面</h6>
-  <h2 class="text-center font-weight-bold pb-4">ユーザーを作成しよう</h2>
+<h2 class="text-center font-weight-bold pb-4">ユーザーを作成しよう</h2>
 
 <%= render 'form', user: @user %>
 
 <div class="row d-flex justify-content-center my-4">
-<%= link_to users_path do %>
-<button type="button" class="btn btn-outline-primary waves-effect link-btn">ユーザー一覧へ</button>
-<% end %>
+  <%= link_to users_path do %>
+    <button type="button" class="btn btn-outline-primary waves-effect link-btn">ユーザー一覧へ</button>
+  <% end %>
+</div>
