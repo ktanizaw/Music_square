@@ -1,13 +1,15 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
-  PER = 10
-  
+  # before_action :authenticate_user!
+  PER_USER = 10
+  PER_BOARD = 8
+
   def index
-    @users = User.all.page(params[:page]).per(PER)
+    @users = User.all.page(params[:page]).per(PER_USER)
   end
 
   def show
+    @fan_artists = @user.fan_artistboards.page(params[:page]).per(PER_BOARD)
   end
 
   def new
@@ -20,7 +22,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to @user, notice: 'User was successfully created.'
+      redirect_to @user
     else
       render :new
     end
@@ -28,7 +30,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to @user, notice: 'User was successfully updated.'
+      redirect_to @user, notice: 'ユーザー情報を編集しました。'
     else
       render :edit
     end
@@ -36,15 +38,16 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    redirect_to users_url, notice: 'User was successfully destroyed.'
+    redirect_to users_path, notice: 'ユーザーを削除しました。'
   end
 
   private
-    def set_user
-      @user = User.find(params[:id])
-    end
 
-    def user_params
-      params.require(:user).permit(:name, :email, :profile, :profile_image, :profile_image_cache, :password_digest)
-    end
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  def user_params
+    params.require(:user).permit(:name, :email, :profile, :profile_image, :profile_image_cache, :password_digest)
+  end
 end

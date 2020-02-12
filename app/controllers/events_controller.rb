@@ -2,10 +2,11 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_action :set_artistboard, only: [:show, :edit, :update, :create, :destroy]
 
-  PER = 3
+  PER_EVENT = 6
+  PER_EVENT_COMMENT = 5
 
   def index
-    @events = Event.all.includes(:artist_board).page(params[:page]).per(PER)
+    @events = Event.all.includes(:artist_board).includes([:labellings]).includes([:labels]).page(params[:page]).per(PER_EVENT)
     @events = @events.joins(:labels).where(labels: { id: params[:label_id] }) if params[:label_id].present?
     if params[:title].present?
       @events = @events.get_by_title params[:title]
@@ -20,7 +21,7 @@ class EventsController < ApplicationController
   def show
     @participant = current_user.participants.find_by(event_id: @event.id)
     @eventcomment = EventComment.new
-    @eventcomments = @event.event_comments
+    @eventcomments = @event.event_comments.includes([:user]).page(params[:page]).per(PER_EVENT_COMMENT)
   end
 
   def edit
@@ -29,13 +30,16 @@ class EventsController < ApplicationController
   def create
     @event = @artistboard.events.build(event_params)
     @event.owner_id = current_user.id
-    @event.save
-    redirect_to artist_board_event_path(@artistboard.artists, @event.id), notice: 'イベントを新規作成しました。'
+    if @event.save
+      redirect_to artist_board_path(@artistboard.artists)
+    else
+      render 'new'
+    end
   end
 
   def update
     if @event.update(event_params)
-      redirect_to artist_board_event_path(@artistboard.artists, @event.id), notice: 'イベントを編集しました。'
+      redirect_to artist_board_event_path(@artistboard.artists, @event.id), notice: 'イベント情報を編集しました。'
     else
       render :edit
     end
@@ -47,6 +51,7 @@ class EventsController < ApplicationController
   end
 
   private
+
   def set_event
     @event = Event.find(params[:id])
   end

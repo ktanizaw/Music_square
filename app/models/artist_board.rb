@@ -7,7 +7,6 @@ class ArtistBoard < ApplicationRecord
   has_many :events, dependent: :destroy
 
   validates :artists,
-    presence: true, presence: {message: "入力してください！"},
     length:{maximum: 255}, uniqueness: true
 
   mount_uploader :icon, IconUploader
@@ -17,7 +16,6 @@ class ArtistBoard < ApplicationRecord
     }
 
   def to_param
-      artists
+    artists
   end
-
 end

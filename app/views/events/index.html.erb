@@ -1,57 +1,97 @@
+<div class="container-fluid">
+<div class="row">
 
-<div class="">
-<%= link_to '掲示板一覧へ', artist_boards_path %>
+  <!-- 左側始まり -->
+  <div class="col-4 py-3" id="search_area">
+    <div class="m-3">
+  <h6 class="text-center text-muted pt-5">イベント検索機能</h6>
+    <h2 class="text-center font-weight-bold pb-4">開催中イベントを検索しよう</h2>
 
-<h2>イベント検索</h2>
+  <%= form_with url: events_path, method: :get, local: true do |f| %>
+  <%= f.label :title, "イベント名で検索してみよう！" %>
+  <%= f.text_field :title, class:"form-control mr-sm-2 form-inline mr-auto mb-4", placeholder:"イベント名検索" %>
+  <%= f.label :label, "イベントのラベルで絞り込む", class:'control-label' %>
+  <%= f.select("label_id", Label.pluck(:name, :id), { include_blank: true }, class:"form-control mr-sm-2 form-inline mr-auto mb-4") %>
+  <div class="text-center mb-3">
 
-  <%= form_with url: events_path, method: :get, local: true do |form| %>
-  <%= form.label :title, "イベント名" %>
-  <%= form.text_field :title %>
-  <%= form.label :label, "イベントタイプ" %>
-  <%= form.select("label_id", Label.pluck(:name, :id), { include_blank: true }) %>
-  <%= form.submit '絞り込み検索', name: nil %>
+  <%= f.submit 'イベントを検索する', name: nil, class:"btn blue-gradient btn-block z-depth-1a submit-btn" %>
+  </div>
+
   <% end %>
 
-<%= link_to 'ユーザー一覧へ', users_path %>
+  <div class="pt-4">
+
+  <h4 class="text-center font-weight-bold pt-5 pb-4">掲示板一覧へ戻る！</h4>
+  <%= link_to artist_boards_path do %>
+  <button type="button" class="btn btn-outline-primary btn-white btn-block waves-effect link-btn">掲示板一覧へ</button>
+  <% end %>
+
+<h4 class="text-center font-weight-bold pt-5 pb-4">価値観の合う仲間を見つける！</h4>
+<%= link_to users_path do %>
+<button type="button" class="btn btn-outline-primary btn-white btn-block waves-effect link-btn">ユーザー一覧へ</button>
+<% end %>
+
+</div>
 </div>
 
-<h1>イベント一覧</h1>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>イメージ画像</th>
-      <th>イベント名</th>
-      <th>開催場所</th>
-      <th>開催日時</th>
-      <th>締切日時</th>
-    </tr>
-  </thead>
+<!-- 右側始まり -->
+<div class="col-8">
+  <div class="m-5">
+<h6 class="text-center text-muted pt-4">イベント一覧</h6>
+<h2 class="text-center font-weight-bold pb-4">こんなイベントがあります</h2>
 
-  <tbody>
-    <% @events.each do |event| %>
-      <tr>
-        <td>
-          <%= link_to artist_board_event_path(event.artist_board.artists, event) do %>
-            <% if event.image? %>
-            <%= image_tag "#{event.image}", :size =>'50x50' %>
-            <% else %>
-            <%= image_tag 'default.jpg', :size =>'50x50' %>
-            <% end %>
-          <% end %>
-        </td>
-        <td><%= event.title %></td>
-        <td><%= event.place %></td>
-        <td><%= event.date %></td>
-        <td><%= event.deadline %></td>
-        <td><%= link_to '詳細', artist_board_event_path(event.artist_board.artists, event) %></td>
-        <td><%= link_to '編集', edit_artist_board_event_path(event.artist_board.artists, event) %></td>
-        <td><%= link_to '削除', artist_board_event_path(event.artist_board.artists, event), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<br>
+<div class="list-group-flush">
+  <% @events.each do |event| %>
+  <%= link_to artist_board_event_path(event.artist_board.artists, event) do %>
+  <div class="list-group-item list-group-item-action border-bottom">
+    <div class="row mb-0">
+      <% if event.image? %>
+      <%= image_tag "#{event.image}",:size =>'100x100' ,class:"rounded-circle col-sm-2" %>
+      <% else %>
+      <%= image_tag 'default.jpg',:size =>'100x100' ,class:"rounded-circle col-sm-2" %>
+      <% end %>
+      <div class="col-sm-10">
+      <div class="row pl-3">
+        <h5 class="font-weight-bold"><%= event.title %></h5>
+        <p>(<%= event.artist_board.artists %>掲示板のイベント)</p>
+      </div>
+      <div class="row pl-3">
+        <h6>開催日時：<%= event.date.to_s(:published_on) %></h6>
+        <h6 class="pl-4">開催場所：<%= event.place %></h6>
+      </div>
+      <div class="row pl-3">
+        <h6>締切日時：<%= event.deadline.to_s(:published_on) %></h6>
+        <% event.labels.each do |label| %>
+        <span class="badge badge-pill badge-warning d-flex align-items-center ml-4"><%= label.name %></span>
+        <% end %>
+      </div>
+    </div>
+</div>
+</div>
+<% end %>
 
+<div class="pl-4">
+<% if current_user.admin? || current_user.id == event.owner_id %>
+  <%= link_to edit_artist_board_event_path(event.artist_board.artists, event) do %>
+  <button type="button" class="btn-sm btn-outline-danger waves-effect">編集</button>
+  <% end %>
+  <%= link_to artist_board_event_path(event.artist_board.artists, event), method: :delete, data: { confirm: 'Are you sure?' } do %>
+  <button type="button" class="btn-sm btn-outline-danger waves-effect">削除</button>
+  <% end %>
+  <% else %>
+<% end %>
+</div>
+<% end %>
+
+<div class="d-flex justify-content-center mt-4">
 <%= paginate @events %>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</div>

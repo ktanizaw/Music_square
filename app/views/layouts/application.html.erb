@@ -22,6 +22,7 @@
       <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:400,700&display=swap" rel="stylesheet">
 
   <body>
+    <div id="wrapper">
 
     <!--Navbar -->
     <nav class="mb-1 navbar navbar-expand-lg navbar-dark black lighten-1 sticky-top">
@@ -32,23 +33,31 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
         <ul class="navbar-nav mr-auto">
-          <% if user_signed_in? %>
           <li class="nav-item">
               <%= link_to artist_boards_path, class:"nav-link" do %>
               <i class="fas fa-music"></i>トップ
               <% end %>
           </li>
+          <li class="nav-item">
+              <%= link_to events_path, class:"nav-link" do %>
+              <i class="far fa-calendar"></i>イベント
+              <% end %>
+          </li>
+          <li class="nav-item">
+              <%= link_to users_path, class:"nav-link" do %>
+              <i class="far fa-user"></i>ユーザー
+              <% end %>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav ml-auto nav-flex-icons">
+          <% if user_signed_in? %>
           <li class="nav-item">
               <%= link_to destroy_user_session_path, class:"nav-link", method: :delete do %>
               <i class="fas fa-sign-out-alt"></i>ログアウト
               <% end %>
           </li>
           <% else %>
-          <li class="nav-item">
-              <%= link_to artist_boards_path, class:"nav-link" do %>
-              <i class="fas fa-music"></i>トップ
-              <% end %>
-          </li>
           <li class="nav-item">
               <%= link_to new_user_session_path, class:"nav-link" do %>
               <i class="fas fa-sign-in-alt"></i>ログイン
@@ -60,33 +69,32 @@
               <% end %>
           </li>
           <% end %>
-        </ul>
 
-        <ul class="navbar-nav ml-auto nav-flex-icons">
-          <% if user_signed_in? %>
-          <%= link_to user_path(current_user.id) do %>
           <% if user_signed_in? && current_user.profile_image? %>
           <li class="nav-item avatar">
-              <%= image_tag "#{current_user.profile_image}", class:"rounded-circle z-depth-0", alt:"avatar image", height:"35" %>
+              <%= link_to user_path(current_user.id) do %>
+              <%= image_tag "#{current_user.profile_image}", class:"rounded-circle z-depth-0", height:"35" %>
+              <% end %>
               <% elsif user_signed_in? && current_user.profile_image.blank? %>
-              <%= image_tag 'default.jpg', class:"rounded-circle z-depth-0", alt:"avatar image", height:"35" %>
+              <%= link_to user_path(current_user.id) do %>
+              <%= image_tag 'default.jpg', class:"rounded-circle z-depth-0", height:"35" %>
+              <% end %>
               <% else %>
-              <% end %>
-              <% end %>
-              <% end %>
           </li>
+          <% end %>
+
         </ul>
       </div>
     </nav>
     <!--/.Navbar -->
 
+  <% if notice %>
+    <p class="alert alert-notice alert-light text-center"><%= notice %></p>
+  <% end %>
+  <% if alert %>
+    <p class="alert alert-error alert-secondary text-center"><%= alert %></p>
+  <% end %>
 
-  <%# <% if notice %>
-    <!-- <p class="alert alert-notice"><%= notice %></p> -->
-  <%# <% end %>
-  <%# <% if alert %>
-    <!-- <p class="alert alert-error"><%= alert %></p> -->
-  <%# <% end %>
 <div class="inner">
     <%= yield %>
 </div>
@@ -173,6 +181,7 @@
 
 </footer>
 <!-- Footer -->
+</div>
 
     <script type="text/javascript" src="../javascripts/jquery.js"></script>
     <!-- Bootstrap tooltips -->

@@ -3,7 +3,6 @@ class ParticipantsController < ApplicationController
 
   def create
     @participant = current_user.participants.build(event_id: @event.id)
-    # @participant = Participant.build(user_id: current_user.id, event_id: params[:id])
     @participant.save
     redirect_to artist_board_event_path(@event.artist_board.artists, @event), notice: 'イベントへの参加申請が完了しました！'
   end

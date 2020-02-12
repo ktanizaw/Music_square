@@ -1,21 +1,14 @@
-<%= form_with(model: [event, event_comment]) do |form| %>
-  <% if event_comment.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(event_comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
-      <ul>
-      <% event_comment.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<div class="col-12">
 
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
+<%= form_with(model: [event, event_comment]) do |f| %>
+
+  <div class="form-group">
+    <%= f.label :content %>
+    <%= f.text_area :content, class:"form-control" %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="text-center my-3">
+    <%= f.submit "投稿する", class:"btn blue-gradient z-depth-1a submit-btn" %>
   </div>
 <% end %>
+</div>

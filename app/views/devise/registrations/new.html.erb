@@ -1,5 +1,5 @@
 
-
+<!-- carousel slide carousel-fade -->
 <!--Carousel Wrapper-->
 <div id="carousel-example-1z" class="carousel slide carousel-fade" data-ride="carousel">
   <!--Indicators-->
@@ -15,14 +15,16 @@
     <div class="carousel-item active view">
        <%= image_tag 'top-page1.jpg',class:"d-block w-100 img-fluid" %>
        <div class="mask">
-         <div class="row">
-       <h1 class="text-black-80 col-6 text-center brand">Music Square</h1>
-       <div class="w-100"></div>
-       <h3 class="text-black-80 col-6 text-center">音楽で価値観が繋がる。</h3>
-       <div class="w-100"></div>
-       <p class="text-black-80 col-6 text-center">Music Squareは音楽好きの人々が集まり<br>
+         <div class="row text-left mt-5">
+           <div class="col-1"></div>
+       <h1 class="col-11 text-black logo">Music Square</h1>
+          <div class="col-1"></div>
+       <h3 class="col-11 text-black">音楽で価値観が繋がる。</h3>
+          <div class="col-1"></div>
+       <p class="col-11 text-black">
+         Music Squareは音楽好きの人々が集まり<br>
          交流、情報交換ができるプラットフォームです。<br>
-         音楽を通してあなたと同じ価値観を持つ仲間を探そう！
+         音楽を通じてあなたと同じ価値観を持つ仲間を探そう！
        </p>
         </div>
        </div>
@@ -32,11 +34,18 @@
     <div class="carousel-item view">
       <%= image_tag 'top-page2.jpg',class:"d-block w-100 img-fluid" %>
       <div class="mask">
-      <h1 class="text-black-80">掲示板で交流しよう</h1>
-      <p class="text-black-80">Music Squareには様々なアーティストの掲示板が用意されています。<br>
-        好きなアーティストの掲示板で交流を図ろう。<br>
-        アーティストの掲示板が無ければ検索して自分で作成してみよう。
-      </p>
+        <div class="row text-left mt-5">
+          <div class="col-1"></div>
+      <h1 class="col-11 text-black">アーティスト掲示板</h1>
+      <div class="col-1"></div>
+      <h3 class="col-11 text-black">掲示板で交流しよう。</h3>
+         <div class="col-1"></div>
+        <p class="col-11 text-black">
+          様々なアーティストごとに存在する掲示板に<br>
+          コメントを投稿して交流を図ることができます。<br>
+          掲示板が無ければ検索して自分で作成してみよう！
+        </p>
+      </div>
       </div>
     </div>
     <!--/Second slide-->
@@ -44,11 +53,18 @@
     <div class="carousel-item view">
       <%= image_tag 'top-page3.jpg',class:"d-block w-100 img-fluid" %>
       <div class="mask">
-      <h1 class="white-text">イベント作成も簡単に</h1>
-      <p class="white-text">Music Squareではアーティストごとにイベント作成が可能です。<br>
-        好きなアーティストの掲示板でイベントを作成し、<br>
-        仲間たちと交流する機会を自由に増やしていこう。
+        <div class="row text-left mt-5">
+          <div class="col-1"></div>
+      <h1 class="col-11 text-white">イベント</h1>
+      <div class="col-1"></div>
+      <h3 class="col-11 text-white">イベントで交流しよう。</h3>
+         <div class="col-1"></div>
+        <p class="col-11 text-white">
+          イベント機能を活用して交流を深められます。<br>
+          好きなアーティストの掲示板でイベントを作成し、<br>
+          自由にファン同士で交流する機会を増やしていこう！
       </p>
+    </div>
     </div>
     <!--/Third slide-->
   </div>
@@ -84,7 +100,7 @@
 
           <!--Header-->
           <div class="text-center">
-            <h3 class="dark-grey-text mb-5"><strong>サインアップ</strong></h3>
+            <h3 class="dark-grey-text mb-5">サインアップ</h3>
           </div>
 
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -110,7 +126,7 @@
               <span class="input-group-text" id="inputGroupFileAddon01">アップロード</span>
             </div>
             <div class="custom-file">
-              <%= f.label :"プロフィール画像", class:"custom-file-label", for:"inputGroupFile01" %>
+              <%= f.label :"プロフィール画像", class:"custom-file-label text-left", for:"inputGroupFile01" %>
               <%= f.file_field :profile_image, autofocus: true, autocomplete: "profile_image", class:"custom-file-input", id:"inputGroupFile01" %>
               <%= image_tag(@user.profile_image.url) if @user.profile_image && @user.profile_image.url %>
             </div>
@@ -127,11 +143,10 @@
           </div>
 
           <div class="text-center mb-3">
-            <%= f.submit "サインアップ", class:"btn blue-gradient btn-block btn-rounded z-depth-1a" %>
+            <%= f.submit "サインアップ", class:"btn blue-gradient btn-block z-depth-1a submit-btn" %>
           </div>
         <% end %>
 
-<!--Footer-->
         <div class="modal-footer mx-5 pt-3 mb-1">
         <p class="font-small grey-text d-flex justify-content-end">アカウントをお持ちの方は <a href="users/sign_in" class="blue-text ml-1">
             ログイン画面へ</a></p>

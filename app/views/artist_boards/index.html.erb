@@ -1,93 +1,89 @@
 <div class="container-fluid">
-<div class="row">
+  <div class="row">
 
-  <!-- 左側始まり -->
-  <div class="col-4 m-4">
+    <!-- 左側始まり -->
+    <div class="col-4 py-3" id="search_area">
+      <div class="m-3">
+        <h6 class="text-center text-muted pt-5">掲示板検索機能</h6>
+        <h2 class="text-center font-weight-bold pb-4">既存の掲示板を検索しよう</h2>
+          <%= form_with url: artist_boards_path, method: :get, local: true do |f| %>
+            <div class="form-group">
+              <%= f.label :artists, "アーティスト名で検索してみよう！" %>
+              <%= f.text_field :artists, class:"form-control mr-sm-2 form-inline", placeholder:"アーティスト名検索" %>
+            </div>
 
-  <h6 class="text-center text-muted pt-5">掲示板検索機能</h6>
-    <h2 class="text-center font-weight-bold pb-4">既存の掲示板を検索できます</h2>
-    <%= form_with url: artist_boards_path, method: :get, local: true do |f| %>
-      <%= f.label :artists, "アーティスト名で検索してみよう！", class:'' %>
-      <%= f.text_field :artists, class:"form-control mr-sm-2 form-inline mr-auto mb-4", placeholder:"アーティスト名検索" %>
+            <div class="form-group">
+              <%= f.label :category, "ジャンルで絞り込む", class:'control-label' %>
+              <%= f.select("category_id", Category.pluck(:name, :id), { include_blank: true }, class:"form-control mr-sm-2 form-inline") %>
+            </div>
 
-    <%= f.label :category, "ジャンルで検索してみよう！", class:'control-label' %>
-    <%= f.select("category_id", Category.pluck(:name, :id), { include_blank: true }, class:"form-control mr-sm-2 form-inline mr-auto mb-4") %>
-    <div class="text-center mb-3">
-    <%= f.submit '掲示板を検索する', name: nil, class:"btn blue-gradient btn-block btn-rounded z-depth-1a artistboard-btn" %>
+            <div class="text-center mt-4">
+              <%= f.submit '掲示板を検索する', name: nil, class:"btn blue-gradient btn-block z-depth-1a submit-btn" %>
+            </div>
+          <% end %>
+
+        <h4 class="text-center font-weight-bold pt-5 pb-4">目当ての掲示板がない場合は・・・</h4>
+        <%= link_to search_artist_boards_path do %>
+        <button type="button" class="btn btn-outline-primary btn-white btn-block waves-effect link-btn">自分で検索して掲示板を作成しよう！</button>
+        <% end %>
+
+        <h4 class="text-center font-weight-bold pt-5 pb-4">現在開催中のイベントを見つける！</h4>
+        <%= link_to events_path do %>
+          <button type="button" class="btn btn-outline-primary btn-white btn-block waves-effect link-btn">イベント一覧へ</button>
+        <% end %>
+
+        <h4 class="text-center font-weight-bold pt-5 pb-4">価値観の合う仲間を見つける！</h4>
+        <%= link_to users_path do %>
+          <button type="button" class="btn btn-outline-primary btn-white btn-block waves-effect link-btn">ユーザー一覧へ</button>
+        <% end %>
+      </div>
     </div>
-    <% end %>
 
-    <div class="pt-4">
+    <!-- 右側始まり -->
+    <div class="col-8">
+      <div class="m-5">
+        <h6 class="text-center text-muted pt-4">アーティスト掲示板一覧</h6>
+        <h2 class="text-center font-weight-bold pb-4">こんな掲示板があります</h2>
+        <div class="row row-cols-1 row-cols-md-3">
+          <% @artistboards.each do |artistboard| %>
+          <div class="col mb-4">
+            <div class="card card-cascade m-1">
+              <div class="view view-cascade overlay">
+                <% if artistboard.icon? %>
+                  <%= image_tag "#{artistboard.icon}",:size =>'242x242' ,class:"card-img-top" %>
+                <% else %>
+                  <%= image_tag 'default.jpg',:size =>'242x242' ,class:"card-img-top" %>
+                <% end %>
+                <%= link_to artist_board_path(artistboard.artists) do %>
+                <div class="mask rgba-white-slight"></div>
+                <% end %>
+              </div>
+              <div class="card-body card-body-cascade text-center">
+                <h4 class="card-title"><%= artistboard.artists %></h4>
+                <div class="row d-flex justify-content-center">
+                  <% artistboard.categories.each do |category| %>
+                    <h6 class="font-weight-bold indigo-text ml-1"><%= category.name %></h6>
+                  <% end %>
+                </div>
+                <% if current_user.admin? %>
+                  <%= link_to edit_artist_board_path(artistboard.artists) do %>
+                    <button type="button" class="btn-sm btn-outline-danger waves-effect">編集</button>
+                  <% end %>
+                  <%= link_to artistboard, method: :delete, data: { confirm: '本当に削除しますか?' } do %>
+                    <button type="button" class="btn-sm btn-outline-danger waves-effect">削除</button>
+                  <% end %>
+                <% else %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <% end %>
+        </div>
 
-
-      <h3 class="text-center font-weight-bold pb-4">目当ての掲示板がない場合は・・・</h3>
-      <div class="text-center">
-      <%= link_to search_artist_boards_path do %>
-      <button type="button" class="btn btn-outline-primary btn-rounded btn-block waves-effect artistboard-btn">自分で掲示板を作成しよう！</button>
-      <% end %>
-
-      <h4 class="text-center font-weight-bold pt-5 pb-4">現在開催中のイベントを見つける！</h4>
-
-  <%= link_to events_path do %>
-  <button type="button" class="btn btn-outline-primary btn-rounded btn-block waves-effect artistboard-btn">イベント一覧へ</button>
-  <% end %>
-
-  <h4 class="text-center font-weight-bold pt-5 pb-4">価値観の合う仲間を見つける！</h4>
-  <%= link_to users_path do %>
-  <button type="button" class="btn btn-outline-primary btn-rounded btn-block waves-effect artistboard-btn">ユーザー一覧へ</button>
-  <% end %>
+        <div class="d-flex justify-content-center">
+          <%= paginate @artistboards %>
+        </div>
+      </div>
+    </div>
   </div>
-
-  </div>
-  </div>
-
-<!-- 右側始まり -->
-<div class="col-7 m-4">
-<h6 class="text-center text-muted pt-5">アーティスト掲示板一覧</h6>
-<h2 class="text-center font-weight-bold pb-4">こんな掲示板があります</h2>
-  <div class="row row-cols-1 row-cols-md-3">
-    <% @artistboards.each do |artistboard| %>
-<div class="col mb-4">
-<div class="card card-cascade m-1">
-  <!-- Card image -->
-  <div class="view view-cascade overlay">
-    <% if artistboard.icon? %>
-    <%= image_tag "#{artistboard.icon}",class:"card-img-top" %>
-    <% else %>
-    <%= image_tag 'default.jpg',class:"card-img-top" %>
-    <% end %>
-    <%= link_to artist_board_path(artistboard.artists) do %>
-    <div class="mask rgba-white-slight"></div>
-    <% end %>
-  </div>
-  <!-- Card content -->
-  <div class="card-body card-body-cascade text-center">
-
-    <h4 class="card-title"><strong><%= artistboard.artists %></strong></h4>
-    <h6 class="font-weight-bold indigo-text py-2">Web developer</h6>
-
-
-    <% if current_user.admin? %>
-      <%= link_to edit_artist_board_path(artistboard.artists) do %>
-      <button type="button" class="btn-sm btn-outline-danger btn-rounded waves-effect">編集</button>
-      <% end %>
-      <%= link_to artistboard, method: :delete, data: { confirm: 'Are you sure?' } do %>
-      <button type="button" class="btn-sm btn-outline-danger btn-rounded waves-effect">削除</button>
-      <% end %>
-    <% end %>
-
-  </div>
-</div>
-</div>
-<% end %>
-
-</div>
-
-<div class="d-flex justify-content-center">
-  <%= paginate @artistboards %>
-</div>
-
-</div>
-
-</div>
 </div>

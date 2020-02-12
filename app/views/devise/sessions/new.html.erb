@@ -1,19 +1,16 @@
 <section class="form-elegant text-center py-5 bg">
-  <!-- Grid row -->
+
   <div class="row d-flex justify-content-center">
 
-    <!-- Grid column -->
     <div class="col-md-9 col-lg-7 col-xl-5">
 
-  <!--Form without header-->
-  <div class="card">
+      <div class="card">
 
-    <div class="card-body mx-4">
+        <div class="card-body mx-4">
 
-      <!--Header-->
-      <div class="text-center">
-        <h3 class="dark-grey-text mb-5"><strong>ログイン</strong></h3>
-      </div>
+          <div class="text-center">
+            <h3 class="dark-grey-text mb-5"><strong>ログイン</strong></h3>
+          </div>
 
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
@@ -28,21 +25,21 @@
       </div>
 
       <% if devise_mapping.rememberable? %>
-        <div lass="custom-control custom-checkbox">
+        <div class="custom-control custom-checkbox">
           <%= f.check_box :remember_me, class:"custom-control-input", id:"defaultUnchecked"%>
           <%= f.label :"ログイン状態を保持する", class:"custom-control-label", for:"defaultUnchecked" %>
         </div>
       <% end %>
 
       <div class="text-center pt-5 mb-3">
-        <%= f.submit "ログイン", class:"btn blue-gradient btn-block btn-rounded z-depth-1a" %>
+        <%= f.submit "ログイン", class:"btn blue-gradient btn-block z-depth-1a submit-btn" %>
       </div>
       <% end %>
 
       <p class="font-small dark-grey-text text-right d-flex justify-content-center mb-3 pt-2">またはFacebookでログイン</p>
 
       <%= link_to user_facebook_omniauth_authorize_path, method: :post do %>
-      <button type="button" class="btn btn-white btn-rounded mr-md-3 z-depth-1a"><i class="fab fa-facebook-f blue-text text-center"></i></button>
+      <button type="button" class="btn btn-white mr-md-3 z-depth-1a submit-btn"><i class="fab fa-facebook-f blue-text text-center"></i></button>
       <% end %>
 
 

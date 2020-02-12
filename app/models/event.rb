@@ -7,25 +7,14 @@ class Event < ApplicationRecord
   has_many :labels, through: :labellings
   has_many :event_comments, dependent: :destroy
 
-
-  validates :title,
-    presence: true, presence: {message: "入力してください！"},
-    length:{maximum: 32}
-
-  validates :place,
-    presence: true,presence: {message: "入力してください！"},
-    length:{maximum: 32}
-
-  validates :content,
-    presence: true,presence: {message: "入力してください！"},
-    length:{maximum: 255}
-
-  validates :deadline,
-    presence: true,presence: {message: "入力してください！"}
+  validates :title, presence: { message: 'を入力してください。' }, length: { maximum: 32 }
+  validates :place, presence: { message: 'を入力してください。' }, length: { maximum: 32 }
+  validates :content, presence: { message: 'を入力してください。' }, length: { maximum: 255 }
+  validates :deadline, presence: { message: 'を入力してください。' }
 
   mount_uploader :image, ImageUploader
 
   scope :get_by_title, ->(title) {
-    where("title like ?", "%#{title}%")
-    }
+    where('title like ?', "%#{title}%")
+  }
 end
