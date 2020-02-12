@@ -22,7 +22,7 @@
           </div>
           <div class="col-3 text-center">
             <%= render 'follow_form', user: user %>
-            <%= link_to relationship_path(user.id) do %>
+            <%= link_to user_path(user.id) do %>
               <button type="button" class="btn btn-outline-primary btn-white waves-effect">友達を確認する</button>
             <% end %>
           </div>
@@ -32,10 +32,10 @@
       <div>
         <% if current_user.admin? || current_user.id == user.id %>
           <%= link_to edit_user_path(user) do %>
-            <button type="button" class="btn-sm btn-outline-danger waves-effect">編集</button>
+            <button type="button" class="btn-sm btn-outline-danger waves-effect">編集する</button>
           <% end %>
-          <%= link_to users_path, method: :delete, data: { confirm: '本当に削除しますか?' } do %>
-            <button type="button" class="btn-sm btn-outline-danger waves-effect">削除</button>
+          <%= link_to users_path, method: :delete, data: { confirm: '本当に退会しますか?' } do %>
+            <button type="button" class="btn-sm btn-outline-danger waves-effect">退会する</button>
           <% end %>
         <% end %>
       </div>

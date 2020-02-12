@@ -29,11 +29,11 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'omniauth'
   gem 'omniauth-facebook'
-  gem "omniauth-rails_csrf_protection"
+  gem 'omniauth-rails_csrf_protection'
   gem 'rack-mini-profiler', require: false
-  gem "bootstrap4-datetime-picker-rails"
+  gem 'bootstrap4-datetime-picker-rails'
   gem 'momentjs-rails'
-  gem "font-awesome-rails"
+  gem 'font-awesome-rails'
 end
 
 group :development do

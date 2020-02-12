@@ -16,10 +16,10 @@
 
               <% if current_user.admin? || current_user.id == @user.id %>
                 <%= link_to edit_user_path(@user) do %>
-                  <button type="button" class="btn-sm btn-outline-danger waves-effect">編集</button>
+                  <button type="button" class="btn-sm btn-outline-danger waves-effect">編集する</button>
                 <% end %>
-                <%= link_to users_path, method: :delete, data: { confirm: '本当に削除しますか?' } do %>
-                  <button type="button" class="btn-sm btn-outline-danger waves-effect">削除</button>
+                <%= link_to users_path, method: :delete, data: { confirm: '本当に退会しますか?' } do %>
+                  <button type="button" class="btn-sm btn-outline-danger waves-effect">退会する</button>
                 <% end %>
               <% end %>
             </div>
