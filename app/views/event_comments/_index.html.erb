@@ -14,11 +14,11 @@
 
 <div class="col-10">
   <div class="comment">
-        <p><%= eventcomment.content %></p>
+    <p><%= eventcomment.content %></p>
     <% if eventcomment.user == current_user %>
       <%= link_to '削除', event_event_comment_path(eventcomment.event_id, eventcomment.id), method: :delete, remote: true, data: { confirm: '本当に削除しますか?' } %>
     <% end %>
   </div>
 </div>
 
-    <% end %>
+<% end %>
