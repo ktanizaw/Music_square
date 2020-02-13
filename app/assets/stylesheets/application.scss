@@ -28,10 +28,25 @@ body {
 .logo {
   font-family: 'Rock Salt', cursive;
 }
+//
+// html,
+// body {
+//   height: 100%;
+// }
 
-.inner {
-  overflow: hidden;
+// .inner {
+//   height:100%;
+//   width:100%;
+// }
+
+// .wrapper {
+//   height: 100%;
+// }
+
+.page-footer{
   width:100%;
+  // position: absolute;
+  // bottom: 0;
 }
 
 .carousel-item h1 {

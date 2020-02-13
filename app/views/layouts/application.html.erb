@@ -22,7 +22,7 @@
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:400,700&display=swap" rel="stylesheet">
 
   <body>
-    <div id="wrapper">
+    <!-- <div class="wrapper"> -->
       <nav class="mb-1 navbar navbar-expand-lg navbar-dark black lighten-1 sticky-top">
         <% if user_signed_in? %>
         <%= link_to 'Music Square', artist_boards_path, class:"navbar-brand" %>
@@ -91,7 +91,6 @@
       <% if alert %>
         <p class="alert alert-error alert-secondary text-center"><%= alert %></p>
       <% end %>
-
       <div class="inner">
         <%= yield %>
       </div>
@@ -104,50 +103,13 @@
               <p>音楽で価値観が繋がる。</p>
             </div>
             <hr class="clearfix w-100 d-md-none pb-3">
-
-            <div class="col-md-3 mb-md-0 mb-3">
-              <h5 class="text-uppercase">Links</h5>
-              <ul class="list-unstyled">
-                <li>
-                  <a href="#!">Link 1</a>
-                </li>
-                <li>
-                  <a href="#!">Link 2</a>
-                </li>
-                <li>
-                  <a href="#!">Link 3</a>
-                </li>
-                <li>
-                  <a href="#!">Link 4</a>
-                </li>
-              </ul>
-            </div>
-
-            <div class="col-md-3 mb-md-0 mb-3">
-              <h5 class="text-uppercase">Links</h5>
-              <ul class="list-unstyled">
-                <li>
-                  <a href="#!">Link 1</a>
-                </li>
-                <li>
-                  <a href="#!">Link 2</a>
-                </li>
-                <li>
-                  <a href="#!">Link 3</a>
-                </li>
-                <li>
-                  <a href="#!">Link 4</a>
-                </li>
-              </ul>
-            </div>
+          </div>
+          <div class="footer-copyright text-center py-3">
+            © 2020. MusicSquare All Rights Reserved.
           </div>
         </div>
-
-        <div class="footer-copyright text-center py-3">
-          © 2020. MusicSquare All Rights Reserved.
-        </div>
       </footer>
-    </div>
+    <!-- </div> -->
     <script type="text/javascript" src="../javascripts/jquery.js"></script>
     <!-- Bootstrap tooltips -->
     <script type="text/javascript" src="../javascripts/popper.min.js"></script>

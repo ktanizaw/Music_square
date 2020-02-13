@@ -34,6 +34,10 @@ group :development, :test do
   gem 'bootstrap4-datetime-picker-rails'
   gem 'momentjs-rails'
   gem 'font-awesome-rails'
+  gem 'rspec-rails'
+  gem 'spring-commands-rspec'
+  gem 'factory_bot_rails'
+  gem 'launchy'
 end
 
 group :development do
