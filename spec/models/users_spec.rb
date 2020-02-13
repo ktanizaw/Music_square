@@ -31,7 +31,7 @@ RSpec.describe User, type: :model do
       expect(@user.valid?).to eq(false)
     end
 
-    it 'emailsがユニークでなければNG' do
+    it 'emailがユニークでなければNG' do
       user = User.new(name: 'testuser2', email: 'test@hoge.com', password: 'password' )
       expect(user.valid?).to eq(false)
     end
@@ -41,8 +41,18 @@ RSpec.describe User, type: :model do
       expect(@user.valid?).to eq(false)
     end
 
+    it 'passwordが空だとNG' do
+      @user.password = '' * 256
+      expect(@user.valid?).to eq(false)
+    end
+
+    it 'passwordが6文字未満だとNG' do
+      @user.password = 'a'
+      expect(@user.valid?).to eq(false)
+    end
+
     it 'nameが24文字未満でユニーク、かつemailが正規表現に沿ったものでユニーク、
-    かつprofileが256文字未満であればOK' do
+    かつprofileが256文字未満、かつpasswordが6文字以上であればOK' do
       user = User.new(name: 'testuser2', email: 'test2@hoge.com', profile: '初めまして', password: 'password' )
       expect(user.valid?).to eq(true)
     end
