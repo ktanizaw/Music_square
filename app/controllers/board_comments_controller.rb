@@ -4,25 +4,21 @@ class BoardCommentsController < ApplicationController
   def create
     @boardcomment = @artistboard.board_comments.build(boardcomment_params)
     @boardcomment.user_id = current_user.id
-    respond_to do |format|
-      if @boardcomment.save
-        format.js { render :index }
-      else
-        format.html { redirect_to artist_board_path(@artistboard), alert: '空欄では投稿できません。' }
-      end
+    if @boardcomment.save
+      render 'index.js.erb'
+    else
+      redirect_to artist_board_path(@artistboard), alert: '空欄では投稿できません。'
     end
   end
 
   def destroy
     @boardcomment = BoardComment.find(params[:id])
-    respond_to do |format|
-      if @boardcomment.destroy
-        format.js { render :index }
-      end
+    if @boardcomment.destroy
+      render 'index.js.erb'
     end
   end
 
-    private
+  private
 
   def set_artistboard
     @artistboard = ArtistBoard.find_by(artists: params[:artist_board_id])
