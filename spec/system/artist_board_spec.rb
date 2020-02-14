@@ -12,11 +12,16 @@ RSpec.describe 'アーティスト掲示板管理機能', type: :system do
         fill_in 'user[password]', with: 'password'
         click_button 'ログイン'
       end
-    context 'アーティスト名で検索する' do
-      it '該当のアーティストのみ表示される' do
+    context 'アーティスト名に含まれる検索ワードで検索する' do
+      it '該当のアーティスト掲示板が表示される' do
         fill_in 'artists', with: 'テストバンド'
         click_button '掲示板を検索する'
-        expect(page).not_to have_content 'テストグループ'
+        expect(page).to have_content 'テストバンド'
+      end
+      it '検索ワードに該当しないときアーティスト掲示板が表示されない' do
+        fill_in 'artists', with: 'test'
+        click_button '掲示板を検索する'
+        expect(page).not_to have_content 'テストバンド','テストグループ'
       end
     end
   end

@@ -9,7 +9,7 @@ class ParticipantsController < ApplicationController
 
   def destroy
     @participant = Participant.find_by(user_id: current_user.id, event_id: params[:id]).destroy
-    redirect_to artist_board_event_path(@event.artist_board.artists, @event), notice: 'イベントへの参加を辞退しました！'
+    redirect_to artist_board_event_path(@event.artist_board.artists, @event), notice: 'イベントへの参加を取り消しました！'
   end
 
   private
