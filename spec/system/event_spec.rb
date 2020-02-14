@@ -34,8 +34,8 @@ RSpec.describe 'イベント管理機能', type: :system do
         it '該当ラベルの含まれたイベントが表示される' do
           select 'ラベル１', from: 'label_id'
           expect(page).to have_content '交流会'
+        end
       end
-    end
   end
 
   describe 'イベント詳細画面' do

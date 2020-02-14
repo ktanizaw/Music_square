@@ -21,5 +21,8 @@ FactoryBot.define do
     capacity { 2 }
     association :owner, factory: :test_user
     association :artist_board, factory: :artist_board_second
+    after(:create) do |event|
+          create_list(:label_second, 1, events: [event])
+    end
   end
 end
