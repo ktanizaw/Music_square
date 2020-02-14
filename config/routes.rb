@@ -19,9 +19,6 @@ Rails.application.routes.draw do
 
 
   resources :users
-  # resources :events
-  # resources :board_comment, only: [:show, :create, :destroy]
-  # resources :event_comment, only: [:create, :destroy]
   resources :relationships, only: [:show, :create, :destroy]
   resources :fans, only: [:create, :destroy]
   resources :favorites, only: [:create, :destroy]

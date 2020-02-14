@@ -16,7 +16,7 @@
   <% if @searchartists.present? %>
   <h2 class="font-weight-bold my-4">検索結果</h2>
   <div class="row row-cols-1 row-cols-md-4">
-    <% @searchartists.each do |searchartist| %>
+    <% @searchartists.each_with_index do |searchartist, index| %>
     <div class="col-lg-3 mb-4 d-flex justify-content-center">
       <div class="card card-cascade m-1">
         <div class="view view-cascade overlay">
@@ -35,11 +35,11 @@
               <button type="button" class="btn btn-outline-primary waves-effect link-btn">掲示板へ飛ぶ！</button>
             <%end%>
           <% elsif searchartist.images.present? %>
-            <%= link_to new_artist_board_path(artists: searchartist.name, icon: image["url"]) do %>
+            <%= link_to new_artist_board_path(artists: searchartist.name, icon: image["url"]), id: "link-#{index}" do %>
               <button type="button" class="btn btn-outline-primary waves-effect link-btn">掲示板を作成！</button>
             <%end%>
           <% else %>
-            <%= link_to new_artist_board_path(artists: searchartist.name) do %>
+            <%= link_to new_artist_board_path(artists: searchartist.name), id: "link-#{index}" do %>
               <button type="button" class="btn btn-outline-primary waves-effect link-btn">掲示板を作成！</button>
             <%end%>
           <%end%>
