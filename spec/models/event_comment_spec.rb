@@ -28,7 +28,7 @@ RSpec.describe EventComment, type: :model do
     end
 
     it 'event_idが空だとNG' do
-      eventcomment = EventComment.new(content: 'イベントにコメント', user_id: @user.id)
+      eventcomment = @user.event_comments.build(content: 'イベントにコメント')
       expect(eventcomment.valid?).to eq(false)
     end
 
