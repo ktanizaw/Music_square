@@ -43,3 +43,6 @@ ja:
           image: イメージ写真
         label:
           name: ラベル名
+        contact:
+          email: メールアドレス
+          message: お問い合わせ内容

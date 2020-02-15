@@ -85,6 +85,7 @@
       <% if alert %>
         <p class="alert alert-error alert-secondary text-center"><%= alert %></p>
       <% end %>
+
       <div class="inner">
         <%= yield %>
       </div>
@@ -107,10 +108,7 @@
               <%= link_to 'プライバシーポリシー', page_path('privacy') %>
             </li>
             <li>
-              <a href="#!"></a>
-            </li>
-            <li>
-              <a href="#!">Link 4</a>
+              <%= link_to 'お問い合わせフォーム', contacts_new_path %>      
             </li>
           </ul>
         </div>

@@ -16,14 +16,15 @@ Rails.application.routes.draw do
     resources :event_comments
   end
 
-
-
   resources :users
   resources :relationships, only: [:show, :create, :destroy]
   resources :fans, only: [:create, :destroy]
   resources :favorites, only: [:create, :destroy]
   resources :participants, only: [:create, :destroy]
   resources :labellings, only: [:create, :destroy]
+
+  get 'contacts/new'
+  post 'contacts/create'
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
