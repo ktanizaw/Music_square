@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_03_045744) do
+ActiveRecord::Schema.define(version: 2020_02_15_051008) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "artist_boards", force: :cascade do |t|
-    t.string "artists"
+    t.string "artists", null: false
     t.text "albums"
     t.text "profiles"
     t.text "icon"
@@ -43,12 +43,19 @@ ActiveRecord::Schema.define(version: 2020_02_03_045744) do
   end
 
   create_table "categorizes", force: :cascade do |t|
-    t.bigint "category_id"
-    t.bigint "artist_board_id"
+    t.bigint "category_id", null: false
+    t.bigint "artist_board_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["artist_board_id"], name: "index_categorizes_on_artist_board_id"
     t.index ["category_id"], name: "index_categorizes_on_category_id"
+  end
+
+  create_table "contacts", force: :cascade do |t|
+    t.string "email", null: false
+    t.text "message", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "event_comments", force: :cascade do |t|
@@ -78,15 +85,15 @@ ActiveRecord::Schema.define(version: 2020_02_03_045744) do
   end
 
   create_table "fans", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "artist_board_id"
+    t.integer "user_id", null: false
+    t.integer "artist_board_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "favorites", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "board_comment_id"
+    t.bigint "user_id", null: false
+    t.bigint "board_comment_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["board_comment_id"], name: "index_favorites_on_board_comment_id"
@@ -109,8 +116,8 @@ ActiveRecord::Schema.define(version: 2020_02_03_045744) do
   end
 
   create_table "participants", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "event_id"
+    t.bigint "user_id", null: false
+    t.bigint "event_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_participants_on_event_id"
@@ -118,8 +125,8 @@ ActiveRecord::Schema.define(version: 2020_02_03_045744) do
   end
 
   create_table "relationships", force: :cascade do |t|
-    t.integer "follower_id"
-    t.integer "followed_id"
+    t.integer "follower_id", null: false
+    t.integer "followed_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["followed_id"], name: "index_relationships_on_followed_id"
@@ -147,7 +154,7 @@ ActiveRecord::Schema.define(version: 2020_02_03_045744) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
-    t.boolean "admin", default: false
+    t.boolean "admin", default: false, null: false
     t.string "uid"
     t.string "provider"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

@@ -1,61 +1,48 @@
 <div class="container-fluid">
-
-
-
   <h6 class="text-center text-muted pt-5">ユーザー一覧</h6>
-    <h2 class="text-center font-weight-bold pb-4">気になったユーザーをフォローしよう</h2>
-<div class="d-flex justify-content-center my-4">
-
-    <div class="list-group-flush col-9">
+  <h2 class="text-center font-weight-bold pb-4">気になったユーザーをフォローしよう</h2>
+  <div class="row d-flex justify-content-center my-4">
+    <div class="list-group-flush col-11 col-xl-9">
       <% @users.each do |user| %>
       <div class="list-group-item">
         <div class="row">
           <div class="col-3 text-center mt-4">
-      <%= link_to user_path(user) do %>
-      <% if user.profile_image? %>
-      <%= image_tag "#{user.profile_image}", :size =>'75x75',class:"rounded-circle z-depth-1" %>
-      <% else %>
-      <%= image_tag 'default.jpg', :size =>'75x75',class:"rounded-circle z-depth-1" %>
-      <% end %>
-      <% end %>
-      <h5><%= user.name %></h5>
-      </div>
-      <div class="col-6 border-bottom">
-        <h6 class="text-center text-muted">プロフィール</h6>
-      <p><%= user.profile %></p>
-      </div>
-
-      <div class="col-3 text-center">
-
-
-
-      <%= render 'follow_form', user: user %>
-
-
-      <%= link_to relationship_path(user.id) do %>
-      <button type="button" class="btn btn-outline-primary btn-white waves-effect">友達を確認する</button>
-
-      <% end %>
-      </div>
-    </div>
-  </div>
-
-            <div>
+            <%= link_to user_path(user) do %>
+            <% if user.profile_image? %>
+              <%= image_tag "#{user.profile_image}", :size =>'75x75',class:"rounded-circle z-depth-1" %>
+            <% else %>
+              <%= image_tag 'default.jpg', :size =>'75x75',class:"rounded-circle z-depth-1" %>
+            <% end %>
+            <% end %>
+            <h5><%= user.name %></h5>
+            <div class="">
               <% if current_user.admin? || current_user.id == user.id %>
                 <%= link_to edit_user_path(user) do %>
-                <button type="button" class="btn-sm btn-outline-danger waves-effect">編集</button>
+                  <button type="button" class="btn-sm btn-outline-danger waves-effect">編集する</button>
                 <% end %>
-                <%= link_to users_path, method: :delete, data: { confirm: '本当に削除しますか?' } do %>
-                <button type="button" class="btn-sm btn-outline-danger waves-effect">削除</button>
+                <%= link_to users_path, method: :delete, data: { confirm: '本当に退会しますか?' } do %>
+                  <button type="button" class="btn-sm btn-outline-danger waves-effect">退会する</button>
                 <% end %>
               <% end %>
             </div>
+          </div>
+          <div class="col-6 border-bottom">
+            <h6 class="text-center text-muted">プロフィール</h6>
+            <p><%= user.profile %></p>
+          </div>
+          <div class="col-3 text-center">
+            <%= render 'follow_form', user: user %>
+            <%= link_to user_path(user.id) do %>
+              <button type="button" class="btn btn-outline-primary btn-white waves-effect">友達を確認する</button>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
 
-<% end %>
-</div>
-</div>
-
-<div class="d-flex justify-content-center mb-4">
-<%= paginate @users %>
-</div>
+  <div class="d-flex justify-content-center mb-4">
+    <%= paginate @users %>
+  </div>
 </div>

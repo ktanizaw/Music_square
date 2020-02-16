@@ -1,0 +1,41 @@
+<section class="mb-4">
+    <h2 class="h1-responsive font-weight-bold text-center my-4">お問い合わせフォーム</h2>
+    <p class="text-center w-responsive mx-auto mb-5">何かご質問がありましたら以下よりお問い合わせください。</p>
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-9 col-lg-7 col-xl-5 mb-md-0 mb-5">
+              <%= form_for @contact, url: contacts_create_path do |f| %>
+              <% if @contact.errors.any? %>
+                <div class="alert alert-error alert-secondary text-center"　id="error_explanation">
+                  <h2>入力内容に不備があります。</h2>
+                  <ul>
+                  <% @contact.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                  </ul>
+                </div>
+              <% end %>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group mb-0">
+                          <%= f.label :email, '返信先メールアドレス' %>
+                          <%= f.text_field :email, class: 'form-control' %>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <%= f.label :message, 'お問い合わせ内容' %>
+                            <%= f.text_area :message, size: '10x10', class: 'form-control' %>
+                        </div>
+
+                    </div>
+                </div>
+            <div class="text-center my-4">
+              <%= f.submit '送信する', class:"btn blue-gradient btn-block z-depth-1a submit-btn" %>
+            </div>
+            <% end %>
+        </div>
+    </div>
+</section>

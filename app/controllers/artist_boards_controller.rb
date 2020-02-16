@@ -1,5 +1,6 @@
 class ArtistBoardsController < ApplicationController
   before_action :set_artistboard, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   require 'rspotify'
   RSpotify.authenticate(ENV['SPOTIFY_CLIENT_ID'], ENV['SPOTIFY_SECRET_ID'])

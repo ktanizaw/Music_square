@@ -1,113 +1,111 @@
 <div class="container-fluid">
+  <div class="row d-flex justify-content-center pt-4">
+    <div class="col-10 col-lg-8 col-xl-6 mb-3 mb-md-0">
+      <div class="card py-4">
+        <div class="card-body">
+          <div class="row pl-3">
+            <% if @event.image? %>
+              <%= image_tag "#{@event.image}",:size =>'200x200', class:"border" %>
+            <% else %>
+              <%= image_tag 'default.jpg',:size =>'200x200', class:"border" %>
+            <% end %>
+            <div class="text-center">
+              <% if @event.owner.profile_image? %>
+                <%= image_tag "#{@event.owner.profile_image}", :size =>'100x100',class:"rounded-circle" %>
+              <% else %>
+                <%= image_tag 'default.jpg', :size =>'100x100',class:"rounded-circle" %>
+              <% end %>
+              <p>オーナー：<%= @event.owner.name %></p>
+            </div>
+          </div>
 
-<div class="row d-flex justify-content-center pt-4">
-  <div class="col-sm-6 mb-3 mb-md-0">
-    <div class="card py-4">
-      <div class="card-body">
-        <div class="row pl-3">
-        <% if @event.image? %>
-        <%= image_tag "#{@event.image}",:size =>'200x200', class:"border" %>
-        <% else %>
-        <%= image_tag 'default.jpg',:size =>'200x200', class:"border" %>
-        <% end %>
-        <div class="col-4">
-        <% if @event.owner.profile_image? %>
-        <%= image_tag "#{@event.owner.profile_image}", :size =>'100x100',class:"rounded-circle" %>
-        <% else %>
-        <%= image_tag 'default.jpg', :size =>'100x100',class:"rounded-circle" %>
-        <% end %>
-        <p>オーナー：<%= @event.owner.name %></p>
+          <div class="event-content">
+            <div class="row pl-3 pt-3 d-flex align-items-center">
+              <h5 class="card-title font-weight-bold"><%= @event.title %></h5>
+            </div>
+            <div class="row pl-3 mb-2">
+              <% @event.labels.each do |label| %>
+                <span class="badge badge-pill badge-warning d-flex align-items-center mr-2"><%= label.name %></span>
+              <% end %>
+            </div>
+            <div class="row pl-3">
+              <h6>開催日時：<%= @event.date.to_s(:published_on) %></h6>
+              <h6 class="pl-4">開催場所：<%= @event.place %></h6>
+            </div>
+            <div class="row pl-3">
+              <h6>締切日時：<%= @event.deadline.to_s(:published_on) %></h6>
+            </div>
+              <h6>制限人数：<%= @event.capacity %>人</h6>
+              <h5 class="font-weight-bold">詳細</h5>
+              <%= @event.content %>
+          </div>
         </div>
-        </div>
-        <div class="event-content">
-        <div class="row pl-3 pt-3 d-flex align-items-center">
-        <h5 class="card-title font-weight-bold"><%= @event.title %></h5>
-        <% @event.labels.each do |label| %>
-        <span class="badge badge-pill badge-warning d-flex align-items-center ml-4"><%= label.name %></span>
-        <% end %>
-        </div>
-        <div class="row pl-3">
-        <h6>開催日時：<%= @event.date.to_s(:published_on) %></h6>
-        <h6 class="pl-4">開催場所：<%= @event.place %></h6>
-        </div>
-        <div class="row pl-3">
-        <h6>締切日時：<%= @event.deadline.to_s(:published_on) %></h6>
-        </div>
-        <h6>制限人数：<%= @event.capacity %>人</h6>
 
-          <h5 class="font-weight-bold">詳細</h5>
-          <%= @event.content %>
+        <div class="pl-4">
+          <% if current_user.admin? || current_user.id == @event.owner_id %>
+            <%= link_to edit_artist_board_event_path(@event.artist_board.artists, @event) do %>
+              <button type="button" class="btn-sm btn-outline-danger waves-effect">編集</button>
+            <% end %>
+            <%= link_to artist_board_event_path(@event.artist_board.artists, @event), method: :delete, data: { confirm: '本当に削除しますか?' } do %>
+              <button type="button" class="btn-sm btn-outline-danger waves-effect">削除</button>
+            <% end %>
+          <% else %>
+          <% end %>
         </div>
       </div>
 
-      <div class="pl-4">
-        <% if current_user.admin? || current_user.id == @event.owner_id %>
-        <%= link_to edit_artist_board_event_path(@event.artist_board.artists, @event) do %>
-        <button type="button" class="btn-sm btn-outline-danger waves-effect">編集</button>
-        <% end %>
-        <%= link_to artist_board_event_path(@event.artist_board.artists, @event), method: :delete, data: { confirm: '本当に削除しますか?' } do %>
-        <button type="button" class="btn-sm btn-outline-danger waves-effect">削除</button>
-        <% end %>
-        <% else %>
-      <% end %>
+      <div class="participant-form border my-4 p-4 text-center">
+        <h3 class="font-weight-bold pb-2">このイベントに参加しますか？</h3>
+          <% unless @event.owner == current_user %>
+            <% if @participant.present? %>
+              <%= link_to participant_path(id: @event.id), method: :delete do %>
+                <button type="button" class="btn btn-outline-danger rounded-pill waves-effect submit-btn">参加取消</button>
+              <% end %>
+            <% else %>
+              <%= link_to participants_path(id: @event.id), method: :post do %>
+                <button type="button" class="btn btn-outline-warning rounded-pill waves-effect submit-btn">参加する</button>
+              <% end %>
+            <% end %>
+          <% end %>
       </div>
-  </div>
 
-    <div class="participant-form border my-4 p-4 text-center">
-      <h3 class="font-weight-bold pb-2">このイベントに参加しますか？</h3>
-    <% unless @event.owner == current_user %>
-    <% if @participant.present? %>
-        <%= link_to participant_path(id: @event.id), method: :delete do %>
-        <button type="button" class="btn btn-outline-danger rounded-pill waves-effect submit-btn">参加取消</button>
+      <h2 class="text-center font-weight-bold py-4">参加者一覧</h2>
+      <ul class="row list-group list-group-horizontal">
+        <% @event.participant_users.each do |user| %>
+          <%= link_to user_path(user) do %>
+            <li class="list-group-item col-2 text-center mb-1">
+              <% if user.profile_image? %>
+                <%= image_tag "#{user.profile_image}", :size =>'50x50',class:"rounded-circle" %>
+              <% else %>
+                <%= image_tag 'default.jpg', :size =>'50x50',class:"rounded-circle" %>
+              <% end %>
+          <% end %>
+          <p><%= user.name %></p>
+            </li>
         <% end %>
-      <% else %>
-        <%= link_to participants_path(id: @event.id), method: :post do %>
-        <button type="button" class="btn btn-outline-warning rounded-pill waves-effect submit-btn">参加する</button>
+      </ul>
+
+      <h2 class="text-center font-weight-bold py-4">コメント</h2>
+      <div class="row" id="event_comments_area">
+        <%= render partial: 'event_comments/index', locals: { event_comments: @eventcomments } %>
+      </div>
+
+      <div class="row d-flex justify-content-center" id="event_comments_form">
+        <% if user_signed_in? %>
+          <%= render partial: 'event_comments/form', locals: { event_comment: @eventcomment, event: @event } %>
         <% end %>
-    <% end %>
-    <% end %>
+      </div>
+
+      <div class="d-flex justify-content-center my-4">
+        <%= paginate @eventcomments %>
+      </div>
+
+      <div class="text-center py-4">
+        <%= link_to events_path do %>
+          <button type="button" class="btn btn-outline-primary waves-effect link-btn">イベント一覧へ</button>
+        <% end %>
+      </div>
+
+    </div>
   </div>
-
-  <h2 class="text-center font-weight-bold py-4">参加者一覧</h2>
-  <ul class="list-group list-group-horizontal row">
-<% @event.participant_users.each do |user| %>
-<%= link_to user_path(user) do %>
-<li class="list-group-item col-2 text-center mb-1">
-<% if user.profile_image? %>
-<%= image_tag "#{user.profile_image}", :size =>'50x50',class:"rounded-circle" %>
-<% else %>
-<%= image_tag 'default.jpg', :size =>'50x50',class:"rounded-circle" %>
-<% end %>
-<% end %>
-<p><%= user.name %></p>
-</li>
-<% end %>
-</ul>
-
-
-
-<h2 class="text-center font-weight-bold py-4">コメント</h2>
-<div class="row" id="event_comments_area">
-  <%= render partial: 'event_comments/index', locals: { event_comments: @eventcomments } %>
-</div>
-<div class="row d-flex justify-content-center" id="event_comments_form">
-<% if user_signed_in? %>
-<%= render partial: 'event_comments/form', locals: { event_comment: @eventcomment, event: @event } %>
-<% end %>
-
-</div>
-
-<div class="d-flex justify-content-center my-4">
-  <%= paginate @eventcomments %>
-</div>
-
-<div class="text-center py-4">
-<%= link_to events_path do %>
-<button type="button" class="btn btn-outline-primary waves-effect link-btn">戻る</button>
-<% end %>
-</div>
-
-</div>
-
-</div>
 </div>

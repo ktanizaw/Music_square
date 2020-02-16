@@ -29,11 +29,16 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'omniauth'
   gem 'omniauth-facebook'
-  gem "omniauth-rails_csrf_protection"
+  gem 'omniauth-rails_csrf_protection'
   gem 'rack-mini-profiler', require: false
-  gem "bootstrap4-datetime-picker-rails"
+  gem 'bootstrap4-datetime-picker-rails'
   gem 'momentjs-rails'
-  gem "font-awesome-rails"
+  gem 'font-awesome-rails'
+  gem 'rspec-rails'
+  gem 'spring-commands-rspec'
+  gem 'factory_bot_rails'
+  gem 'launchy'
+  gem 'high_voltage'
 end
 
 group :development do
@@ -45,9 +50,8 @@ group :development do
 end
 
 group :test do
-  gem 'capybara', '>= 2.15'
-  gem 'selenium-webdriver'
-  gem 'chromedriver-helper'
+  gem 'capybara'
+  gem 'webdrivers'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

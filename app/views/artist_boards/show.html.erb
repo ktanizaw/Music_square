@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row justify-content-center my-4">
-    <div class="col-4">
+    <div class="col-6 col-xl-4">
       <div class="card card-cascade m-1">
         <div class="view view-cascade overlay">
           <% if @artistboard.icon? %>
@@ -35,9 +35,9 @@
     </div>
   </div>
 
-  <div class="row mb-4">
+  <div class="row mb-4 d-flex justify-content-center">
 <!-- 左側始まり -->
-    <div class="col-5">
+    <div class="col-10 col-xl-5 order-2 order-xl-1">
 
       <h6 class="text-center text-muted pt-4">イベント一覧</h6>
       <h2 class="text-center font-weight-bold pb-4"><%= @artistboard.artists %>掲示板のイベント</h2>
@@ -48,21 +48,26 @@
           <div class="list-group-item list-group-item-action border-bottom">
             <div class="row mb-0">
               <% if event.image? %>
-                <%= image_tag "#{event.image}",:size =>'93x93' ,class:"rounded-circle col-sm-2" %>
+                <%= image_tag "#{event.image}",:size =>'80x80' ,class:"rounded-circle col-sm-2" %>
               <% else %>
-                <%= image_tag 'default.jpg',:size =>'93x93' ,class:"rounded-circle col-sm-2" %>
+                <%= image_tag 'default.jpg',:size =>'80x80' ,class:"rounded-circle col-sm-2" %>
               <% end %>
-              <div class="col-sm-10">
-                <h5 class="font-weight-bold"><%= event.title %></h5>
-                <div class="row pl-3">
+              <div class="col-10">
+                <div class="row">
+                  <h5 class="font-weight-bold"><%= event.title %></h5>
+                  <p>(<%= event.artist_board.artists %>掲示板のイベント)</p>
+                </div>
+                <div class="row mb-2">
+                  <% event.labels.each do |label| %>
+                    <span class="badge badge-pill badge-warning d-flex align-items-center mr-2"><%= label.name %></span>
+                  <% end %>
+                </div>
+                <div class="row">
                   <h6>開催日時：<%= event.date.to_s(:published_on) %></h6>
                   <h6 class="pl-4">開催場所：<%= event.place %></h6>
                 </div>
-                <div class="row pl-3">
+                <div class="row">
                   <h6>締切日時：<%= event.deadline.to_s(:published_on) %></h6>
-                  <% event.labels.each do |label| %>
-                  <span class="badge badge-pill badge-warning d-flex align-items-center ml-4"><%= label.name %></span>
-                  <% end %>
                 </div>
               </div>
             </div>
@@ -93,7 +98,7 @@
     </div>
 
 <!-- 右側始まり -->
-    <div class="col-7">
+    <div class="col-10 col-xl-7 order-1 order-xl-2">
 
       <h6 class="text-center text-muted mt-4">コメント一覧</h6>
       <h2 class="text-center font-weight-bold mb-4"><%= @artistboard.artists %>について語ろう！</h2>

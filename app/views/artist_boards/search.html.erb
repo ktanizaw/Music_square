@@ -1,4 +1,4 @@
-<section class="text-center py-5">
+<section class="h-100 text-center py-5">
   <div class="row d-flex justify-content-center">
     <div class="col-md-9 col-lg-7 col-xl-5">
       <h6 class="text-muted pt-5">アーティスト検索</h6>
@@ -16,8 +16,8 @@
   <% if @searchartists.present? %>
   <h2 class="font-weight-bold my-4">検索結果</h2>
   <div class="row row-cols-1 row-cols-md-4">
-    <% @searchartists.each do |searchartist| %>
-    <div class="col mb-4 d-flex justify-content-center">
+    <% @searchartists.each_with_index do |searchartist, index| %>
+    <div class="col-lg-3 mb-4 d-flex justify-content-center">
       <div class="card card-cascade m-1">
         <div class="view view-cascade overlay">
           <% if searchartist.images.any?%>
@@ -29,17 +29,17 @@
         </div>
 
         <div class="card-body card-body-cascade">
-          <h4 class="card-title"><%= searchartist.name %></h4>
+            <h4 class="card-title"><%= searchartist.name %></h4>
           <% if @artistboards.pluck("artists").include?(searchartist.name) %>
             <%= link_to artist_board_path(searchartist.name) do %>
               <button type="button" class="btn btn-outline-primary waves-effect link-btn">掲示板へ飛ぶ！</button>
             <%end%>
           <% elsif searchartist.images.present? %>
-            <%= link_to new_artist_board_path(artists: searchartist.name, icon: image["url"]) do %>
+            <%= link_to new_artist_board_path(artists: searchartist.name, icon: image["url"]), id: "link-#{index}" do %>
               <button type="button" class="btn btn-outline-primary waves-effect link-btn">掲示板を作成！</button>
             <%end%>
           <% else %>
-            <%= link_to new_artist_board_path(artists: searchartist.name) do %>
+            <%= link_to new_artist_board_path(artists: searchartist.name), id: "link-#{index}" do %>
               <button type="button" class="btn btn-outline-primary waves-effect link-btn">掲示板を作成！</button>
             <%end%>
           <%end%>

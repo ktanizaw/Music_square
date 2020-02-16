@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  # before_action :authenticate_user!
+  before_action :authenticate_user!
+
   PER_USER = 10
   PER_BOARD = 8
 
@@ -9,7 +10,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @fan_artists = @user.fan_artistboards.page(params[:page]).per(PER_BOARD)
+    @fan_artists = @user.fan_artistboards.includes([:categorizes]).includes([:categories]).page(params[:page]).per(PER_BOARD)
   end
 
   def new

@@ -14,15 +14,15 @@
 
 <div class="col-10">
   <div class="comment">
-      <% if boardcomment.picture? %>
+    <% if boardcomment.picture? %>
       <%= image_tag "#{boardcomment.picture}", :size =>'200x150', class:"text-center" %>
-      <% end %>
-        <p><%= boardcomment.content %></p>
-        <% if boardcomment.user == current_user %>
-          <%= link_to '削除', artist_board_board_comment_path(boardcomment.artist_board.artists, boardcomment.id), method: :delete, remote: true, data: { confirm: '本当に削除しますか?' } %>
-        <% end %>
-
-        <%= render partial: 'artist_boards/favorite_btn', locals: { board_comment: boardcomment } %>
-        </div>
+    <% end %>
+    <p><%= boardcomment.content %></p>
+    <% if boardcomment.user == current_user %>
+      <%= link_to '削除', artist_board_board_comment_path(boardcomment.artist_board.artists, boardcomment.id), method: :delete, remote: true, data: { confirm: '本当に削除しますか?' } %>
+    <% end %>
+    <%= render partial: 'artist_boards/favorite_btn', locals: { board_comment: boardcomment } %>
+  </div>
 </div>
-  <% end %>
+
+<% end %>

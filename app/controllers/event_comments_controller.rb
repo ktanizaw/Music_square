@@ -4,23 +4,20 @@ class EventCommentsController < ApplicationController
   def create
     @eventcomment = @event.event_comments.build(eventcomment_params)
     @eventcomment.user_id = current_user.id
-    respond_to do |format|
-      if @eventcomment.save
-        format.js { render :index }
-      else
-      format.html { redirect_to artist_board_event_path(@event.artist_board.artists, @event), alert: '空欄では投稿できません。' }
-      end
+    if @eventcomment.save
+      render 'index.js.erb'
+    else
+      redirect_to artist_board_event_path(@event.artist_board.artists, @event), alert: '空欄では投稿できません。'
     end
   end
 
   def destroy
     @eventcomment = EventComment.find(params[:id])
-    respond_to do |format|
-      if @eventcomment.destroy
-        format.js { render :index }
-      end
+    if @eventcomment.destroy
+      render 'index.js.erb'
     end
   end
+
 
   private
 

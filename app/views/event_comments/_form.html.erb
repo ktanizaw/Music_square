@@ -1,14 +1,12 @@
 <div class="col-12">
+  <%= form_with(model: [event, event_comment]) do |f| %>
+    <div class="form-group">
+      <%= f.label :content %>
+      <%= f.text_area :content, class:"form-control" %>
+    </div>
 
-<%= form_with(model: [event, event_comment]) do |f| %>
-
-  <div class="form-group">
-    <%= f.label :content %>
-    <%= f.text_area :content, class:"form-control" %>
-  </div>
-
-  <div class="text-center my-3">
-    <%= f.submit "投稿する", class:"btn blue-gradient z-depth-1a submit-btn" %>
-  </div>
-<% end %>
+    <div class="text-center my-3">
+      <%= f.submit "投稿する", class:"btn blue-gradient z-depth-1a submit-btn" %>
+    </div>
+  <% end %>
 </div>

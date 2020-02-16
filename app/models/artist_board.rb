@@ -6,9 +6,6 @@ class ArtistBoard < ApplicationRecord
   has_many :categories, through: :categorizes
   has_many :events, dependent: :destroy
 
-  validates :artists,
-    length:{maximum: 255}, uniqueness: true
-
   mount_uploader :icon, IconUploader
 
   scope :get_by_artists, ->(artists) {
