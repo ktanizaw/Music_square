@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
-  root 'artist_boards#index'
-
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+
+  devise_scope :user do
+    root "users/registrations#new"
+  end
+
   devise_for :users, :controllers => {
    :registrations => 'users/registrations',
    :sessions => 'users/sessions',
