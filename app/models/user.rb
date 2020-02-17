@@ -12,8 +12,8 @@ class User < ApplicationRecord
   has_many :event_comments, dependent: :destroy
   has_many :participants, dependent: :destroy
 
-  # validates :name, presence: { message: 'に不備があります。' },
-  #             uniqueness: true, length: { maximum: 24 }
+  validates :name, presence: { message: 'に不備があります。' },
+              uniqueness: true, length: { maximum: 24 }
 
   before_save { self.email = email.downcase }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
