@@ -30,7 +30,6 @@ group :development, :test do
   gem 'omniauth'
   gem 'omniauth-facebook'
   gem 'omniauth-rails_csrf_protection'
-  gem 'rack-mini-profiler', require: false
   gem 'bootstrap4-datetime-picker-rails'
   gem 'momentjs-rails'
   gem 'font-awesome-rails'
@@ -39,6 +38,8 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'launchy'
   gem 'high_voltage'
+  gem 'rack-mini-profiler', require: false
+  gem 'rails_best_practices', require: false
 end
 
 group :development do

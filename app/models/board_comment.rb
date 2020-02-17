@@ -6,9 +6,5 @@ class BoardComment < ApplicationRecord
 
   validates :content, presence: true, length: { maximum: 255 }
 
-  def favorite_user(user_id)
-    favorites.find_by(user_id: user_id)
-  end
-
   mount_uploader :picture, PictureUploader
 end

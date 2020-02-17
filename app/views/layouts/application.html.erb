@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:400,700&display=swap" rel="stylesheet">
 
   <body>
-    <!-- <div class="wrapper"> -->
+    <div class="wrapper">
       <nav class="mb-1 navbar navbar-expand-lg navbar-dark black lighten-1 sticky-top">
         <% if user_signed_in? %>
         <%= link_to 'Music Square', artist_boards_path, class:"navbar-brand" %>
@@ -108,7 +108,7 @@
               <%= link_to 'プライバシーポリシー', page_path('privacy') %>
             </li>
             <li>
-              <%= link_to 'お問い合わせフォーム', contacts_new_path %>      
+              <%= link_to 'お問い合わせフォーム', contacts_new_path %>
             </li>
           </ul>
         </div>
@@ -117,5 +117,6 @@
           </div>
         </div>
       </footer>
+    </div>
   </body>
 </html>

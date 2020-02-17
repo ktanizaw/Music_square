@@ -1,10 +1,12 @@
 # README
 
 # Music Square
+![top-image](https://user-images.githubusercontent.com/57241393/74602461-05eacf80-50ec-11ea-9626-d1c5c260f7d5.png)
 
 # 概要
-Music Squareは音楽の好きな人たちが交流・情報交換・イベント作成のできるアプリケーションです。 アプリケーション内には好きなアーティストごとに掲示板が用意されています。
-自分自身でイベントを作成することもできますので、ユーザー同士で交流・情報交換を行ってください。
+Music Squareは音楽の好きな人たちが交流するためのプラットフォームです。
+アプリケーション内にはアーティストごとに掲示板を作成することができます。
+また、アーティストごとにイベントを作成することもできますので、ユーザー同士で交流・情報交換を行ってください。
 
 # バージョン情報
 - Ruby 2.6.5
@@ -13,21 +15,25 @@ Music Squareは音楽の好きな人たちが交流・情報交換・イベン�
 # 機能一覧
 
 - ログイン機能
-    - SNSログイン機能（twitter,facebook,instagram）
+    - SNSログイン機能（facebook）
 - ユーザー登録機能
     - 名前、メールアドレス、パスワード必須。
 - ユーザーフォロー機能
 - 掲示板作成・編集・削除機能
-    - 管理人のみ。
     - カテゴリラベル追加機能。
 - 掲示板お気に入り機能
+- 掲示板名検索機能
+- 掲示板カテゴリ検索機能
 - 掲示板へのコメント投稿機能
     - 掲示板へのコメントお気に入り機能
 - イベント作成・編集・削除機能
     - イベントラベル追加機能
+- イベント名検索機能
+- イベントラベル検索機能
 - イベント参加表明機能
 - イベントへのコメント投稿機能
     - イベントへのコメントお気に入り機能
+
 
 # カタログ設計
 https://docs.google.com/spreadsheets/d/1dJhQ_BB5qmhHEaP-dJf8tWmuZ_pMsdKY6asXO23vFPA/edit#gid=0
@@ -39,11 +45,20 @@ https://docs.google.com/spreadsheets/d/1dJhQ_BB5qmhHEaP-dJf8tWmuZ_pMsdKY6asXO23v
 https://docs.google.com/spreadsheets/d/1dJhQ_BB5qmhHEaP-dJf8tWmuZ_pMsdKY6asXO23vFPA/edit#gid=1802698256
 # ワイヤーフレーム
 https://docs.google.com/spreadsheets/d/1dJhQ_BB5qmhHEaP-dJf8tWmuZ_pMsdKY6asXO23vFPA/edit#gid=91892871
-# 使用予定Gem
-- carrierwave
-- devise
-- kaminari
 
-# 使用技術
-就業Termから少なくとも2つ：AWS、devise
-カリキュラム外から１つ以上：Spotify APIかApple music API、Docker、SNSログイン
+# 使用Gem
+- carrierwave
+- mini_magick
+- devise
+- rails_admin
+- kaminari
+- bullet
+- cancancan
+- rspotify
+- dotenv-rails
+- omniauth
+- omniauth-facebook
+- omniauth-rails_csrf_protection
+- momentjs-rails
+- font-awesome-rails
+- high_voltage

@@ -16,8 +16,13 @@
 @import "font-awesome";
 @import "tempusdominus-bootstrap-4.css";
 
+html {
+  height: 100%;
+}
+
 body {
   font-family: 'Noto Sans JP', sans-serif;
+  height: 100%;
   }
 
 .navbar-brand {
@@ -29,25 +34,23 @@ body {
   font-family: 'Rock Salt', cursive;
 }
 
-//
-// html,
-// body {
-//   height: 100%;
-// }
+.inner {
+  padding-bottom:200px;
+}
 
-// .inner {
-//   height:100%;
-//   width:100%;
-// }
-
-// .wrapper {
-//   height: 100%;
-// }
+.wrapper {
+  width: 100%;
+  position: relative;
+  height:auto !important; /*IE6対策*/
+  height: 100%; /*IE6対策*/
+  min-height: 100%;
+}
 
 .page-footer{
   width:100%;
-  // position: absolute;
-  // bottom: 0;
+  height:200px;
+  position: absolute;
+  bottom: 0;
 }
 
 .carousel-item h1 {
