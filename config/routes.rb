@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'users/registrations#new'
+  root 'artist_boards#index'
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users, :controllers => {
