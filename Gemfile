@@ -31,10 +31,10 @@ gem 'bootstrap4-datetime-picker-rails'
 gem 'momentjs-rails'
 gem 'font-awesome-rails'
 gem 'high_voltage'
+gem 'faker'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'faker'
   gem 'rspec-rails'
   gem 'spring-commands-rspec'
   gem 'factory_bot_rails'
