@@ -15,29 +15,30 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'bootsnap', '>= 1.1.0', require: false
 
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'devise'
+gem 'bcrypt', '3.1.13'
+gem 'rails_admin', '~> 2.0'
+gem 'cancancan'
+gem 'bullet'
+gem 'rspotify'
+gem 'dotenv-rails'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-rails_csrf_protection'
+gem 'bootstrap4-datetime-picker-rails'
+gem 'momentjs-rails'
+gem 'font-awesome-rails'
+gem 'high_voltage'
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'carrierwave'
-  gem 'mini_magick'
-  gem 'devise'
-  gem 'bcrypt', '3.1.13'
-  gem 'rails_admin', '~> 2.0'
-  gem 'cancancan'
-  gem 'bullet'
   gem 'faker'
-  gem 'rspotify'
-  gem 'dotenv-rails'
-  gem 'omniauth'
-  gem 'omniauth-facebook'
-  gem 'omniauth-rails_csrf_protection'
-  gem 'bootstrap4-datetime-picker-rails'
-  gem 'momentjs-rails'
-  gem 'font-awesome-rails'
   gem 'rspec-rails'
   gem 'spring-commands-rspec'
   gem 'factory_bot_rails'
   gem 'launchy'
-  gem 'high_voltage'
   gem 'rack-mini-profiler', require: false
   gem 'rails_best_practices', require: false
 end
