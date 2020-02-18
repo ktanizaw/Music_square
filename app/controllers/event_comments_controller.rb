@@ -1,6 +1,5 @@
 class EventCommentsController < ApplicationController
-  before_action :set_event, only: [:create]
-  before_action :set_eventcomment, only: [:destroy]
+  before_action :set_event, only: [:create, :destroy]
 
   def create
     @eventcomment = @event.event_comments.build(eventcomment_params)
@@ -13,6 +12,7 @@ class EventCommentsController < ApplicationController
   end
 
   def destroy
+    @eventcomment = current_user.event_comments.find(params[:id])
     if @eventcomment.destroy
       render 'index.js.erb'
     end
@@ -22,10 +22,6 @@ class EventCommentsController < ApplicationController
 
   def set_event
     @event = Event.find(params[:event_id])
-  end
-
-  def set_eventcomment
-    @eventcomment = EventComment.find(params[:id])
   end
 
   def eventcomment_params

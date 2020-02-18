@@ -12,7 +12,7 @@ class BoardCommentsController < ApplicationController
   end
 
   def destroy
-    @boardcomment = BoardComment.find(params[:id])
+    @boardcomment = current_user.board_comments.find(params[:id])
     if @boardcomment.destroy
       render 'index.js.erb'
     end
