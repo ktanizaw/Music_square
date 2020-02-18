@@ -12,12 +12,11 @@ class EventCommentsController < ApplicationController
   end
 
   def destroy
-    @eventcomment = EventComment.find(params[:id])
+    @eventcomment = current_user.event_comments.find(params[:id])
     if @eventcomment.destroy
       render 'index.js.erb'
     end
   end
-
 
   private
 
