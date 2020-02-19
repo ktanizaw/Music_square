@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, only: [:show, :destroy]
-  before_action :ensure_correct_user, only: [:edit, :update]
+  before_action :set_user, only: [:show, :update, :destroy]
+  before_action :ensure_correct_user, only: [:edit]
 
   PER_USER = 10
   PER_BOARD = 8

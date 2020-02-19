@@ -1,6 +1,7 @@
 class ArtistBoardsController < ApplicationController
   before_action :set_artistboard, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  before_action :user_admin, only: [:edit]
 
   require 'rspotify'
   RSpotify.authenticate(ENV['SPOTIFY_CLIENT_ID'], ENV['SPOTIFY_SECRET_ID'])
@@ -72,5 +73,11 @@ class ArtistBoardsController < ApplicationController
 
   def artistboard_params
     params.require(:artist_board).permit(:artists, :albums, :profiles, :icon, :icon_cache, { category_ids: [] })
+  end
+
+  def user_admin
+    unless  current_user.admin?
+      redirect_to artist_boards_path, notice: "権限がありません"
+    end
   end
 end
