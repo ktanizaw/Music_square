@@ -2,6 +2,7 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_action :set_artistboard, only: [:show, :edit, :update, :create, :destroy]
   before_action :authenticate_user!
+  before_action :ensure_correct_user, only: [:edit, :update]
 
   PER_EVENT = 6
   PER_EVENT_COMMENT = 5
@@ -63,5 +64,11 @@ class EventsController < ApplicationController
 
   def event_params
     params.require(:event).permit(:artist_board_id, :owner_id, :title, :place, :date, :content, :deadline, :capacity, :image, :image_cache, { label_ids: [] })
+  end
+
+  def ensure_correct_user
+    if @event.owner_id != current_user.id
+      redirect_to events_path, notice: "権限がありません"
+    end
   end
 end
