@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :destroy]
+  before_action :ensure_correct_user, only: [:edit, :update]
 
   PER_USER = 10
   PER_BOARD = 8
@@ -50,5 +51,12 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :profile, :profile_image, :profile_image_cache, :password_digest)
+  end
+
+  def ensure_correct_user
+    @user = User.find(params[:id])
+    if @user.id != current_user.id
+      redirect_to users_path, notice: "権限がありません"
+    end
   end
 end
