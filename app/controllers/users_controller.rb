@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @fan_artists = @user.fan_artistboards.includes(categorizes: :category).page(params[:page]).per(PER_BOARD)
+    @fan_artists = @user.fan_artistboards.includes(:categories).page(params[:page]).per(PER_BOARD)
   end
 
   def new
