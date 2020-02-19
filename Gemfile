@@ -35,13 +35,12 @@ gem 'omniauth-rails_csrf_protection'
 gem 'rails_admin', '~> 2.0'
 gem 'rspotify'
 gem 'unicorn'
-gem 'capistrano-bundler'
-
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'bcrypt_pbkdf'
   gem 'capistrano', '3.6.0'
+  gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
   gem 'capistrano3-unicorn'
