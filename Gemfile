@@ -38,18 +38,19 @@ gem 'unicorn'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'bcrypt_pbkdf'
   gem 'capistrano', '3.6.0'
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
   gem 'capistrano3-unicorn'
-  gem 'rspec-rails'
-  gem 'spring-commands-rspec'
+  gem 'ed25519'
   gem 'factory_bot_rails'
   gem 'launchy'
+  gem 'spring-commands-rspec'
+  gem 'rspec-rails'
   gem 'rack-mini-profiler', require: false
   gem 'rails_best_practices', require: false
-
 end
 
 group :development do
