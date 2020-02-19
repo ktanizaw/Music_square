@@ -26,6 +26,7 @@ gem 'faker'
 gem 'fog-aws'
 gem 'font-awesome-rails'
 gem 'high_voltage'
+gem 'mini_racer', platforms: :ruby
 gem 'mini_magick'
 gem 'momentjs-rails'
 gem 'omniauth'
@@ -33,15 +34,22 @@ gem 'omniauth-facebook'
 gem 'omniauth-rails_csrf_protection'
 gem 'rails_admin', '~> 2.0'
 gem 'rspotify'
+gem 'unicorn'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'capistrano', '3.6.0'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano3-unicorn'
   gem 'rspec-rails'
   gem 'spring-commands-rspec'
   gem 'factory_bot_rails'
   gem 'launchy'
   gem 'rack-mini-profiler', require: false
   gem 'rails_best_practices', require: false
+
 end
 
 group :development do
