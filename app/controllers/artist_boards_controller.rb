@@ -33,9 +33,9 @@ class ArtistBoardsController < ApplicationController
 
   def show
     @boardcomment = BoardComment.new
-    @boardcomments = @artistboard.board_comments.includes([:user]).page(params[:page]).per(PER_COMMENT)
+    @boardcomments = @artistboard.board_comments.includes([:user]).order(id: "DESC").page(params[:boardcomment_page]).per(PER_COMMENT)
     @event = Event.new
-    @events = @artistboard.events.includes([:labellings]).includes([:labels]).page(params[:page]).per(PER_EVENT)
+    @events = @artistboard.events.includes([:labellings]).includes([:labels]).page(params[:event_page]).per(PER_EVENT)
     @fan = current_user.fans.find_by(artist_board_id: @artistboard.id)
   end
 

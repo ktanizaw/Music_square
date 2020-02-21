@@ -1,8 +1,11 @@
 class BoardCommentsController < ApplicationController
   before_action :set_artistboard, only: [:create, :destroy]
 
+  PER_COMMENT = 5
+
   def create
     @boardcomment = @artistboard.board_comments.build(boardcomment_params)
+    @boardcomments = @artistboard.board_comments.includes([:user]).order(id: "DESC").page(params[:boardcomment_page]).per(PER_COMMENT)
     @boardcomment.user_id = current_user.id
     if @boardcomment.save
       render 'index.js.erb'
