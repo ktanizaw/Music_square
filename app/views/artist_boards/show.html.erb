@@ -91,7 +91,7 @@
         <% end %>
 
         <div class="d-flex justify-content-center">
-          <%= paginate @events %>
+          <%= paginate @events, :param_name => 'event_page' %>
         </div>
 
       </div>
@@ -113,7 +113,7 @@
       </div>
 
       <div class="row mt-4 d-flex justify-content-center">
-        <%= paginate @boardcomments %>
+        <%= paginate @boardcomments, :param_name => 'boardcomment_page' %>
       </div>
     </div>
   </div>
