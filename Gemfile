@@ -30,7 +30,7 @@ gem 'mini_racer', platforms: :ruby
 gem 'mini_magick'
 gem 'momentjs-rails'
 gem 'omniauth'
-gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
 gem 'rails_admin', '~> 2.0'
 gem 'rspotify'

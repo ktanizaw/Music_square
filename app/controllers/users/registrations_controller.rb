@@ -34,6 +34,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
      super
   end
 
+  def build_resource(hash={})
+    hash[:uid] = User.create_unique_string
+    super
+  end
+
   # protected
   #
   # def configure_sign_up_params
@@ -53,11 +58,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   private
-    # def set_user
-    #   @user = User.find(params[:id])
-    # end
 
-    def user_params
-      params.require(:user).permit(:name, :email, :profile, :profile_image, :profile_image_cache, :encrypted_password, :password, :password_confirmation)
-    end
+  def user_params
+    params.require(:user).permit(:name, :email, :profile, :profile_image, :profile_image_cache, :encrypted_password, :password, :password_confirmation)
+  end
 end

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
    :sessions => 'users/sessions',
    :omniauth_callbacks => 'users/omniauth_callbacks'
   }
+
   resources :artist_boards, only: [:index, :new] do
     resources :board_comments, only: [:create, :destroy]
     resources :events
