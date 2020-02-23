@@ -4,9 +4,9 @@
 ![top-image](https://user-images.githubusercontent.com/57241393/74602461-05eacf80-50ec-11ea-9626-d1c5c260f7d5.png)
 
 # 概要
-Music Squareは音楽の好きな人たちが交流するためのプラットフォームです。
-アプリケーション内にはアーティストごとに掲示板を作成することができます。
-また、アーティストごとにイベントを作成することもできますので、ユーザー同士で交流・情報交換を行ってください。
+Music Squareは音楽特化型の掲示板・イベント管理アプリケーションです。
+SpotifyAPIとの連携により膨大なアーティストの中から検索し、掲示板を作成することが可能です。
+そして、各掲示板ごとにコメント・イベント作成ができますので音楽好きで価値観の合う仲間達を集めて交流・情報交換していきましょう。
 
 # バージョン情報
 - Ruby 2.6.5
@@ -33,6 +33,7 @@ Music Squareは音楽の好きな人たちが交流するためのプラット�
 - イベント参加表明機能
 - イベントへのコメント投稿機能
     - イベントへのコメントお気に入り機能
+    - イベントのコメント編集機能
 
 
 # カタログ設計
@@ -47,18 +48,23 @@ https://docs.google.com/spreadsheets/d/1dJhQ_BB5qmhHEaP-dJf8tWmuZ_pMsdKY6asXO23v
 https://docs.google.com/spreadsheets/d/1dJhQ_BB5qmhHEaP-dJf8tWmuZ_pMsdKY6asXO23vFPA/edit#gid=91892871
 
 # 使用Gem
-- carrierwave
-- mini_magick
-- devise
-- rails_admin
-- kaminari
-- bullet
-- cancancan
-- rspotify
-- dotenv-rails
-- omniauth
-- omniauth-facebook
-- omniauth-rails_csrf_protection
-- momentjs-rails
-- font-awesome-rails
-- high_voltage
+- 'bcrypt', '3.1.13'
+- 'bullet'
+- 'bootstrap4-datetime-picker-rails'
+- 'carrierwave'
+- 'cancancan'
+- 'dotenv-rails'
+- 'devise'
+- 'faker'
+- 'fog-aws'
+- 'font-awesome-rails'
+- 'high_voltage'
+- 'mini_racer', platforms: :ruby
+- 'mini_magick'
+- 'momentjs-rails'
+- 'omniauth'
+- 'omniauth-google-oauth2'
+- 'omniauth-rails_csrf_protection'
+- 'rails_admin', '~> 2.0'
+- 'rspotify'
+- 'unicorn'
