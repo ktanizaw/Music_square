@@ -1,0 +1,1 @@
+$("#edit_comment_<%= @boardcomment.id %>").html("<%= escape_javascript(render partial: 'board_comments/edit', locals: { board_comment: @boardcomment, artist_board: @artistboard } ) %>")

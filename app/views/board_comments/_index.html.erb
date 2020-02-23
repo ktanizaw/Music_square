@@ -1,28 +1,37 @@
 <% board_comments.each do |boardcomment| %>
 
 <div class="col-2 d-flex align-items-center">
-    <%= link_to user_path(boardcomment.user.id),class:"pl-5 text-center" do %>
+    <%= link_to user_path(boardcomment.user.id),class:"m-auto" do %>
       <% if boardcomment.user.profile_image? %>
-        <%= image_tag "#{boardcomment.user.profile_image}", :size =>'30x30', class:"z-depth-1" %>
+        <%= image_tag "#{boardcomment.user.profile_image}", :size =>'30x30', class:"z-depth-1 d-block mx-auto" %>
         <p><%= boardcomment.user.name %></p>
       <% else %>
-        <%= image_tag 'default.jpg', :size =>'30x30', class:"z-depth-1" %>
+        <%= image_tag 'default.jpg', :size =>'30x30', class:"z-depth-1 d-block mx-auto" %>
         <p><%= boardcomment.user.name %></p>
       <% end %>
     <% end %>
 </div>
 
 <div class="col-10">
-  <div class="comment">
-    <% if boardcomment.picture? %>
-      <%= image_tag "#{boardcomment.picture}", :size =>'200x150', class:"text-center" %>
-    <% end %>
-    <p><%= boardcomment.content %></p>
-    <% if boardcomment.user == current_user %>
-      <%= link_to '削除', artist_board_board_comment_path(boardcomment.artist_board.artists, boardcomment.id), method: :delete, remote: true, data: { confirm: '本当に削除しますか?' } %>
-    <% end %>
-    <%= render partial: 'artist_boards/favorite_btn', locals: { board_comment: boardcomment } %>
-  </div>
+    <div class="comment">
+        <% if boardcomment.picture? %>
+          <%= image_tag "#{boardcomment.picture}", :size =>'200x150', class:"text-center" %>
+        <% end %>
+        <div class="pt-2" id="edit_comment_<%= boardcomment.id %>">
+        <p><span id="for_edit"><%= boardcomment.content %></span></p>
+        <div>
+            <% if boardcomment.user == current_user %>
+              <%= link_to edit_artist_board_board_comment_path(boardcomment.artist_board.artists, boardcomment.id), remote: true do %>
+              <i class="fas fa-edit"></i>
+              <% end %>
+              <%= link_to artist_board_board_comment_path(boardcomment.artist_board.artists, boardcomment.id), method: :delete, remote: true, data: { confirm: '本当に削除しますか?' } do %>
+              <i class="far fa-trash-alt"></i>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <%= render 'artist_boards/favorite_btn', board_comment: boardcomment %>
+      </div>
 </div>
 
 <% end %>

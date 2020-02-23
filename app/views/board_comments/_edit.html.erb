@@ -1,0 +1,10 @@
+<div id="edit_comment_<%= board_comment.id %>">
+  <%= form_with(model: [artist_board, board_comment], remote: true ) do |f| %>
+    <div class="form-group">
+      <%= f.text_area :content, class:"form-control" %>
+    </div>
+    <div>
+      <%= f.submit "更新", class:"btn-sm btn-outline-blue submit-btn" %>
+    </div>
+  <% end %>
+</div>
