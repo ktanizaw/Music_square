@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
-
 ruby '2.6.5'
 
 gem 'rails', '~> 5.2.4', '>= 5.2.4.1'
@@ -8,13 +7,10 @@ gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
-
 gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
-
 gem 'bootsnap', '>= 1.1.0', require: false
-
 gem 'bcrypt', '3.1.13'
 gem 'bullet'
 gem 'bootstrap4-datetime-picker-rails'
@@ -30,10 +26,10 @@ gem 'mini_racer', platforms: :ruby
 gem 'mini_magick'
 gem 'momentjs-rails'
 gem 'omniauth'
-gem 'omniauth-google-oauth2'
+gem 'omniauth-google-oauth2', git: "git@github.com:zquestz/omniauth-google-oauth2.git", tag: "v0.7.0"
 gem 'omniauth-rails_csrf_protection'
 gem 'rails_admin', '~> 2.0'
-gem 'rspotify'
+gem 'rspotify', git: "git@github.com:guilhermesad/rspotify.git", tag: "v2.8.0"
 gem 'unicorn'
 
 group :development, :test do

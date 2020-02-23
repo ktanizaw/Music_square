@@ -9,6 +9,6 @@ FactoryBot.define do
     name { 'テストユーザー' }
     email { 'test@example.com' }
     profile { '私はテストユーザーです。' }
-    password { '123456' }
+    password { 'password' }
   end
 end
