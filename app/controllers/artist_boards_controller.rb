@@ -11,7 +11,7 @@ class ArtistBoardsController < ApplicationController
   PER_EVENT = 5
 
   def index
-    @artistboards = ArtistBoard.all.includes([:categorizes]).includes([:categories]).page(params[:page]).per(PER_BOARD)
+    @artistboards = ArtistBoard.all.includes([:categories]).page(params[:page]).per(PER_BOARD)
     @artistboards = @artistboards.joins(:categories).where(categories: { id: params[:category_id] }) if params[:category_id].present?
     if params[:artists].present?
       @artistboards = @artistboards.get_by_artists params[:artists]
@@ -35,7 +35,7 @@ class ArtistBoardsController < ApplicationController
     @boardcomment = BoardComment.new
     @boardcomments = @artistboard.board_comments.includes([:user]).order(id: "DESC").page(params[:boardcomment_page]).per(PER_COMMENT)
     @event = Event.new
-    @events = @artistboard.events.includes([:labellings]).includes([:labels]).order(id: "DESC").page(params[:event_page]).per(PER_EVENT)
+    @events = @artistboard.events.includes([:labels]).order(id: "DESC").page(params[:event_page]).per(PER_EVENT)
     @fan = current_user.fans.find_by(artist_board_id: @artistboard.id)
   end
 
