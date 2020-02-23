@@ -32,7 +32,7 @@ RSpec.describe '掲示板コメント管理機能', type: :system do
       it 'コメントがコメント一覧から削除される' do
       BoardComment.create(content: "テストコメント", user_id: user.id, artist_board_id: board_comment.artist_board.id)
       visit artist_board_path(board_comment.artist_board.artists)
-      click_link '削除'
+      find('.fa-trash-alt').click
       expect {
         page.driver.browser.switch_to.alert.accept
         expect(page).not_to have_content 'テストコメント'

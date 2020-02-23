@@ -100,3 +100,4 @@ ja:
     omniauth_callbacks:
       user:
         failure: "ログインに失敗しました。"
+        success: "ログインに成功しました。"

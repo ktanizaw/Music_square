@@ -1,3 +1,23 @@
+GIT
+  remote: git@github.com:guilhermesad/rspotify.git
+  revision: 522d9ba3daad6e2f4658f804c417b73ea3547453
+  tag: v2.8.0
+  specs:
+    rspotify (2.8.0)
+      addressable (~> 2.5.2)
+      omniauth-oauth2 (~> 1.5.0)
+      rest-client (~> 2.0.2)
+
+GIT
+  remote: git@github.com:zquestz/omniauth-google-oauth2.git
+  revision: 8b4d6dafea1e741a34c92d595ffb2e7b99acd874
+  tag: v0.7.0
+  specs:
+    omniauth-google-oauth2 (0.7.0)
+      jwt (>= 2.0)
+      omniauth (>= 1.1.1)
+      omniauth-oauth2 (>= 1.5)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -46,8 +66,8 @@ GEM
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    addressable (2.7.0)
-      public_suffix (>= 2.0.2, < 5.0)
+    addressable (2.5.2)
+      public_suffix (>= 2.0.2, < 4.0)
     airbrussh (1.4.0)
       sshkit (>= 1.6.1, != 1.7.0)
     arel (9.0.0)
@@ -78,7 +98,7 @@ GEM
     capistrano-rails (1.4.0)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
-    capistrano-rbenv (2.1.4)
+    capistrano-rbenv (2.1.6)
       capistrano (~> 3.1)
       sshkit (~> 1.3)
     capistrano3-unicorn (0.2.1)
@@ -91,13 +111,10 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (~> 1.5)
       xpath (~> 3.2)
-    carrierwave (2.0.2)
-      activemodel (>= 5.0.0)
-      activesupport (>= 5.0.0)
-      addressable (~> 2.6)
-      image_processing (~> 1.1)
-      mimemagic (>= 0.3.0)
-      mini_mime (>= 0.1.3)
+    carrierwave (1.3.1)
+      activemodel (>= 4.0.0)
+      activesupport (>= 4.0.0)
+      mime-types (>= 1.16)
     childprocess (3.0.0)
     code_analyzer (0.5.1)
       sexp_processor
@@ -108,7 +125,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    concurrent-ruby (1.1.5)
+    concurrent-ruby (1.1.6)
     crass (1.0.6)
     devise (4.7.1)
       bcrypt (~> 3.0)
@@ -133,11 +150,11 @@ GEM
     factory_bot_rails (5.1.1)
       factory_bot (~> 5.1.0)
       railties (>= 4.2.0)
-    faker (2.10.1)
+    faker (2.10.2)
       i18n (>= 1.6, < 2)
     faraday (1.0.0)
       multipart-post (>= 1.2, < 3)
-    ffi (1.12.1)
+    ffi (1.12.2)
     fog-aws (3.5.2)
       fog-core (~> 2.1)
       fog-json (~> 1.1)
@@ -168,12 +185,9 @@ GEM
       domain_name (~> 0.5)
     i18n (1.8.2)
       concurrent-ruby (~> 1.0)
-    image_processing (1.10.3)
-      mini_magick (>= 4.9.5, < 5)
-      ruby-vips (>= 2.0.17, < 3)
     ipaddress (0.8.3)
-    jbuilder (2.9.1)
-      activesupport (>= 4.2.0)
+    jbuilder (2.10.0)
+      activesupport (>= 5.0.0)
     jquery-rails (4.3.5)
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
@@ -182,18 +196,18 @@ GEM
       railties (>= 3.2.16)
     json (2.3.0)
     jwt (2.2.1)
-    kaminari (1.1.1)
+    kaminari (1.2.0)
       activesupport (>= 4.1.0)
-      kaminari-actionview (= 1.1.1)
-      kaminari-activerecord (= 1.1.1)
-      kaminari-core (= 1.1.1)
-    kaminari-actionview (1.1.1)
+      kaminari-actionview (= 1.2.0)
+      kaminari-activerecord (= 1.2.0)
+      kaminari-core (= 1.2.0)
+    kaminari-actionview (1.2.0)
       actionview
-      kaminari-core (= 1.1.1)
-    kaminari-activerecord (1.1.1)
+      kaminari-core (= 1.2.0)
+    kaminari-activerecord (1.2.0)
       activerecord
-      kaminari-core (= 1.1.1)
-    kaminari-core (1.1.1)
+      kaminari-core (= 1.2.0)
+    kaminari-core (1.2.0)
     kgio (2.11.3)
     launchy (2.4.3)
       addressable (~> 2.3)
@@ -230,7 +244,7 @@ GEM
       momentjs-rails (>= 2.10.5, <= 3.0.0)
     momentjs-rails (2.20.1)
       railties (>= 3.1)
-    msgpack (1.3.1)
+    msgpack (1.3.3)
     multi_json (1.14.1)
     multi_xml (0.6.0)
     multipart-post (2.1.1)
@@ -242,7 +256,7 @@ GEM
     nio4r (2.5.2)
     nokogiri (1.10.8)
       mini_portile2 (~> 2.4.0)
-    oauth2 (1.4.3)
+    oauth2 (1.4.4)
       faraday (>= 0.8, < 2.0)
       jwt (>= 1.0, < 3.0)
       multi_json (~> 1.3)
@@ -251,18 +265,15 @@ GEM
     omniauth (1.9.0)
       hashie (>= 3.4.6, < 3.7.0)
       rack (>= 1.6.2, < 3)
-    omniauth-google-oauth2 (0.2.6)
-      omniauth (> 1.0)
-      omniauth-oauth2 (~> 1.1)
-    omniauth-oauth2 (1.3.1)
-      oauth2 (~> 1.0)
+    omniauth-oauth2 (1.5.0)
+      oauth2 (~> 1.1)
       omniauth (~> 1.2)
     omniauth-rails_csrf_protection (0.1.2)
       actionpack (>= 4.2)
       omniauth (>= 1.3.1)
     orm_adapter (0.5.0)
     pg (1.2.2)
-    public_suffix (4.0.3)
+    public_suffix (3.1.1)
     puma (3.12.2)
     rack (2.2.2)
     rack-mini-profiler (1.1.6)
@@ -348,12 +359,7 @@ GEM
       rspec-mocks (~> 3.9.0)
       rspec-support (~> 3.9.0)
     rspec-support (3.9.2)
-    rspotify (2.4.0)
-      omniauth-oauth2 (~> 1.3.1)
-      rest-client (~> 2.0.2)
     ruby-progressbar (1.10.1)
-    ruby-vips (2.0.17)
-      ffi (~> 1.9)
     ruby_dep (1.5.0)
     rubyzip (2.2.0)
     sass (3.7.4)
@@ -409,7 +415,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.6)
-    unicorn (5.5.2)
+    unicorn (5.5.3)
       kgio (~> 2.6)
       raindrops (~> 0.7)
     uniform_notifier (1.13.0)
@@ -420,7 +426,7 @@ GEM
       activemodel (>= 5.0)
       bindex (>= 0.4.0)
       railties (>= 5.0)
-    webdrivers (4.1.3)
+    webdrivers (4.2.0)
       nokogiri (~> 1.6)
       rubyzip (>= 1.3.0)
       selenium-webdriver (>= 3.0, < 4.0)
@@ -465,7 +471,7 @@ DEPENDENCIES
   mini_racer
   momentjs-rails
   omniauth
-  omniauth-google-oauth2
+  omniauth-google-oauth2!
   omniauth-rails_csrf_protection
   pg (>= 0.18, < 2.0)
   puma (~> 3.11)
@@ -474,7 +480,7 @@ DEPENDENCIES
   rails_admin (~> 2.0)
   rails_best_practices
   rspec-rails
-  rspotify
+  rspotify!
   sass-rails (~> 5.0)
   spring
   spring-commands-rspec
