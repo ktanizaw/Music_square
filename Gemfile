@@ -11,8 +11,8 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
+
 gem 'bcrypt', '3.1.13'
-gem 'bullet'
 gem 'bootstrap4-datetime-picker-rails'
 gem 'carrierwave'
 gem 'cancancan'
@@ -34,6 +34,7 @@ gem 'unicorn'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'bullet'
   gem 'bcrypt_pbkdf'
   gem 'capistrano', '3.6.0'
   gem 'capistrano-bundler'
