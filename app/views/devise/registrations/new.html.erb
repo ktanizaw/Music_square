@@ -90,7 +90,6 @@
               <div class="custom-file">
                 <%= f.label :"プロフィール画像", class:"custom-file-label text-left", for:"inputGroupFile01" %>
                 <%= f.file_field :profile_image, autofocus: true, autocomplete: "profile_image", class:"custom-file-input", id:"inputGroupFile01" %>
-                <%= image_tag(@user.profile_image.url) if @user.profile_image && @user.profile_image.url %>
               </div>
             </div>
 
