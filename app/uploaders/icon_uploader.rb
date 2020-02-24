@@ -1,11 +1,7 @@
 class IconUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
-  if Rails.env.production? || Rails.env.development?
-    storage :fog
-  else
-    storage :file
-  end
+  storage :fog
 
   process { :resize_to_limit [300, 300] }
   def store_dir
