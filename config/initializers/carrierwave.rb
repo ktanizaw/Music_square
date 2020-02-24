@@ -8,7 +8,7 @@ CarrierWave.configure do |config|
       provider:              'AWS',
       aws_access_key_id:     ENV["AWS_ACCESS_KEY_ID"],
       aws_secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"],
-      region:                's3-ap-northeast-1',
+      region:                'ap-northeast-1',
       path_style:            true,
   }
   config.fog_public     = true
@@ -16,7 +16,7 @@ CarrierWave.configure do |config|
   case Rails.env
     when 'production'
       config.fog_directory = 'music-square-production'
-      config.asset_host = 'https://music-square-production.s3.amazonaws.com'
+      config.asset_host = 'https://music-square-development.s3.amazonaws.com'
     when 'development'
       config.fog_directory = 'music-square-development'
       config.asset_host = 'https://music-square-development.s3.amazonaws.com'
