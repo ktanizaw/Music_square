@@ -8,7 +8,7 @@ class EventsController < ApplicationController
   PER_EVENT_COMMENT = 5
 
   def index
-    @events = Event.all.includes([:labels]).order(id: "DESC").page(params[:page]).per(PER_EVENT)
+    @events = Event.all.includes([:labels]).order(id: :desc).page(params[:page]).per(PER_EVENT)
     @events = @events.joins(:labels).where(labels: { id: params[:label_id] }) if params[:label_id].present?
     if params[:title].present?
       @events = @events.get_by_title params[:title]
@@ -68,7 +68,7 @@ class EventsController < ApplicationController
 
   def ensure_correct_user
     if @event.owner_id != current_user.id
-      redirect_to events_path, notice: "権限がありません"
+      redirect_to events_path, notice: '権限がありません'
     end
   end
 end

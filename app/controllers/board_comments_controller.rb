@@ -40,7 +40,7 @@ class BoardCommentsController < ApplicationController
   private
 
   def set_boardcomments
-    @boardcomments = @artistboard.board_comments.includes([:user]).order(id: "DESC").page(params[:boardcomment_page]).per(PER_COMMENT)
+    @boardcomments = @artistboard.board_comments.includes([:user]).order(id: :desc).page(params[:boardcomment_page]).per(PER_COMMENT)
   end
 
   def set_artistboard
