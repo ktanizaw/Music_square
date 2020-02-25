@@ -16,7 +16,7 @@
             <% end %>
             <h5><%= user.name %></h5>
             <div>
-              <% if current_user.admin? || current_user.id == user.id || current_user.id != 24 %>
+              <% if current_user.id != 24 && (current_user.admin? || current_user.id == user.id) %>
                 <%= link_to edit_user_path(user) do %>
                   <button type="button" class="btn-sm btn-outline-danger waves-effect">編集する</button>
                 <% end %>
