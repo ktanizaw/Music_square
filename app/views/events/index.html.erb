@@ -13,11 +13,21 @@
           </div>
           <div class="form-group">
             <%= f.label :label, "イベントのラベルで絞り込む", class:'control-label' %>
-            <%= f.select("label_id", Label.pluck(:name, :id), { include_blank: true }, class:"form-control mr-sm-2 form-inline mr-auto mb-4") %>
+            <%= f.select("label_id", Label.pluck(:name, :id), { include_blank: '指定なし' }, class:"form-control mr-sm-2 form-inline mr-auto mb-4") %>
           </div>
 
           <div class="text-center mb-3">
             <%= f.submit 'イベントを検索する', name: nil, class:"btn blue-gradient btn-block z-depth-1a submit-btn" %>
+          </div>
+        <% end %>
+
+        <%= form_with url: events_path, method: :get, local: true do |f| %>
+          <div class="form-group">
+            <%= f.label :label, "イベントを並び替える", class:'control-label' %>
+            <%= f.select(:sorts, {'作成日の古い順': 'updated_at asc', '開催日付の早い順': 'date asc', '開催日付の遅い順': 'date desc'}, { include_blank: '作成日の新しい順' }, class:"form-control mr-sm-2 form-inline mr-auto mb-4") %>
+          </div>
+          <div class="text-center mb-3">
+            <%= f.submit 'イベントを並び替える', name: nil, class:"btn blue-gradient btn-block z-depth-1a submit-btn" %>
           </div>
         <% end %>
 
