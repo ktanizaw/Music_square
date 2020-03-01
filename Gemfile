@@ -12,7 +12,6 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bcrypt', '3.1.13'
-gem 'bullet'
 gem 'bootstrap4-datetime-picker-rails'
 gem 'carrierwave'
 gem 'cancancan'
@@ -29,7 +28,6 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2', git: "git@github.com:zquestz/omniauth-google-oauth2.git", tag: "v0.7.0"
 gem 'omniauth-rails_csrf_protection'
 gem 'rails_admin', '~> 2.0'
-gem 'ransack'
 gem 'rspotify', git: "git@github.com:guilhermesad/rspotify.git", tag: "v2.8.0"
 gem 'unicorn'
 
