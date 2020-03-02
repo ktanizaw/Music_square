@@ -8,10 +8,13 @@ class EventsController < ApplicationController
   PER_EVENT_COMMENT = 5
 
   def index
-    @events = Event.all.includes([:labels]).order(id: :desc).page(params[:page]).per(PER_EVENT)
+    @events = Event.all.includes([:labels]).order(updated_at: "DESC").page(params[:page]).per(PER_EVENT)
     @events = @events.joins(:labels).where(labels: { id: params[:label_id] }) if params[:label_id].present?
     if params[:title].present?
       @events = @events.get_by_title params[:title]
+    end
+    if params[:sorts].present?
+      @events = Event.all.includes([:labels]).order(params[:sorts]).page(params[:page]).per(PER_EVENT)
     end
   end
 
