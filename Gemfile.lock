@@ -271,7 +271,7 @@ GEM
     orm_adapter (0.5.0)
     pg (1.2.2)
     public_suffix (3.1.1)
-    puma (3.12.2)
+    puma (3.12.3)
     rack (2.2.2)
     rack-mini-profiler (1.1.6)
       rack (>= 1.2.0)
@@ -469,7 +469,7 @@ DEPENDENCIES
   omniauth-google-oauth2!
   omniauth-rails_csrf_protection
   pg (>= 0.18, < 2.0)
-  puma (~> 3.11)
+  puma (~> 3.12)
   rack-mini-profiler
   rails (~> 5.2.4, >= 5.2.4.1)
   rails_admin (~> 2.0)

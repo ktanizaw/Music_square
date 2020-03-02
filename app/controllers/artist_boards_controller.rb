@@ -21,7 +21,7 @@ class ArtistBoardsController < ApplicationController
   def search
     @artistboards = ArtistBoard.all
     if params[:search].present?
-    @searchartists = RSpotify::Artist.search(params[:search])
+      @searchartists = RSpotify::Artist.search(params[:search])
     end
   end
 
@@ -33,9 +33,9 @@ class ArtistBoardsController < ApplicationController
 
   def show
     @boardcomment = BoardComment.new
-    @boardcomments = @artistboard.board_comments.includes([:user]).order(id: "DESC").page(params[:boardcomment_page]).per(PER_COMMENT)
+    @boardcomments = @artistboard.board_comments.includes([:user]).order(id: :desc).page(params[:boardcomment_page]).per(PER_COMMENT)
     @event = Event.new
-    @events = @artistboard.events.includes([:labels]).order(id: "DESC").page(params[:event_page]).per(PER_EVENT)
+    @events = @artistboard.events.includes([:labels]).order(id: :desc).page(params[:event_page]).per(PER_EVENT)
     @fan = current_user.fans.find_by(artist_board_id: @artistboard.id)
   end
 
@@ -77,7 +77,7 @@ class ArtistBoardsController < ApplicationController
 
   def user_admin
     unless  current_user.admin?
-      redirect_to artist_boards_path, notice: "権限がありません"
+      redirect_to artist_boards_path, notice: '権限がありません'
     end
   end
 end

@@ -90,7 +90,6 @@
               <div class="custom-file">
                 <%= f.label :"プロフィール画像", class:"custom-file-label text-left", for:"inputGroupFile01" %>
                 <%= f.file_field :profile_image, autofocus: true, autocomplete: "profile_image", class:"custom-file-input", id:"inputGroupFile01" %>
-                <%= image_tag(@user.profile_image.url) if @user.profile_image && @user.profile_image.url %>
               </div>
             </div>
 
@@ -111,7 +110,7 @@
 
           <div class="modal-footer mx-5 pt-3 mb-1">
             <p class="font-small grey-text d-flex justify-content-end">アカウントをお持ちの方は
-            <a href="users/sign_in" class="blue-text ml-1">ログイン画面へ</a></p>
+            <%= link_to 'ログイン画面へ', new_user_session_path, class:"ml-1" %>
           </div>
 
           <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>

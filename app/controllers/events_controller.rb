@@ -71,7 +71,7 @@ class EventsController < ApplicationController
 
   def ensure_correct_user
     if @event.owner_id != current_user.id
-      redirect_to events_path, notice: "権限がありません"
+      redirect_to events_path, notice: '権限がありません'
     end
   end
 end
