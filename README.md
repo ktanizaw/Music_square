@@ -63,8 +63,8 @@ https://docs.google.com/spreadsheets/d/1dJhQ_BB5qmhHEaP-dJf8tWmuZ_pMsdKY6asXO23v
 - 'mini_magick'
 - 'momentjs-rails'
 - 'omniauth'
-- 'omniauth-google-oauth2'
+- 'omniauth-google-oauth2', git: "git@github.com:zquestz/omniauth-google-oauth2.git", tag: "v0.7.0"
 - 'omniauth-rails_csrf_protection'
 - 'rails_admin', '~> 2.0'
-- 'rspotify'
+- rspotify', git: "git@github.com:guilhermesad/rspotify.git", tag: "v2.8.0"
 - 'unicorn'

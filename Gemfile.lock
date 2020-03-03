@@ -81,6 +81,9 @@ GEM
       moment-timezone-rails (~> 1.0)
       momentjs-rails (>= 2.10.5, <= 3.0.0)
     builder (3.2.4)
+    bullet (6.1.0)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.11)
     byebug (11.1.1)
     cancancan (3.0.2)
     capistrano (3.6.0)
@@ -271,7 +274,7 @@ GEM
     orm_adapter (0.5.0)
     pg (1.2.2)
     public_suffix (3.1.1)
-    puma (3.12.2)
+    puma (3.12.3)
     rack (2.2.2)
     rack-mini-profiler (1.1.6)
       rack (>= 1.2.0)
@@ -415,6 +418,7 @@ GEM
     unicorn (5.5.3)
       kgio (~> 2.6)
       raindrops (~> 0.7)
+    uniform_notifier (1.13.0)
     warden (1.2.8)
       rack (>= 2.0.6)
     web-console (3.7.0)
@@ -440,6 +444,7 @@ DEPENDENCIES
   bcrypt_pbkdf
   bootsnap (>= 1.1.0)
   bootstrap4-datetime-picker-rails
+  bullet
   byebug
   cancancan
   capistrano (= 3.6.0)
@@ -469,7 +474,7 @@ DEPENDENCIES
   omniauth-google-oauth2!
   omniauth-rails_csrf_protection
   pg (>= 0.18, < 2.0)
-  puma (~> 3.11)
+  puma (~> 3.12)
   rack-mini-profiler
   rails (~> 5.2.4, >= 5.2.4.1)
   rails_admin (~> 2.0)
