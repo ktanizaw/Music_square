@@ -17,6 +17,7 @@ class EventsController < ApplicationController
       @events = Event.all.includes([:labels]).order(params[:sorts]).page(params[:page]).per(PER_EVENT)
     end
   end
+
   def new
     @event = Event.new
     @artistboard = ArtistBoard.find_by(artists: params[:artist_board_id])

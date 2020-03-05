@@ -5,13 +5,15 @@ class UsersController < ApplicationController
 
   PER_USER = 10
   PER_BOARD = 8
+  PER_EVENT = 6
 
   def index
     @users = User.all.page(params[:page]).per(PER_USER)
   end
 
   def show
-    @fan_artists = @user.fan_artistboards.includes(:categories).page(params[:page]).per(PER_BOARD)
+    @fan_artists = @user.fan_artistboards.includes(:categories).page(params[:fan_artists_page]).per(PER_BOARD)
+    @events = @user.participant_events.includes([:labels]).order(updated_at: "DESC").page(params[:event_page]).per(PER_EVENT)
   end
 
   def new

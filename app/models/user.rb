@@ -11,6 +11,8 @@ class User < ApplicationRecord
   has_many :events, dependent: :destroy, foreign_key: :owner_id
   has_many :event_comments, dependent: :destroy
   has_many :participants, dependent: :destroy
+  has_many :participant_events, through: :participants, source: :event
+
 
   validates :name, presence: { message: 'に不備があります。' },
               uniqueness: true, length: { maximum: 24 }
