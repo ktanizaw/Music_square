@@ -13,6 +13,7 @@ class ArtistBoardsController < ApplicationController
   def index
     @artistboards = ArtistBoard.all.includes([:categories]).page(params[:page]).per(PER_BOARD)
     @artistboards = @artistboards.joins(:categories).where(categories: { id: params[:category_id] }) if params[:category_id].present?
+    @category = Category.find_by(id: params[:category_id])
     if params[:artists].present?
       @artistboards = @artistboards.get_by_artists params[:artists]
     end

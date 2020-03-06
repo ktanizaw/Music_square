@@ -44,6 +44,10 @@
       <div class="m-5">
         <h6 class="text-center text-muted pt-4">アーティスト掲示板一覧</h6>
         <h2 class="text-center font-weight-bold pb-4">こんな掲示板があります</h2>
+        <% if params[:category_id].present? %>
+        <h5 class="text-center font-weight-bold pb-4">ジャンル「<%= @category.name %>」のアーティスト掲示板一覧</h5>
+        <% end %>
+
         <div class="row row-cols-1 row-cols-md-3">
           <% @artistboards.each do |artistboard| %>
           <div class="col mb-4">
